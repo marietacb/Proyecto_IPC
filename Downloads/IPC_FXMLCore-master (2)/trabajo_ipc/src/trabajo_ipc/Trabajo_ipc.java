@@ -18,8 +18,8 @@ public class Trabajo_ipc extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+        FXMLLoader loader= new  FXMLLoader(getClass().getResource("/resources.fxml/FXMLDocument.fxml"));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
