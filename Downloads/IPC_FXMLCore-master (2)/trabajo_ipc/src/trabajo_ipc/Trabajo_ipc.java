@@ -15,14 +15,24 @@ import javafx.stage.Stage;
  * @author Belén Rodríguez
  */
 public class Trabajo_ipc extends Application {
+    private static Scene scene;
+    
+    static void setRoot(Parent root) {
+    scene.setRoot(root);
+    }
     
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+       //1-creamos un grafo de escena a partir del fichero FXML 
+        FXMLLoader loader= new  FXMLLoader(getClass().getResource("/resources/fxml/FXML_inicio_sesion.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root);
         
+        //2-Creacion de la escena con el nodo raiz del grafo de escena
+        scene = new Scene(root);
+        
+        //3-asignación de la escna al Stage que recibe el metodo        
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
