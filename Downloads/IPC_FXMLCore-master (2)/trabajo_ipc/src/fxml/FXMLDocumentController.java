@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package resources.fxml;
+package fxml;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,7 +37,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void pulsarGastos(ActionEvent event) throws IOException {
-        FXMLLoader cargadorGastofxml = new FXMLLoader(getClass().getResource("/resources.fxml/añadir_gastoFXML.fxml"));
+        FXMLLoader cargadorGastofxml = new FXMLLoader(getClass().getResource("/resources/fxml/añadir_gastoFXML.fxml"));
         Parent root = cargadorGastofxml.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
