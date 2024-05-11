@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXMLDocumentController">
+<BorderPane fx:id="border_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXMLDocumentController">
    <top>
       <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -33,13 +33,13 @@
       <ToolBar orientation="VERTICAL" prefHeight="350.0" prefWidth="140.0" BorderPane.alignment="CENTER">
         <items>
             <Button mnemonicParsing="false" text="+ Crear" translateX="10.0" translateY="15.0" />
-          <Button mnemonicParsing="false" text="Resumen anual" translateX="10.0" translateY="175.0" />
+          <Button mnemonicParsing="false" onMouseClicked="#resumen_anual" text="Resumen anual" translateX="10.0" translateY="175.0" />
             <Button fx:id="boton_gastos" mnemonicParsing="false" onMouseClicked="#pulsarGastos" text="Gastos" translateX="10.0" translateY="180.0" />
         </items>
       </ToolBar>
    </left>
    <center>
-      <PieChart title="Resumen anual" BorderPane.alignment="CENTER">
+      <PieChart fx:id="grafico" title="Resumen anual" BorderPane.alignment="CENTER">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

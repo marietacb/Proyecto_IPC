@@ -24,7 +24,7 @@ public class Trabajo_ipc extends Application {
     @Override
     public void start(Stage stage) throws Exception {
        //1-creamos un grafo de escena a partir del fichero FXML 
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource("/resources/fxml/FXML_inicio_sesion.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
         Parent root = loader.load();
         
         //2-Creacion de la escena con el nodo raiz del grafo de escena

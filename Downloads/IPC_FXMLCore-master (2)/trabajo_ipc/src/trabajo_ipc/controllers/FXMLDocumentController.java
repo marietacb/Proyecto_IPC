@@ -13,8 +13,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -26,22 +30,60 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Button boton_gastos;
+    @FXML
+    private PieChart grafico;
+    @FXML
+    private BorderPane border_pane;
+            
+    private TableView<String> tableView = new TableView<>();    //creamos tableview
+
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Creo el tableview
+        TableColumn<String, String> column1 = new TableColumn<>("Categoría");
+        TableColumn<String, String> column2 = new TableColumn<>("Producto");
+        TableColumn<String, String> column3 = new TableColumn<>("Fecha");
+        TableColumn<String, String> column4 = new TableColumn<>("Unidades");
+        TableColumn<String, String> column5 = new TableColumn<>("Precio");
+        TableColumn<String, String> column6 = new TableColumn<>("Foto");
+        TableColumn<String, String> column7 = new TableColumn<>(""); //eliminar
+        
+        column1.setPrefWidth(102);  //tamaños de cada columna
+        column2.setPrefWidth(102);
+        column3.setPrefWidth(102);
+        column4.setPrefWidth(102);
+        column5.setPrefWidth(102);
+        column6.setPrefWidth(102);
+        column7.setPrefWidth(50);   //columna eliminar mas pequeña
+         
+        tableView.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);    
+        border_pane.setCenter(tableView);
+        
+        //TODO: Inicializar el grafico aqui
     }    
 
     @FXML
     private void pulsarGastos(MouseEvent event) throws IOException {
-        FXMLLoader cargadorGastofxml = new FXMLLoader(getClass().getResource("/resources/fxml/añadir_gastoFXML.fxml"));
-        Parent root = cargadorGastofxml.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
+        grafico.setVisible(false);
+        if(tableView.visibleProperty().get() == false) {
+            tableView.setVisible(true);
+        } else {
+            tableView.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void resumen_anual(MouseEvent event) {
+        tableView.setVisible(false);
+        if (grafico.visibleProperty().get() == false) {
+            grafico.setVisible(true);
+        } else {
+            grafico.setVisible(false);
+        }
     }
 
     

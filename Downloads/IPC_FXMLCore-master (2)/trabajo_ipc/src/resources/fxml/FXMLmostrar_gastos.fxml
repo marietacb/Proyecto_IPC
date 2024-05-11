@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXMLmostrar_gastosController">
    <left>
       <ToolBar orientation="VERTICAL" prefHeight="350.0" prefWidth="140.0" BorderPane.alignment="CENTER">
@@ -41,7 +40,7 @@
       </HBox>
    </top>
    <center>
-      <TableView maxHeight="500.0" maxWidth="800.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView maxHeight="500.0" maxWidth="800.0" prefHeight="200.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="50.0" />
             <TableColumn prefWidth="95.0" text="Categoría" />
