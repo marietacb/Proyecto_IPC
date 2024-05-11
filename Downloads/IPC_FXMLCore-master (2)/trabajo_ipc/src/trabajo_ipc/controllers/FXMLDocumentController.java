@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -36,6 +37,12 @@ public class FXMLDocumentController implements Initializable {
     private BorderPane border_pane;
             
     private TableView<String> tableView = new TableView<>();    //creamos tableview
+    @FXML
+    private Button boton_resumenGastos;
+    
+    private Scene scene;
+    @FXML
+    private MenuItem boton_añadirGasto;
 
 
     /**
@@ -64,27 +71,38 @@ public class FXMLDocumentController implements Initializable {
         border_pane.setCenter(tableView);
         
         //TODO: Inicializar el grafico aqui
+        
+        boton_añadirGasto.setOnAction(event -> añadirGasto());
+        
     }    
 
     @FXML
     private void pulsarGastos(MouseEvent event) throws IOException {
         grafico.setVisible(false);
-        if(tableView.visibleProperty().get() == false) {
-            tableView.setVisible(true);
-        } else {
-            tableView.setVisible(false);
-        }
+        tableView.setVisible(true);
+        boton_gastos.disableProperty();
     }
 
     @FXML
     private void resumen_anual(MouseEvent event) {
         tableView.setVisible(false);
-        if (grafico.visibleProperty().get() == false) {
-            grafico.setVisible(true);
-        } else {
-            grafico.setVisible(false);
-        }
+        grafico.setVisible(true);
+        boton_resumenGastos.disableProperty();
     }
 
+    @FXML
+    private void añadirGasto() {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/anadir_gastoFXML.fxml"));
+            Parent root = loader.load();
+        
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
     
 }
