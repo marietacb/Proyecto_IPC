@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXMLmostrar_gastosController">
+   <left>
+      <ToolBar orientation="VERTICAL" prefHeight="350.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+        <items>
+            <Button mnemonicParsing="false" text="+ Crear" translateX="10.0" translateY="15.0" />
+            <Button mnemonicParsing="false" text="Resumen anual" translateX="10.0" translateY="175.0" />
+            <Button mnemonicParsing="false" text="Gastos" translateX="10.0" translateY="180.0" />
+        </items>
+      </ToolBar>
+   </left>
+   <top>
+      <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="Ayuda">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Perfil">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Opciones">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <TableView maxHeight="500.0" maxWidth="800.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="50.0" />
+            <TableColumn prefWidth="95.0" text="Categoría" />
+          <TableColumn prefWidth="95.0" text="Fecha" />
+            <TableColumn prefWidth="95.0" text="Producto" />
+            <TableColumn prefWidth="95.0" text="Unidades" />
+            <TableColumn prefWidth="95.0" text="Precio" />
+            <TableColumn prefWidth="95.0" text="Foto" />
+            <TableColumn prefWidth="38.0" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>

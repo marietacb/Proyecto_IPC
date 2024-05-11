@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import trabajo_ipc.Trabajo_ipc;
         
 
 /**
@@ -42,7 +43,7 @@ public class FXML_inicio_sesionController implements Initializable {
        FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXML_registro.fxml"));
        Parent root = cargarRegistro.load();
        
-       trabajo_ipc.setRoot(root);
+       //trabajo_ipc.setRoot(root);
     }
     
 }
