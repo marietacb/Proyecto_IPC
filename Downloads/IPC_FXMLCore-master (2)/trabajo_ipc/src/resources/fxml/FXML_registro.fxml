@@ -40,28 +40,35 @@
             </Text>
             <ImageView fx:id="image_perfil" fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" smooth="false">
                <VBox.margin>
-                  <Insets left="40.0" top="10.0" />
+                  <Insets bottom="20.0" left="40.0" top="10.0" />
                </VBox.margin>
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre*:">
+            <Text layoutX="40.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre*:">
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="field_name" layoutX="40.0" layoutY="323.0" maxWidth="-Infinity" minWidth="-Infinity" onAction="#introducir_name" onInputMethodTextChanged="#introducir_name" prefWidth="200.0" text="Introduzca su nombre">
+               <VBox.margin>
+                  <Insets bottom="-10.0" left="30.0" />
+               </VBox.margin>
+            </TextField>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos*:">
                <VBox.margin>
                   <Insets left="30.0" top="25.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="field_name" maxWidth="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#introducir_name" prefWidth="200.0" text="Introduzca su nombre">
+            <TextField fx:id="field_surname" maxWidth="-Infinity" minWidth="-Infinity" onAction="#introducir_surname" onInputMethodTextChanged="#introducir_name" prefWidth="200.0" text="Introduzca su nombre">
                <VBox.margin>
                   <Insets left="30.0" />
                </VBox.margin>
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
             </TextField>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname*:">
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="field_nickname" maxWidth="-Infinity" onInputMethodTextChanged="#introducir_nickname" prefWidth="200.0" text="Introduzca su nickname">
+            <TextField fx:id="field_nickname" maxWidth="-Infinity" minWidth="-Infinity" onAction="#introducir_nickname" onInputMethodTextChanged="#introducir_nickname" prefWidth="200.0" text="Introduzca su nickname">
                <VBox.margin>
                   <Insets left="30.0" />
                </VBox.margin>
@@ -74,7 +81,7 @@
                   <Insets left="30.0" top="15.0" />
                </VBox.margin>
             </Text>
-            <PasswordField fx:id="field_password" maxWidth="-Infinity" onInputMethodTextChanged="#introducir_password" prefWidth="200.0" text="contraseña">
+            <PasswordField fx:id="field_password" maxWidth="-Infinity" minWidth="-Infinity" onAction="#introducir_repassword" onInputMethodTextChanged="#introducir_password" prefWidth="200.0" text="contraseña">
                <VBox.margin>
                   <Insets left="30.0" />
                </VBox.margin>
@@ -84,7 +91,7 @@
                   <Insets left="30.0" top="15.0" />
                </VBox.margin>
             </Text>
-            <PasswordField fx:id="field_repassword" maxWidth="-Infinity" onInputMethodTextChanged="#introducir_repassword" prefWidth="200.0" text="Contraseña">
+            <PasswordField fx:id="field_repassword" maxWidth="-Infinity" minWidth="-Infinity" onAction="#introducir_repassword" onInputMethodTextChanged="#introducir_repassword" prefWidth="200.0" text="Contraseña">
                <VBox.margin>
                   <Insets left="30.0" />
                </VBox.margin>
@@ -94,7 +101,7 @@
                   <Insets left="30.0" top="15.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="field_mail" onAction="#introducir_mail" onInputMethodTextChanged="#introducir_mail" text="Introduzca su correo electrónico">
+            <TextField fx:id="field_mail" minWidth="-Infinity" onAction="#introducir_mail" onInputMethodTextChanged="#introducir_mail" text="Introduzca su correo electrónico">
                <VBox.margin>
                   <Insets bottom="50.0" left="30.0" />
                </VBox.margin>
@@ -102,7 +109,41 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </TextField>
-            <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="268.0">
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+         <children>
+            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre ya utilizado, seleccione otro diferente por favor.">
+               <VBox.margin>
+                  <Insets top="295.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="RED" layoutX="10.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos ya utilizado, seleccione otro diferente por favor.">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname ya utilizado, seleccione otro diferente por favor.">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="La contraseña debe tener almenos 6 carácteres con letras y números.">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Las contraseñas no coinciden.">
+               <VBox.margin>
+                  <Insets top="39.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduzca un correo electronico que no haya sido utilizado.">
+               <VBox.margin>
+                  <Insets left="10.0" top="40.0" />
+               </VBox.margin>
+            </Text>
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="268.0">
                <children>
                   <Button fx:id="button_login" alignment="TOP_LEFT" contentDisplay="TOP" defaultButton="true" mnemonicParsing="false" onAction="#pulsar_login" prefWidth="85.0" text="Iniciar sesión">
                      <opaqueInsets>
@@ -122,33 +163,9 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets bottom="30.0" />
+                  <Insets bottom="30.0" top="30.0" />
                </VBox.margin>
             </HBox>
-         </children>
-      </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-         <children>
-            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname ya utilizado, seleccione otro diferente por favor.">
-               <VBox.margin>
-                  <Insets top="355.0" />
-               </VBox.margin>
-            </Text>
-            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="La contraseña debe tener almenos 6 carácteres con letras y números.">
-               <VBox.margin>
-                  <Insets top="42.0" />
-               </VBox.margin>
-            </Text>
-            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Las contraseñas no coinciden.">
-               <VBox.margin>
-                  <Insets top="41.0" />
-               </VBox.margin>
-            </Text>
-            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduzca un correo electronico que no haya sido utilizado.">
-               <VBox.margin>
-                  <Insets left="10.0" top="40.0" />
-               </VBox.margin>
-            </Text>
          </children>
       </VBox>
       <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
