@@ -25,6 +25,8 @@ public class FXML_registroController implements Initializable {
     @FXML
     private TextField field_name;
     @FXML
+    private TextField field_surname;
+    @FXML
     private TextField field_nickname;
     @FXML
     private PasswordField field_password;
@@ -38,6 +40,7 @@ public class FXML_registroController implements Initializable {
     private Button button_login;
     @FXML
     private Button button_cancel;
+    
 
     /**
      * Initializes the controller class.
@@ -78,6 +81,22 @@ public class FXML_registroController implements Initializable {
 
     @FXML
     private void introducir_mail(InputMethodEvent event) {
+    }
+
+    @FXML
+    private void introducir_name(ActionEvent event) {
+    }
+
+    @FXML
+    private void introducir_surname(ActionEvent event) {
+    }
+
+    @FXML
+    private void introducir_nickname(ActionEvent event) {
+    }
+
+    @FXML
+    private void introducir_repassword(ActionEvent event) {
     }
     
 }
