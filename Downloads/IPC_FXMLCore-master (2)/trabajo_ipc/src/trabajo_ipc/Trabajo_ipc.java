@@ -18,7 +18,7 @@ public class Trabajo_ipc extends Application {
     private static Scene scene;
     
     static void setRoot(Parent root) {
-    scene.setRoot(root);
+        scene.setRoot(root);
     }
     
     @Override
