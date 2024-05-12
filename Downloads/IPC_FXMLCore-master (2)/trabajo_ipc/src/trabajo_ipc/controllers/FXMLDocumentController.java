@@ -71,9 +71,7 @@ public class FXMLDocumentController implements Initializable {
         border_pane.setCenter(tableView);
         
         //TODO: Inicializar el grafico aqui
-        
-        boton_añadirGasto.setOnAction(event -> añadirGasto());
-        
+                
     }    
 
     @FXML
@@ -91,18 +89,14 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void añadirGasto() {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/anadir_gastoFXML.fxml"));
+    private void añadirGasto(ActionEvent event) throws IOException {
+        
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
             Parent root = loader.load();
         
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
     }
     
 }

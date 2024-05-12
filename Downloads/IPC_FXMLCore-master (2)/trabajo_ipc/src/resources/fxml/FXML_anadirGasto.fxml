@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.anadir_gastoController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_anadirGastoController">
    <children>
       <VBox prefHeight="200.0" prefWidth="350.0">
          <children>
@@ -39,7 +39,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </TextField>
-            <Label fx:id="error_nombre" text="El nombre introducido ya existe" textFill="#ef0404" visible="false">
+            <Label fx:id="error_nombre" textFill="#ef0404" visible="false">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -49,7 +49,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <DatePicker fx:id="elegir_fecha">
+            <DatePicker fx:id="elegir_fecha" onMouseClicked="#pulsar_seleccionarFecha" opacity="0.8" promptText="Introduce una fecha">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -159,7 +159,6 @@
                   <Button fx:id="boton_Cancelar" minHeight="20.0" mnemonicParsing="false" onAction="#pulsarCancelar" prefWidth="80.0" text="Cancelar">
                      <HBox.margin>
                         <Insets left="20.0" />
-						<system.out.println />
                      </HBox.margin>
                   </Button>
                </children>

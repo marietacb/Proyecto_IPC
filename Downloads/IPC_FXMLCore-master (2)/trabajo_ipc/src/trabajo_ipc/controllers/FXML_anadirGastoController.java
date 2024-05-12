@@ -6,7 +6,9 @@ package trabajo_ipc.controllers;
  */
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.beans.property.BooleanProperty;
@@ -15,13 +17,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -31,7 +37,7 @@ import javafx.stage.Stage;
  *
  * @author Belén Rodríguez
  */
-public class anadir_gastoController implements Initializable {
+public class FXML_anadirGastoController implements Initializable {
 
      @FXML
     private Button boton_aceptar;
@@ -72,15 +78,19 @@ public class anadir_gastoController implements Initializable {
     @FXML
     private Label error_foto;
     
-   
+    private Set<String> gastosAñadidos = new HashSet<>();    //lista con nombres añadidos
+       
+    private String nombreGasto = nombre_gasto.getText().trim(); //nombre del gasto que sea el texto que obtengamos del textfield
 
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        boton_aceptar.disableProperty().bind(nombre_valido.not().or(fecha_valida.not().
-                or(precio_valido.not().or(unidades_validas.not().or(tiquet_valido.not())))));
+       // boton_aceptar.disableProperty().bind(nombre_valido.not().or(fecha_valida.not().
+     //           or(precio_valido.not().or(unidades_validas.not().or(tiquet_valido.not())))));
+
     }
     
 
@@ -130,45 +140,74 @@ public class anadir_gastoController implements Initializable {
 
     @FXML
     private void introducirNombre(InputMethodEvent event) { //mirar buffer de nombres introducidos
-        nombre_valido = new SimpleBooleanProperty();
-        nombre_valido.setValue(Boolean.FALSE);
-        
-        nombre_gasto.focusedProperty().addListener((observable,oldValue,newValue)->{
-            if(!newValue){
-                comprobar_nombre();
-            }
-        });
-    }
-    
-    private void comprobar_nombre(){
-       
+   
+        if (nombreGasto.isEmpty()) {    //si esta vacio == error
+            error_nombre.setText("Introduzca un nombre por favor");
+        }
+
+        if (gastosAñadidos.contains(nombreGasto)) {
+            error_nombre.setText("El nombre del gasto ya existe.");
+        }
+
     }
 
     @FXML
     private void pulsarSeleccionarCategoria(ActionEvent event) {
-        
+
     }
 
     @FXML
     private void escribirDescripcion(InputMethodEvent event) {
+
     }
 
     @FXML
     private void pulsarAñadirCategoria(ActionEvent event) {
+
         
     }
 
     @FXML
     private void pulsarCancelar(ActionEvent event) {
+
     }
 
     @FXML
     private void pulsarAceptar(ActionEvent event) {
-        nombre_gasto.setText("");
+        gastosAñadidos.add(nombreGasto);    //añadimos gasto a la lista despues de pulsar aceptar
+        nombre_gasto.setText("");           //reseteamos el textfield a ""
+        
         //elegir_fecha.setChronology();
+        //fechasAñadidas.add(fecha);
+        
+        //unidades
+        //unidadesAñadidas.add();
         unidades_gasto.setText("");
+        
+        //precios
+        //preciosAñadidos.add();
         precio_gasto.setText("");
+        
+        //descripciones
+        //descripcionesAñadidas.add();
         descripcion_gasto.setText("");
+        
+        //foto tiquet
+        //tiquetsAñadidos.add();
         tiquet_gasto.setImage(null);    
+    }
+
+    @FXML
+    private void pulsar_seleccionarFecha(MouseEvent event) {
+        elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
+        return new DateCell() { 
+            @Override 
+            public void updateItem(LocalDate date, boolean empty) { 
+                super.updateItem(date, empty); 
+                LocalDate today = LocalDate.now(); 
+                setDisable(empty || date.compareTo(today) < 0 ); 
+            } 
+        }; 
+    });
     }
 }
