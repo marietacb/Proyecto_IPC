@@ -4,6 +4,8 @@
  */
 package trabajo_ipc;
 
+import java.util.HashSet;
+import java.util.Set;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +18,7 @@ import javafx.stage.Stage;
  */
 public class Trabajo_ipc extends Application {
     private static Scene scene;
+
     
     static void setRoot(Parent root) {
         scene.setRoot(root);

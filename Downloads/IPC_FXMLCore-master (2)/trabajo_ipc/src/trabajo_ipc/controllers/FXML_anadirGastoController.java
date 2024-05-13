@@ -40,12 +40,12 @@ import javafx.stage.Stage;
 public class FXML_anadirGastoController implements Initializable {
 
      @FXML
-    private Button boton_aceptar;
+    private Button boton_aceptar;   //acepta e introduce datos en la tabla
      @FXML
-    private Button boton_Cancelar;
+    private Button boton_Cancelar;  //cancela y vuelve a la pantalla de gastos
     
     @FXML
-    private TextField nombre_gasto;
+    private TextField nombre_gasto;   
     @FXML
     private DatePicker elegir_fecha;
     @FXML
@@ -56,31 +56,20 @@ public class FXML_anadirGastoController implements Initializable {
     private TextArea descripcion_gasto;
     @FXML
     private ImageView tiquet_gasto;
-    
-    
-    private BooleanProperty nombre_valido;
-    private BooleanProperty fecha_valida;
-    private BooleanProperty unidades_validas;
-    private BooleanProperty precio_valido;
-    private BooleanProperty tiquet_valido;
-
-    
-    
-    
+      
     @FXML
-    private Label error_fecha;
+    private Label error_fecha;  //texto de error en la fecha
     @FXML
-    private Label error_unidades;
+    private Label error_unidades;   //texto de error en las unidades
     @FXML
-    private Label error_precio;
+    private Label error_precio; //texto de error en la fecha
     @FXML
-    private Label error_nombre;
+    private Label error_nombre;     //texto de error en la fecha
     @FXML
-    private Label error_foto;
+    private Label error_foto;   //texto de error en la fecha
     
     private Set<String> gastosAñadidos = new HashSet<>();    //lista con nombres añadidos
-       
-    private String nombreGasto = nombre_gasto.getText().trim(); //nombre del gasto que sea el texto que obtengamos del textfield
+    private String nombreGasto; //nombre del gasto que sea el texto que obtengamos del textfield
 
     
     /**
@@ -88,67 +77,73 @@ public class FXML_anadirGastoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // boton_aceptar.disableProperty().bind(nombre_valido.not().or(fecha_valida.not().
-     //           or(precio_valido.not().or(unidades_validas.not().or(tiquet_valido.not())))));
-
+       boton_aceptar.setDisable(true);  //desactivar boton al principio
     }
     
 
-   
-    private void escribirFecha(InputMethodEvent event) {
-        fecha_valida = new SimpleBooleanProperty();
-        fecha_valida.setValue(Boolean.FALSE);
-        
-        if(elegir_fecha.getValue() == null ){   //si no se introduce ningún valor
-            error_fecha.setVisible(true);   //dejar ver el error
-            
-        }
-        else{   //si se introduce fecha, debe ser de este formato
-            fecha_valida.setValue(Boolean.TRUE);
-            elegir_fecha.getValue().format(DateTimeFormatter.ofPattern("dd / MM / yyyy"));
-        }
-    }
 
     @FXML
     private void escribirUnidades(InputMethodEvent event) {
-        unidades_validas = new SimpleBooleanProperty();
-        unidades_validas.setValue(Boolean.FALSE);
-        try{
-            String unidades = unidades_gasto.getText();
-            int numero_unidades = Integer.parseInt(unidades);
-        }
-        catch(NumberFormatException e){
-            unidades_validas.setValue(Boolean.TRUE);
-            error_unidades.setVisible(true);
-        }
+        precio_gasto.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(esUnidades(newValue)){
+                error_unidades.setVisible(false); //ocultamos mensaje de error
+                //guardar precio y mostrar en gastos
+            }
+             else{
+                error_unidades.setVisible(true);
+            }
+      
+        });
     }
 
     @FXML
     private void escribirPrecio(InputMethodEvent event) {
-        precio_valido = new SimpleBooleanProperty();
-        precio_valido.setValue(Boolean.FALSE);
-        
+        precio_gasto.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(esPrecio(newValue)){
+                error_precio.setVisible(false); //ocultamos mensaje de error
+                //guardar precio y mostrar en gastos
+            }
+             else{
+                error_precio.setVisible(true);
+            }
+      
+        });
+    }
+    
+    private static boolean esPrecio (String cadena){ //metodo que comprueba si o no un numero
         try{
-            String precio = unidades_gasto.getText();
-            int numero_precio = Integer.parseInt(precio);
+            Double.parseDouble(cadena);
+            return true;
         }
         catch(NumberFormatException e){
-            precio_valido.setValue(Boolean.TRUE);
-            error_precio.setVisible(true);
+            return false;
         }
     }
-
+    
+    private static boolean esUnidades(String cadena){ //metodo que comprueba si o no un numero
+        try{
+            Integer.parseInt(cadena);
+            return true;
+        }
+        catch(NumberFormatException e){
+            return false;
+        }
+    }
+    
     @FXML
     private void introducirNombre(InputMethodEvent event) { //mirar buffer de nombres introducidos
    
-        if (nombreGasto.isEmpty()) {    //si esta vacio == error
+        nombreGasto = nombre_gasto.getText().trim();    //string nombre es el texto que obtenemos del textfield
+        
+        if (nombreGasto.isEmpty()) {    //si esta vacio == error (no hay texto introducido)
             error_nombre.setText("Introduzca un nombre por favor");
         }
 
-        if (gastosAñadidos.contains(nombreGasto)) {
-            error_nombre.setText("El nombre del gasto ya existe.");
+        if (gastosAñadidos.contains(nombreGasto)) { //si el nombre ya esta en el buffer
+            error_nombre.setText("El nombre del gasto ya existe."); //error
         }
-
+        
+        gastosAñadidos.add(nombreGasto);    //añadimos el nombre del gasto a la lista
     }
 
     @FXML
@@ -166,19 +161,35 @@ public class FXML_anadirGastoController implements Initializable {
 
         
     }
-
+    
     @FXML
-    private void pulsarCancelar(ActionEvent event) {
-
+    private void pulsar_seleccionarFecha(MouseEvent event) {
+        elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
+        return new DateCell() { 
+            @Override 
+            public void updateItem(LocalDate date, boolean empty) { 
+                super.updateItem(date, empty); 
+                LocalDate today = LocalDate.now(); 
+                setDisable(empty || date.compareTo(today) < 0 ); 
+            } 
+        }; 
+    });
     }
 
     @FXML
-    private void pulsarAceptar(ActionEvent event) {
+    private void pulsarCancelar(ActionEvent event) {    //cerrar ventana
+        Stage stage = (Stage) boton_Cancelar.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void pulsarAceptar(ActionEvent event) { //guardar datos y cerrar ventana
         gastosAñadidos.add(nombreGasto);    //añadimos gasto a la lista despues de pulsar aceptar
         nombre_gasto.setText("");           //reseteamos el textfield a ""
         
         //elegir_fecha.setChronology();
         //fechasAñadidas.add(fecha);
+        //set la fecha a 0 == elegir_fecha.;
         
         //unidades
         //unidadesAñadidas.add();
@@ -195,19 +206,8 @@ public class FXML_anadirGastoController implements Initializable {
         //foto tiquet
         //tiquetsAñadidos.add();
         tiquet_gasto.setImage(null);    
-    }
-
-    @FXML
-    private void pulsar_seleccionarFecha(MouseEvent event) {
-        elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
-        return new DateCell() { 
-            @Override 
-            public void updateItem(LocalDate date, boolean empty) { 
-                super.updateItem(date, empty); 
-                LocalDate today = LocalDate.now(); 
-                setDisable(empty || date.compareTo(today) < 0 ); 
-            } 
-        }; 
-    });
+        
+        Stage stage = (Stage) boton_aceptar.getScene().getWindow();
+        stage.close();
     }
 }

@@ -31,7 +31,7 @@
                   <Insets bottom="5.0" left="50.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="nombre_gasto" maxWidth="250.0" onInputMethodTextChanged="#introducirNombre" opacity="0.55" text="Introduce un nombre">
+            <TextField fx:id="nombre_gasto" maxWidth="225.0" onInputMethodTextChanged="#introducirNombre" promptText="Introduce un nombre">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -64,7 +64,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="unidades_gasto" maxWidth="250.0" onInputMethodTextChanged="#escribirUnidades" opacity="0.55" text="Introduce las unidades">
+            <TextField fx:id="unidades_gasto" maxWidth="150.0" onInputMethodTextChanged="#escribirUnidades" promptText="Introduce las unidades">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -82,7 +82,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="precio_gasto" maxWidth="250.0" onInputMethodTextChanged="#escribirPrecio" opacity="0.55" text="Introduce un precio">
+            <TextField fx:id="precio_gasto" maxWidth="150.0" onInputMethodTextChanged="#escribirPrecio" promptText="Introduce un precio">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -117,7 +117,7 @@
                   <Insets bottom="5.0" left="50.0" top="22.0" />
                </VBox.margin>
             </Text>
-            <TextArea fx:id="descripcion_gasto" maxHeight="100.0" maxWidth="250.0" onInputMethodTextChanged="#escribirDescripcion" opacity="0.55" prefHeight="50.0" prefWidth="200.0" text="Introduce una breve descripción">
+            <TextArea fx:id="descripcion_gasto" maxHeight="225.0" maxWidth="225.0" onInputMethodTextChanged="#escribirDescripcion" prefHeight="65.0" prefWidth="200.0" promptText="Introduce una breve descripción">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -134,7 +134,7 @@
                   <Insets left="240.0" top="20.0" />
                </VBox.margin>
             </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fotografía">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tiquet o factura">
                <VBox.margin>
                   <Insets bottom="5.0" left="25.0" top="21.0" />
                </VBox.margin>
