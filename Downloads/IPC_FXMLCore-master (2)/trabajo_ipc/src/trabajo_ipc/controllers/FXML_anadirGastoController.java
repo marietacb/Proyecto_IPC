@@ -13,15 +13,21 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -71,6 +77,7 @@ public class FXML_anadirGastoController implements Initializable {
     private Set<String> gastosAñadidos = new HashSet<>();    //lista con nombres añadidos
     private String nombreGasto; //nombre del gasto que sea el texto que obtengamos del textfield
 
+    private FXMLDocumentController tablaController; //tabla vinculada a la pantalla principal
     
     /**
      * Initializes the controller class.
@@ -83,7 +90,11 @@ public class FXML_anadirGastoController implements Initializable {
     /*public void setExpenseTableController(ExpenseTableController controller) {
         this.expenseTableController = controller;
     }*/
-
+    
+    public void setTablaController(FXMLDocumentController tablaController){ //esta tabla que sea la del otro controller
+        this.tablaController = tablaController;
+    }
+    
     @FXML
     private void escribirUnidades(InputMethodEvent event) {
         if(esUnidades(precio_gasto.getText())){
@@ -169,17 +180,20 @@ public class FXML_anadirGastoController implements Initializable {
     }
 
     @FXML
-    private void pulsarAceptar(ActionEvent event) { //guardar datos y cerrar ventana
+    private void pulsarAceptar(ActionEvent event) { //guardar datos en la tabla y cerrar ventana
         String nombre = nombre_gasto.getText();
         LocalDate fecha = elegir_fecha.getValue();
         int unidades = Integer.parseInt(unidades_gasto.getText());
         double precio = Double.parseDouble(precio_gasto.getText());
         String descripcion = descripcion_gasto.getText();
-
-        Gasto gasto = new Gasto(nombre, fecha, unidades, precio, descripcion);
-        expenseTableController.addGasto(gasto);
+        
+        Gastos nuevoGasto = new Gastos(nombre,fecha,unidades,precio,descripcion);
+        
+        TableView<Gastos> tabla = tablaController.getTabla();
+        ObservableList<Gastos> lista = FXCollections.observableArrayList();
+        lista.add(nuevoGasto);    //añadimos a la tabla un gasto
     
+        tabla.setItems(lista);
     }
     
-   
 }
