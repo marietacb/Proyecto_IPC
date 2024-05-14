@@ -77,57 +77,39 @@ public class FXML_anadirGastoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       boton_aceptar.setDisable(true);  //desactivar boton al principio
+       //desactivar boton al principio
     }
     
 
 
     @FXML
     private void escribirUnidades(InputMethodEvent event) {
-        precio_gasto.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(esUnidades(newValue)){
+        if(esUnidades(precio_gasto.getText())){
                 error_unidades.setVisible(false); //ocultamos mensaje de error
                 //guardar precio y mostrar en gastos
             }
-             else{
+            else {
                 error_unidades.setVisible(true);
             }
-      
-        });
     }
 
     @FXML
     private void escribirPrecio(InputMethodEvent event) {
-        precio_gasto.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(esPrecio(newValue)){
+        if(esPrecio(precio_gasto.getText().trim())){
                 error_precio.setVisible(false); //ocultamos mensaje de error
                 //guardar precio y mostrar en gastos
             }
              else{
                 error_precio.setVisible(true);
             }
-      
-        });
     }
     
     private static boolean esPrecio (String cadena){ //metodo que comprueba si o no un numero
-        try{
-            Double.parseDouble(cadena);
-            return true;
-        }
-        catch(NumberFormatException e){
-            return false;
-        }
+        return cadena.matches("[0-10000]");
     }
     
     private static boolean esUnidades(String cadena){ //metodo que comprueba si o no un numero
-        try{
-            Integer.parseInt(cadena);
-            return true;
-        }
-        catch(NumberFormatException e){
-            return false;
-        }
+        return cadena.matches("[0.0-1000000000.0]");
     }
     
     @FXML
@@ -207,7 +189,7 @@ public class FXML_anadirGastoController implements Initializable {
         //tiquetsAñadidos.add();
         tiquet_gasto.setImage(null);    
         
-        Stage stage = (Stage) boton_aceptar.getScene().getWindow();
-        stage.close();
+        //Stage stage = (Stage) boton_aceptar.getScene().getWindow();
+        //stage.close();
     }
 }

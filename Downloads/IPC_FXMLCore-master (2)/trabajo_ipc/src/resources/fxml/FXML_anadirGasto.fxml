@@ -102,8 +102,8 @@
             </Text>
             <MenuButton maxWidth="175.0" mnemonicParsing="false" onAction="#pulsarSeleccionarCategoria" opacity="0.9" text="Selecciona una categoría">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" />
               </items>
                <VBox.margin>
                   <Insets left="50.0" />
