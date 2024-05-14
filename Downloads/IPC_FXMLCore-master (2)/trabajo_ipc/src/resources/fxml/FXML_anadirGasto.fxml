@@ -8,13 +8,14 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_anadirGastoController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_anadirGastoController">
    <children>
       <VBox prefHeight="200.0" prefWidth="350.0">
          <children>
@@ -31,7 +32,7 @@
                   <Insets bottom="5.0" left="50.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="nombre_gasto" maxWidth="225.0" onInputMethodTextChanged="#introducirNombre" promptText="Introduce un nombre">
+            <TextField fx:id="nombre_gasto" maxWidth="250.0" onInputMethodTextChanged="#introducirNombre" promptText="Introduce un nombre">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -64,7 +65,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="unidades_gasto" maxWidth="150.0" onInputMethodTextChanged="#escribirUnidades" promptText="Introduce las unidades">
+            <TextField fx:id="unidades_gasto" maxWidth="150.0" onInputMethodTextChanged="#escribirUnidades" prefWidth="171.0" promptText="Introduce las unidades">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -82,7 +83,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="precio_gasto" maxWidth="150.0" onInputMethodTextChanged="#escribirPrecio" promptText="Introduce un precio">
+            <TextField fx:id="precio_gasto" maxWidth="170.0" onInputMethodTextChanged="#escribirPrecio" prefHeight="25.0" prefWidth="170.0" promptText="Introduce un precio">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -100,24 +101,26 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <MenuButton maxWidth="175.0" mnemonicParsing="false" onAction="#pulsarSeleccionarCategoria" opacity="0.9" text="Selecciona una categoría">
+            <MenuButton fx:id="selector_categoria" mnemonicParsing="false" text="Seleccione una categoría">
               <items>
-                <MenuItem mnemonicParsing="false" />
-                <MenuItem mnemonicParsing="false" />
+                <MenuItem fx:id="categoria1" mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
               </items>
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
             </MenuButton>
+            <Label fx:id="error_categoria" text="Seleccione una categoría" textFill="#ef0404" visible="false">
+               <VBox.margin>
+                  <Insets left="50.0" />
+               </VBox.margin>
+            </Label>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
                <VBox.margin>
-                  <Insets bottom="5.0" left="50.0" top="22.0" />
+                  <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <TextArea fx:id="descripcion_gasto" maxHeight="225.0" maxWidth="225.0" onInputMethodTextChanged="#escribirDescripcion" prefHeight="65.0" prefWidth="200.0" promptText="Introduce una breve descripción">
+            <TextArea fx:id="descripcion_gasto" maxHeight="220.0" maxWidth="225.0" onInputMethodTextChanged="#escribirDescripcion" prefHeight="80.0" prefWidth="200.0" promptText="Introduce una breve descripción">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -125,25 +128,35 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </TextArea>
+            <Label text="Introduzca una breve descripción" textFill="#ef0404" visible="false">
+               <VBox.margin>
+                  <Insets left="50.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="350.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#pulsarAñadirCategoria" text="+ Añadir categoría">
-               <VBox.margin>
-                  <Insets left="240.0" top="20.0" />
-               </VBox.margin>
-            </Button>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tiquet o factura">
                <VBox.margin>
-                  <Insets bottom="5.0" left="25.0" top="21.0" />
+                  <Insets bottom="5.0" left="25.0" top="65.0" />
                </VBox.margin>
             </Text>
-            <ImageView fx:id="tiquet_gasto" fitHeight="200.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+            <VBox maxHeight="250.0" maxWidth="250.0" prefHeight="250.0" prefWidth="100.0">
+               <children>
+                  <ImageView fx:id="tiquet_gasto" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/4211763.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="100.0" top="70.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
                <VBox.margin>
-                  <Insets left="25.0" />
+                  <Insets left="45.0" />
                </VBox.margin>
-            </ImageView>
+            </VBox>
             <Label fx:id="error_foto" text="El formato de la fotografía es incorrecto" textFill="#ef0404" visible="false">
                <VBox.margin>
                   <Insets left="25.0" />
@@ -163,7 +176,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets left="200.0" top="200.0" />
+                  <Insets left="120.0" top="275.0" />
                </VBox.margin>
             </HBox>
          </children>
