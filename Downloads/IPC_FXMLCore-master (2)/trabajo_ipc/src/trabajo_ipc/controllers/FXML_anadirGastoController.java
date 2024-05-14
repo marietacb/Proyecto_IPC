@@ -80,7 +80,9 @@ public class FXML_anadirGastoController implements Initializable {
        //desactivar boton al principio
     }
     
-
+    /*public void setExpenseTableController(ExpenseTableController controller) {
+        this.expenseTableController = controller;
+    }*/
 
     @FXML
     private void escribirUnidades(InputMethodEvent event) {
@@ -111,6 +113,8 @@ public class FXML_anadirGastoController implements Initializable {
     private static boolean esUnidades(String cadena){ //metodo que comprueba si o no un numero
         return cadena.matches("[0.0-1000000000.0]");
     }
+    
+    
     
     @FXML
     private void introducirNombre(InputMethodEvent event) { //mirar buffer de nombres introducidos
@@ -166,30 +170,16 @@ public class FXML_anadirGastoController implements Initializable {
 
     @FXML
     private void pulsarAceptar(ActionEvent event) { //guardar datos y cerrar ventana
-        gastosAñadidos.add(nombreGasto);    //añadimos gasto a la lista despues de pulsar aceptar
-        nombre_gasto.setText("");           //reseteamos el textfield a ""
-        
-        //elegir_fecha.setChronology();
-        //fechasAñadidas.add(fecha);
-        //set la fecha a 0 == elegir_fecha.;
-        
-        //unidades
-        //unidadesAñadidas.add();
-        unidades_gasto.setText("");
-        
-        //precios
-        //preciosAñadidos.add();
-        precio_gasto.setText("");
-        
-        //descripciones
-        //descripcionesAñadidas.add();
-        descripcion_gasto.setText("");
-        
-        //foto tiquet
-        //tiquetsAñadidos.add();
-        tiquet_gasto.setImage(null);    
-        
-        //Stage stage = (Stage) boton_aceptar.getScene().getWindow();
-        //stage.close();
+        String nombre = nombre_gasto.getText();
+        LocalDate fecha = elegir_fecha.getValue();
+        int unidades = Integer.parseInt(unidades_gasto.getText());
+        double precio = Double.parseDouble(precio_gasto.getText());
+        String descripcion = descripcion_gasto.getText();
+
+        Gasto gasto = new Gasto(nombre, fecha, unidades, precio, descripcion);
+        expenseTableController.addGasto(gasto);
+    
     }
+    
+   
 }

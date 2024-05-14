@@ -20,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -27,6 +28,8 @@ import javafx.stage.Stage;
  *
  * @author Belén Rodríguez
  */
+
+
 public class FXMLDocumentController implements Initializable {
 
     @FXML
@@ -74,6 +77,10 @@ public class FXMLDocumentController implements Initializable {
                 
     }    
 
+    public TableView<String> getTabla(){    //metodo que devuelve tabla
+        return tableView;
+    }   
+    
     @FXML
     private void pulsarGastos(MouseEvent event) throws IOException {
         grafico.setVisible(false);
@@ -91,12 +98,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void añadirGasto(ActionEvent event) throws IOException {
         
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
-            Parent root = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
+        Parent root = loader.load();
         
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        
+        //stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+
     }
     
 }
