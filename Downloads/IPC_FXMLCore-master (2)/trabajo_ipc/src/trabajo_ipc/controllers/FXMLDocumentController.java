@@ -106,7 +106,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void añadirGasto(ActionEvent event) throws IOException {
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_inicio_sesion.fxml"));
         Parent root = loader.load();
         
         Stage stage = new Stage();
