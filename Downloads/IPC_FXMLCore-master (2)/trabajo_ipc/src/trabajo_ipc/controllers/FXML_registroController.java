@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -71,6 +72,10 @@ public class FXML_registroController implements Initializable {
     private Label contraseña_incorrecto;
     @FXML
     private Label contraseña2_incorrecto;
+    @FXML
+    private ImageView imagen_perfil;
+    @FXML
+    private Label apellido_incorrecto;
     
     
     private void manageError(Label errorLabel,TextField textField, BooleanProperty boolProp ){
@@ -98,7 +103,7 @@ public class FXML_registroController implements Initializable {
         textField.styleProperty().setValue("-fx-background-color: #FCE5E0");    
     }
     
-
+   
     /**
      * Initializes the controller class.
      */
@@ -129,54 +134,87 @@ public class FXML_registroController implements Initializable {
         
         BooleanBinding validFields = Bindings.and(validEmail, validPassword)
                  .and(equalPasswords);
-         
-
     } 
+    
+    public static  Boolean checkEmail (String email){   
+        if(email == null){
+            return false;
+        }return true;
+    }
         
     private void checkEditEmail() {
-            if(!Utils.checkEmail(field_correo.getText())){
+            if(checkEmail(field_correo.getText())){
                 manageError(correo_incorrecto, field_correo, validEmail);
             }else{
                 manageError(correo_incorrecto, field_correo, validEmail);
             }
     }
-    private void checkEquals(){
-        if(field_contraseña.textProperty().getValueSafe().compareTo(field_contraseña2));
-    }
-
-
-    private void introducir_name(InputMethodEvent event) {
-        String name = field_name.getText();
-    }
-
-    private void introducir_surname(InputMethodEvent event) {
-        String surname = field_surname.getText();
-    }
-
-    private void introducir_nickname(InputMethodEvent event) {
-        String nickname = field_nickname.getText();
-    }
-
-    private void introducir_password(InputMethodEvent event) {
-        String password = field_password.getText();
+    public boolean CompobarEspacios(String texto, int index){
+  
+        for(int i=0; i<texto.length();i++){
+            if(texto.charAt(i) ==  ' '){return true;}
+            else{return false;}
+        }
+        return false;
     }
     
-    private void introducir_repassword(InputMethodEvent event) {
-        String repassword = field_repassword.getText();
-    }
-
-    private void introducir_mail(InputMethodEvent event) {
-        String mail = field_mail.getText();
-    }
-
     @FXML
-    private void pulsar_login(ActionEvent event) {
+    private void pulsar_registrarse(ActionEvent event) {
+        String nombre = field_nombre.getText();
+        String apellidos = field_apellidos.getText();
+        String nombreUsuario = field_nombreusuario.getText();
+        String correo = field_correo.getText();
+        String contraseña = field_contraseña.getText();
+        String contraseña2 = field_contraseña2.getText();
         
+        
+        if(nombre!=null){}
+        if(apellidos!=null){}
+        if(nombreUsuario!=null){}
+        if(correo!=null){}
+        if(contraseña!=null){}
+        if(contraseña2!=null){}
+        
+        
+        if(CompobarEspacios(nombreUsuario,nombreUsuario.length())==true){
+            nombre_incorrecto.visibleProperty().set(true);
+        }
+        if(CompobarEspacios(correo,correo.length())==true){
+            correo_incorrecto.visibleProperty().set(true);
+        }
+        if(CompobarEspacios(contraseña,contraseña.length())==true){
+            contraseña_incorrecto.visibleProperty().set(true);
+        }
+            
+        
+        if(nombre.isBlank()){
+            nombre_incorrecto.visibleProperty().set(true);
+        }
+        if(apellidos.isBlank()){
+            apellido_incorrecto.visibleProperty().set(true);
+        }
+        if(nombreUsuario.isBlank()){
+            nombreusuario_incorrecto.visibleProperty().set(true);
+        }
+        if(correo.isBlank()){
+            correo_incorrecto.visibleProperty().set(true);
+        }
+        if(contraseña.isBlank()){
+            contraseña_incorrecto.visibleProperty().set(true);
+        }
+        if(contraseña2.isBlank()){
+            contraseña2_incorrecto.visibleProperty().set(true);
+        }
+        
+        
+        if(contraseña.compareTo(contraseña2)!=0){
+            contraseña_incorrecto.visibleProperty().set(true);
+        }
     }
 
     @FXML
     private void pulsar_cancelar(ActionEvent event) {
+        Stage stage = (Stage) button_cancel.getScene().getWindow();
+        stage.close();
     }
-
-  
 }
