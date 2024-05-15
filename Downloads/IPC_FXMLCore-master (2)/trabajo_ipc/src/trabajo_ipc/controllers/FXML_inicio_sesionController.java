@@ -12,9 +12,15 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import java.io.IOException;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import trabajo_ipc.Trabajo_ipc;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
         
 
 /**
@@ -28,6 +34,16 @@ public class FXML_inicio_sesionController implements Initializable {
     private HBox myHBox;
     @FXML
     private Button botonRegistro;
+    @FXML
+    private TextField huecoEmail;
+    @FXML
+    private TextField huecoContraseña;
+    @FXML
+    private Label errorEmail;
+    @FXML
+    private Label errorContraseña;
+    @FXML
+    private BooleanProperty validEmail;
 
     /**
      * Initializes the controller class.
@@ -35,7 +51,14 @@ public class FXML_inicio_sesionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        // TODO
+        validEmail = new SimpleBooleanProperty();
+        validEmail.setValue(Boolean.FALSE); 
+      
+        huecoEmail.focusedProperty().addListener((observable, oldValue, newValue)->{
+            if(!newValue){ //focus lost.
+            //checkEditEmail();
+ }
+ });
     }    
 
     @FXML
@@ -43,7 +66,17 @@ public class FXML_inicio_sesionController implements Initializable {
        FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXML_registro.fxml"));
        Parent root = cargarRegistro.load();
        
-       //trabajo_ipc.setRoot(root);
+       Stage stage = new Stage();
+       stage.setScene(new Scene(root));
+       stage.show();
+    }
+
+    @FXML
+    private void escribirUsuario(KeyEvent event) {
+    }
+
+    @FXML
+    private void escribirContraseña(KeyEvent event) {
     }
     
 }
