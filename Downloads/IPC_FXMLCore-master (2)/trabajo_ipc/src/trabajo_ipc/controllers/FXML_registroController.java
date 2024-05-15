@@ -123,7 +123,7 @@ public class FXML_registroController implements Initializable {
         
         field_correo.focusedProperty().addListener((observable, oldValue, newValue)->{
         if(!newValue){//focusLost
-           checkEditEmail();
+           //checkEditEmail();
         }
     }); 
         
@@ -133,40 +133,40 @@ public class FXML_registroController implements Initializable {
 
     } 
         
-    private void checkEditEmail() {
-            if(!Utils.checkEmail(field_correo.getText())){
-                manageError(correo_incorrecto, field_correo, validEmail);
-            }else{
-                manageError(correo_incorrecto, field_correo, validEmail);
-            }
-    }
+    //private void checkEditEmail() {
+           // if(!Utils.checkEmail(field_correo.getText())){
+               // manageError(correo_incorrecto, field_correo, validEmail);
+           // }else{
+               // manageError(correo_incorrecto, field_correo, validEmail);
+          //  }
+    //}
     private void checkEquals(){
-        if(field_contraseña.textProperty().getValueSafe().compareTo(field_contraseña2));
+        //if(field_contraseña.textProperty().getValueSafe().compareTo(field_contraseña2));
     }
 
 
     private void introducir_name(InputMethodEvent event) {
-        String name = field_name.getText();
+        String name = field_nombre.getText();
     }
 
     private void introducir_surname(InputMethodEvent event) {
-        String surname = field_surname.getText();
+        String surname = field_apellidos.getText();
     }
 
     private void introducir_nickname(InputMethodEvent event) {
-        String nickname = field_nickname.getText();
+       String nickname = field_nombreusuario.getText();
     }
 
     private void introducir_password(InputMethodEvent event) {
-        String password = field_password.getText();
+       String password = field_contraseña.getText();
     }
     
     private void introducir_repassword(InputMethodEvent event) {
-        String repassword = field_repassword.getText();
+        String repassword = field_contraseña2.getText();
     }
 
     private void introducir_mail(InputMethodEvent event) {
-        String mail = field_mail.getText();
+        String mail = field_correo.getText();
     }
 
     @FXML

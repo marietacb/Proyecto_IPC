@@ -113,7 +113,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void añadirGasto(ActionEvent event) throws IOException { //boton añadir gasto abre ventana
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_inicio_sesion.fxml"));
         Parent root = loader.load();
 
         
