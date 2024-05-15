@@ -21,10 +21,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Charge;
+import model.User;
 
 /**
  * FXML Controller class
@@ -36,21 +39,23 @@ import javafx.stage.Stage;
 public class FXMLDocumentController implements Initializable {
 
     @FXML
-    private Button boton_gastos;
+    private Button boton_gastos;    //muestra la tabla gastoss en la pantalla principal
     @FXML
-    private PieChart grafico;
+    private PieChart grafico;   //TODO: añadir informacion al grafico
     @FXML
     private BorderPane border_pane;
             
-    private TableView<Gastos> tableView = new TableView<>();    //creamos tableview
+    private TableView<Charge> tableView = new TableView<>();    //creamos tableview
     @FXML
-    private Button boton_resumenGastos;
+    private Button boton_resumenGastos; //muestra grafico de gastos
     
     private Scene scene;
     @FXML
-    private MenuItem boton_añadirGasto;
+    private MenuItem boton_añadirGasto; //abre fxml añadir gasto
             
-    ObservableList<Gastos> lista = FXCollections.observableArrayList();
+    ObservableList<Charge> lista = FXCollections.observableArrayList(); //una lista de gastos
+    
+    public User user;  //usuario publico
 
 
 
@@ -59,15 +64,15 @@ public class FXMLDocumentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // Creo el tableview
-
-        TableColumn<Gastos, String> column1 = new TableColumn<>("Categoría");
-        TableColumn<Gastos, String> column2 = new TableColumn<>("Producto");
-        TableColumn<Gastos, LocalDate> column3 = new TableColumn<>("Fecha");
-        TableColumn<Gastos, Integer> column4 = new TableColumn<>("Unidades");
-        TableColumn<Gastos, Integer> column5 = new TableColumn<>("Precio");
-        TableColumn<Gastos, String> column6 = new TableColumn<>("Foto");
-        TableColumn<Gastos, String> column7 = new TableColumn<>(""); //eliminar
+        TableColumn<Charge, String> column1 = new TableColumn<>("Categoría");
+        TableColumn<Charge, String> column2 = new TableColumn<>("Producto");
+        TableColumn<Charge, LocalDate> column3 = new TableColumn<>("Fecha");
+        TableColumn<Charge, Integer> column4 = new TableColumn<>("Unidades");
+        TableColumn<Charge, Integer> column5 = new TableColumn<>("Precio");
+        TableColumn<Charge, String> column6 = new TableColumn<>("Tiquet");
+        TableColumn<Charge, Image> column7 = new TableColumn<>(); //imagen papelera eliminar
         
         column1.setPrefWidth(102);  //tamaños de cada columna
         column2.setPrefWidth(102);
@@ -77,43 +82,46 @@ public class FXMLDocumentController implements Initializable {
         column6.setPrefWidth(102);
         column7.setPrefWidth(50);   //columna eliminar mas pequeña
          
+        //situamos y mostramos tabla en el centro del border pane
         tableView.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);    
         tableView.setItems(lista);
         border_pane.setCenter(tableView);
         
-        //TODO: Inicializar el grafico aqui
+        //TODO: Inicializar el grafico aqui (ponerle informacion gastos)
                 
     }    
 
-    public TableView<Gastos> getTabla(){    //metodo que devuelve tabla
+    public TableView<Charge> getTabla(){    //metodo que devuelve tabla
         return tableView;
     }   
     
     @FXML
-    private void pulsarGastos(MouseEvent event) throws IOException {
+    private void pulsarGastos(MouseEvent event) throws IOException { //boton gastos muestra tabla
         grafico.setVisible(false);
         tableView.setVisible(true);
         boton_gastos.disableProperty();
     }
 
     @FXML
-    private void resumen_anual(MouseEvent event) {
+    private void resumen_anual(MouseEvent event) {  //boton resumen anual muestra grafico
         tableView.setVisible(false);
         grafico.setVisible(true);
         boton_resumenGastos.disableProperty();
     }
 
+    
     @FXML
-    private void añadirGasto(ActionEvent event) throws IOException {
+    private void añadirGasto(ActionEvent event) throws IOException { //boton añadir gasto abre ventana
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
         Parent root = loader.load();
+
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         
         //stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
+        stage.showAndWait();    //espera a que se introduzac al información
 
     }
     

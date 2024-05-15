@@ -9,7 +9,9 @@ import com.sun.javafx.scene.control.skin.Utils;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale.Category;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -41,8 +43,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Charge;
-
+import model.Charge;    
+import model.User;
 
 /**
  * FXML Controller class
@@ -52,10 +54,12 @@ import model.Charge;
 public class FXML_anadirGastoController implements Initializable {
 
      @FXML
-    private Button boton_aceptar;   //acepta e introduce datos en la tabla
+    private Button boton_aceptar;   //aceptar, revisa errores e introduce datos en la tabla
      @FXML
-    private Button boton_Cancelar;  //cancela y vuelve a la pantalla de gastos
+    private Button boton_Cancelar;  //cancela y vuelve a la pantalla de gastos (no guarda cambios)
     
+     
+     //textfields de cada parametro de una gasto
     @FXML
     private TextField nombre_gasto;   
     @FXML
@@ -68,14 +72,10 @@ public class FXML_anadirGastoController implements Initializable {
     private TextArea descripcion_gasto;
     @FXML
     private ImageView tiquet_gasto;
-      
-    
-    //variables booleanas para comprobar que se introducen bien los datos
-    private BooleanProperty nombreValido;
-    private BooleanProperty fechaValida;
-    private BooleanProperty precioValido;
-    private BooleanProperty unidadesValidas;
-    private BooleanProperty fotoValida;
+     @FXML
+    private MenuButton selector_categoria;  //selector de categoria
+    @FXML
+    private MenuItem categoria;    //categoria seleccionada
 
    
     @FXML
@@ -83,24 +83,19 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private Label error_unidades;   //texto de error en las unidades
     @FXML
-    private Label error_precio; //texto de error en rel precio
+    private Label error_precio; //texto de error en el precio
     @FXML
     private Label error_nombre;     //texto de error en el nombre
     @FXML
     private Label error_foto;   //texto de error en la foto
-    
-    
-    private Set<String> gastosAñadidos = new HashSet<>();    //lista con nombres añadidos
-   
-    private String nombreGasto; //nombre del gasto que sea el texto que obtengamos del textfield
-
-    private FXMLDocumentController tablaController; //tabla vinculada a la pantalla principal
-    @FXML
+     @FXML
     private Label error_categoria;
-    @FXML
-    private MenuButton selector_categoria;
-    @FXML
-    private MenuItem categoria1;
+     
+    public User usuario;
+    
+    
+    private FXMLDocumentController tablaController; //tabla vinculada a la pantalla principal
+   
     
     /**
      * Initializes the controller class.
@@ -110,13 +105,10 @@ public class FXML_anadirGastoController implements Initializable {
         
     }
     
-    /*public void setExpenseTableController(ExpenseTableController controller) {
-        this.expenseTableController = controller;
-    }*/
     
-    public void setTablaController(FXMLDocumentController tablaController){ //esta tabla que sea la del otro controller
+    /*public void setTablaController(FXMLDocumentController tablaController){ //esta tabla que sea la del otro controller
         this.tablaController = tablaController;
-    }
+    }*/
     
 
 
@@ -169,6 +161,13 @@ public class FXML_anadirGastoController implements Initializable {
         String uni = unidades_gasto.getText();  //unidades
         String prec = precio_gasto.getText();   //precios
         String descripcion = descripcion_gasto.getText();
+        
+        /* menuitems convertir en tipo categoria para poder introducirlo en la tabla
+        MenuItem categorias = (MenuItem) selector_categoria.getItems();
+        String cat = categorias.getText();
+        Category categoria = (Category)cat;
+        */
+
                 
         //comprobar nombre
         //TODO: comprobar si el nombre esta o no en la tabla
@@ -210,32 +209,33 @@ public class FXML_anadirGastoController implements Initializable {
         
         
         
-        //los datos añadidos == los introducimos en la tabla principal
+        //datos añadidos introducidos en la tabla principal
+        
         //nombreGastos esta declarado arriba
-        //usamos clase Charge
         LocalDate fecha = elegir_fecha.getValue();
         int unidades = Integer.parseInt(unidades_gasto.getText());  //unidades a int
         double precio = Double.parseDouble(precio_gasto.getText()); //precio a double
-        String descript = descripcion_gasto.getText();           //descripcion a texto
         Image factura = tiquet_gasto.getImage();
+        //List<Category> categorias = categorias.getUserCategories();
         
         //TODO: añadir categoria
-        
-        //QUITAR COMENTARIO CUANDO VAYA A PROGRAMAR
-        //registerCharge(nombreGastos,descript,precio,unidades,factura,fecha,categoria);
+     
         //ESTE METODO REGISTRA EN LA CUENTA DEL USUARIO EL GASTO QUE HA AÑADIDO 
         
-        /*TableView<Gastos> tabla = tablaController.getTabla();
-        ObservableList<Gastos> lista = FXCollections.observableArrayList();
-        lista.add(nuevoGasto);    //añadimos a la tabla un gasto 
+        TableView<Charge> tabla = tablaController.getTabla();   //tabla controller document
+        
+        if (!nombreGastos.isEmpty() && !uni.isEmpty() && !prec.isEmpty() && !descripcion.isEmpty()
+            && !factura.isError()&& (categoria != null) && (fecha!=null)) {//si estan todos seleccionados
+            
+            //registerCharge(nombreGastos,descripcion,precio,unidades,factura,fecha,categoria);   //crea gasto
+        }
+        
+        //tabla.addGasto();    //añadimos a la tabla un gasto 
     
-        tabla.setItems(lista); */
     }
 
-    private void registerCharge() { //añade metodo para registrar gastos
+    private void registerCharge(String gasto, String descripcion, String precio, String unidades, String imagen, Date fecha, String categoria1) { //añade metodo para registrar gastos
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
     
 }
