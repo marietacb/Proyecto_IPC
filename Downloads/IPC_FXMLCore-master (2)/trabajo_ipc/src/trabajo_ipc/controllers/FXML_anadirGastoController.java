@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale.Category;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.beans.property.BooleanProperty;
@@ -45,6 +44,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Charge;    
 import model.User;
+import model.Category;
+import model.AcountDAO;
+import model.Acount;
 
 /**
  * FXML Controller class
@@ -72,9 +74,6 @@ public class FXML_anadirGastoController implements Initializable {
     private TextArea descripcion_gasto;
     @FXML
     private ImageView tiquet_gasto;
-     @FXML
-    private MenuButton selector_categoria;  //selector de categoria
-    @FXML
     private MenuItem categoria;    //categoria seleccionada
 
    
@@ -91,10 +90,14 @@ public class FXML_anadirGastoController implements Initializable {
      @FXML
     private Label error_categoria;
      
-    public User usuario;
+    private User usuario;
     
     
     private FXMLDocumentController tablaController; //tabla vinculada a la pantalla principal
+    @FXML
+    private Label error_descripcion;
+    @FXML
+    private TextField categoria_gasto;
    
     
     /**
@@ -106,31 +109,6 @@ public class FXML_anadirGastoController implements Initializable {
     }
     
     
-    /*public void setTablaController(FXMLDocumentController tablaController){ //esta tabla que sea la del otro controller
-        this.tablaController = tablaController;
-    }*/
-    
-
-
-    @FXML
-    private void escribirUnidades(InputMethodEvent event) {
-        
-    }
-
-    @FXML
-    private void escribirPrecio(InputMethodEvent event) {
-        
-    }
-    
-    @FXML
-    private void introducirNombre(InputMethodEvent event) { //mirar buffer de nombres introducidos
-   
-    }
-
-    @FXML
-    private void escribirDescripcion(InputMethodEvent event) {
-
-    }
     
     @FXML
     private void pulsar_seleccionarFecha(MouseEvent event) {
@@ -140,12 +118,14 @@ public class FXML_anadirGastoController implements Initializable {
             public void updateItem(LocalDate date, boolean empty) { 
                 super.updateItem(date, empty); 
                 LocalDate today = LocalDate.now(); 
-                setDisable(empty || date.compareTo(today) < 0 ); 
+                setDisable(empty || date.compareTo(today) > 0 ); 
                 //TODO: cambiar para que solo se vean los dia anteriores a hoy y hoy
             } 
         }; 
     });
+        
     }
+    
 
     @FXML
     private void pulsarCancelar(ActionEvent event) {    //cerrar ventana
@@ -156,86 +136,92 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private void pulsarAceptar(ActionEvent event) { //guardar datos en la tabla y cerrar ventana
         
-        //declaramos strings que contengan lo que se introduce en cada textfield
-        String nombreGastos = nombre_gasto.getText();   //nombres
-        String uni = unidades_gasto.getText();  //unidades
-        String prec = precio_gasto.getText();   //precios
-        String descripcion = descripcion_gasto.getText();
+        if(elegir_fecha.getDayCellFactory() == null){   //no se ha seleccionado fecha
+            error_fecha.visibleProperty().set(true);
+        }
+        else{error_fecha.visibleProperty().set(false);}
         
-        /* menuitems convertir en tipo categoria para poder introducirlo en la tabla
-        MenuItem categorias = (MenuItem) selector_categoria.getItems();
-        String cat = categorias.getText();
-        Category categoria = (Category)cat;
-        */
-
-                
-        //comprobar nombre
-        //TODO: comprobar si el nombre esta o no en la tabla
-        if (nombreGastos.isEmpty()) {   //si no se ha introducido ningun nombre
-           error_nombre.visibleProperty().set(true);
-        }   
         
-        if (descripcion.isEmpty()) {   //si no se ha introducido ninguna descripcion
-           error_nombre.visibleProperty().set(true);
-        }  
+        if((descripcion_gasto.getText()).isEmpty()){
+            error_descripcion.visibleProperty().set(true);
+        }
+        else{error_descripcion.visibleProperty().set(false);}
         
-        //comprobar unidades
-        //si esta vacio el campo == error
-        if (nombreGastos.isEmpty()) {error_unidades.setText("Introduzca las unidades");}
         
-        try {   //que pruebe a convertir las unidades en integer
-            Integer units = Integer.parseInt(uni);
-            if (units <= 0) { //si se introducen valores negativos
-                error_unidades.visibleProperty().set(true);
-            }
-        } catch (NumberFormatException e) { //si no es tipo integer = error
-            error_unidades.visibleProperty().set(true);
+        if(nombre_gasto.getText().isEmpty()){
+            error_nombre.visibleProperty().set(true);
+        }
+        else{error_nombre.visibleProperty().set(true);}
+        
+        
+        //CORREGIR MENSAJE ERRORES (problem: no sale "Introduzca las unidades" cuando esta vacio)
+        if (precio_gasto.getText().isEmpty()) {               
+                error_unidades.setText("Introduzca el precio");
+                error_precio.visibleProperty().set(true);                
         }
         
-        
-        //comprobar precio
-        //TODO: hacer que descripcion y nombre gastos funcione
-        //si no se han introducido unidaes == error
-        if (nombreGastos.isEmpty()) {error_unidades.setText("Introduzca las unidades");}
-        
         try {   //que pruebe a convertir las unidades en double
-            Double precios = Double.parseDouble(prec);
+            Double precios = Double.parseDouble(precio_gasto.getText());
+            
             if (precios <= 0) { //si son precios negativos == error
+                error_precio.setText("El formato introducido no es correcto");
                 error_precio.visibleProperty().set(true);
-            }    
+            } 
+            
+            else {error_precio.visibleProperty().set(false);}
+            
         } catch (NumberFormatException e) { //si no es tipo double == error
+            error_precio.setText("El formato introducido no es correcto");
             error_precio.visibleProperty().set(true);
         }
         
         
+        //si no se introducen unidades
+        if (unidades_gasto.getText() == null) { //si no se introducen las unidades
+            error_unidades.setText("Introduzca las unidades");  //error mostrado
+            error_unidades.visibleProperty().set(true); //visible = true
+        }
         
-        //datos añadidos introducidos en la tabla principal
+        try {   //si se introducen unidades, que pruebe a convertir las unidades en integer            
+            Integer units = Integer.parseInt(unidades_gasto.getText());
+            if (units <= 0) { //si se introducen valores negativos
+                error_unidades.setText("El formato introducido no es correcto");
+                error_unidades.visibleProperty().set(true);
+            }
+            else {error_unidades.visibleProperty().set(false);}
+            
+        } catch (NumberFormatException e) { //si no es tipo integer = error
+            error_unidades.setText("El formato introducido no es correcto");
+            error_unidades.visibleProperty().set(true);
+            
+        }
         
-        //nombreGastos esta declarado arriba
+        
+        
+        String nombreGasto = nombre_gasto.getText();
+        String descripcion = descripcion_gasto.getText();
         LocalDate fecha = elegir_fecha.getValue();
         int unidades = Integer.parseInt(unidades_gasto.getText());  //unidades a int
         double precio = Double.parseDouble(precio_gasto.getText()); //precio a double
         Image factura = tiquet_gasto.getImage();
-        //List<Category> categorias = categorias.getUserCategories();
+        /*Category categoria = (categoria_gasto.getText());
         
         //TODO: añadir categoria
      
         //ESTE METODO REGISTRA EN LA CUENTA DEL USUARIO EL GASTO QUE HA AÑADIDO 
         
         TableView<Charge> tabla = tablaController.getTabla();   //tabla controller document
-        
-        if (!nombreGastos.isEmpty() && !uni.isEmpty() && !prec.isEmpty() && !descripcion.isEmpty()
-            && !factura.isError()&& (categoria != null) && (fecha!=null)) {//si estan todos seleccionados
-            
-            //registerCharge(nombreGastos,descripcion,precio,unidades,factura,fecha,categoria);   //crea gasto
-        }
-        
-        //tabla.addGasto();    //añadimos a la tabla un gasto 
-    
+            List<Category> list = getUserCategoriesDB(usuario.getNickName());
+            //me falta añadir la categoria
+           registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
+           
     }
 
+    
+    
     private void registerCharge(String gasto, String descripcion, String precio, String unidades, String imagen, Date fecha, String categoria1) { //añade metodo para registrar gastos
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+    */
+    }
 }
