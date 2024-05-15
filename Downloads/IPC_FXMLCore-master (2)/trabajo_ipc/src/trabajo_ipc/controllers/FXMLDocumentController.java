@@ -28,6 +28,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Charge;
 import model.User;
+import model.AcountDAO;
 
 /**
  * FXML Controller class
@@ -65,6 +66,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
         // Creo el tableview
         TableColumn<Charge, String> column1 = new TableColumn<>("Categoría");
         TableColumn<Charge, String> column2 = new TableColumn<>("Producto");
@@ -95,6 +97,7 @@ public class FXMLDocumentController implements Initializable {
         return tableView;
     }   
     
+    //HECHO
     @FXML
     private void pulsarGastos(MouseEvent event) throws IOException { //boton gastos muestra tabla
         grafico.setVisible(false);
@@ -102,6 +105,7 @@ public class FXMLDocumentController implements Initializable {
         boton_gastos.disableProperty();
     }
 
+    //HECHO
     @FXML
     private void resumen_anual(MouseEvent event) {  //boton resumen anual muestra grafico
         tableView.setVisible(false);
@@ -109,11 +113,12 @@ public class FXMLDocumentController implements Initializable {
         boton_resumenGastos.disableProperty();
     }
 
-    
+   
+    //HECHO
     @FXML
     private void añadirGasto(ActionEvent event) throws IOException { //boton añadir gasto abre ventana
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_inicio_sesion.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
         Parent root = loader.load();
 
         
