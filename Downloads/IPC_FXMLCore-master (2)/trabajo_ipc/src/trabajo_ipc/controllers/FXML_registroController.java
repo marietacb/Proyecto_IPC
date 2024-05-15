@@ -194,13 +194,6 @@ public class FXML_registroController implements Initializable {
         String contraseña2 = field_contraseña2.getText();
         
         
-        if(nombre!=null){}
-        if(apellidos!=null){}
-        if(nombreUsuario!=null){}
-        if(correo!=null){}
-        if(contraseña!=null){}
-        if(contraseña2!=null){}
-        
         
         if(CompobarEspacios(nombreUsuario,nombreUsuario.length())==true){
             nombre_incorrecto.visibleProperty().set(true);
