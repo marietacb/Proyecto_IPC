@@ -6,6 +6,7 @@ package trabajo_ipc.controllers;
  */
 
 import com.sun.javafx.scene.control.skin.Utils;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -157,7 +158,7 @@ public class FXML_anadirGastoController implements Initializable {
     }
 
     @FXML
-    private void pulsarAceptar(ActionEvent event) { //guardar datos en la tabla y cerrar ventana
+    private void pulsarAceptar(ActionEvent event) throws AcountDAOException, IOException { //guardar datos en la tabla y cerrar ventana
         
         //ERRORES MOSTRADOS == HECHO
         if(elegir_fecha.getDayCellFactory() == null){   //no se ha seleccionado fecha
@@ -230,21 +231,18 @@ public class FXML_anadirGastoController implements Initializable {
         int unidades = Integer.parseInt(unidades_gasto.getText());  //unidades a int
         double precio = Double.parseDouble(precio_gasto.getText()); //precio a double
         Image factura = tiquet_gasto.getImage();
-        /*Category categoria = (categoria_gasto.getText());
+        //Category categoria = (categoria_gasto.getText()); quiero coger una cotegoria
         
         //TODO: añadir categoria
      
         //ESTE METODO REGISTRA EN LA CUENTA DEL USUARIO EL GASTO QUE HA AÑADIDO 
         
         TableView<Charge> tabla = tablaController.getTabla();   //tabla controller document
-            List<Category> list = getUserCategoriesDB(usuario.getNickName());
+            List<Category> list = Acount.getInstance().getUserCategories();
             //me falta añadir la categoria
-           registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
+           Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
            
     }
-
-    */
    
     }
-     
-}
+    
