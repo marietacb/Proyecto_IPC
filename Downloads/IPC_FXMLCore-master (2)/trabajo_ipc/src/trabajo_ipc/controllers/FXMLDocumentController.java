@@ -57,6 +57,8 @@ public class FXMLDocumentController implements Initializable {
     ObservableList<Charge> lista = FXCollections.observableArrayList(); //una lista de gastos
     
     public User user;  //usuario publico
+    @FXML
+    private MenuItem categoria;
 
 
 
@@ -128,6 +130,17 @@ public class FXMLDocumentController implements Initializable {
         //stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();    //espera a que se introduzac al información
 
+    }
+
+    @FXML
+    private void añadircategoria(ActionEvent event) throws IOException {
+        
+       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXML_añadir_categoria.fxml"));
+       Parent root = cargarRegistro.load();
+       
+       Stage stage = new Stage();
+       stage.setScene(new Scene(root));
+       stage.showAndWait();
     }
     
 }

@@ -37,7 +37,7 @@
             <MenuButton mnemonicParsing="false" text="+ Crear" translateX="10.0" translateY="20.0">
               <items>
                 <MenuItem fx:id="boton_añadirGasto" mnemonicParsing="false" onAction="#añadirGasto" text="Añadir gasto" />
-                <MenuItem mnemonicParsing="false" text="Añadir categoría" />
+                <MenuItem fx:id="categoria" mnemonicParsing="false" onAction="#añadircategoria" text="Añadir categoría" />
               </items>
             </MenuButton>
           <Button fx:id="boton_resumenGastos" mnemonicParsing="false" onMouseClicked="#resumen_anual" text="Resumen anual" translateX="10.0" translateY="175.0" />
