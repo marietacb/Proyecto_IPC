@@ -9,8 +9,8 @@ import com.sun.javafx.scene.control.skin.Utils;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -39,6 +39,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -47,6 +49,8 @@ import model.User;
 import model.Category;
 import model.AcountDAO;
 import model.Acount;
+import model.AcountDAOException;
+import model.Stowable;
 
 /**
  * FXML Controller class
@@ -98,6 +102,12 @@ public class FXML_anadirGastoController implements Initializable {
     private Label error_descripcion;
     @FXML
     private TextField categoria_gasto;
+    @FXML
+    private HBox pantallaAñadirGasto;
+    @FXML
+    private VBox vBox1;
+    @FXML
+    private VBox vBox2;
    
     
     /**
@@ -105,7 +115,20 @@ public class FXML_anadirGastoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ArrayList<Charge> listaGastos = new ArrayList<Charge>();
+       // listaGastos.getUserChargesDB(usuario.getNickName());
         
+       //prueba para ver si al minimizar la pantalla, se adapata el fxml 
+       pantallaAñadirGasto.widthProperty().addListener((observable,oldValue,newValue)->{
+           vBox1.setPrefWidth((Double)newValue/2);
+           vBox2.setPrefWidth((Double)newValue/2);
+       });
+       
+       pantallaAñadirGasto.heightProperty().addListener((observable,oldValue,newValue)->{
+           vBox1.setPrefHeight((Double)newValue/2);
+           vBox2.setPrefHeight((Double)newValue/2);
+       });
+       
     }
     
     
@@ -220,11 +243,8 @@ public class FXML_anadirGastoController implements Initializable {
            
     }
 
-    
-    
-    private void registerCharge(String gasto, String descripcion, String precio, String unidades, String imagen, Date fecha, String categoria1) { //añade metodo para registrar gastos
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     */
+   
     }
+     
 }
