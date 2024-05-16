@@ -207,7 +207,7 @@
                   <Insets left="30.0" right="20.0" top="10.0" />
                </padding>
             </HBox>
-            <Hyperlink alignment="TOP_CENTER" contentDisplay="TOP" text="¿Ya estas registrado? Inicia sesión">
+            <Hyperlink fx:id="iniciar_link" alignment="TOP_CENTER" contentDisplay="TOP" onMouseClicked="#iniciar_sesion" text="¿Ya estas registrado? Inicia sesión">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

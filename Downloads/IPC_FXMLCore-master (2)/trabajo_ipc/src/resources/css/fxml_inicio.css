@@ -3,5 +3,10 @@
  */
 
 .mainFxmlClass {
+     css.border-pane {
+       -fx-background-image: url("@../../images/foto_perfil.jpg");
+       -fx-background-size: cover;
+       -fx-background-position: center center;
+   }
 
 }

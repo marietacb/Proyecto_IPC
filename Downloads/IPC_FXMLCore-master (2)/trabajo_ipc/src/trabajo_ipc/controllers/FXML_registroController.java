@@ -1,6 +1,7 @@
 package trabajo_ipc.controllers;
 
 import com.sun.javafx.scene.control.skin.Utils;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -9,13 +10,18 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -76,6 +82,8 @@ public class FXML_registroController implements Initializable {
     private ImageView imagen_perfil;
     @FXML
     private Label apellido_incorrecto;
+    @FXML
+    private Hyperlink iniciar_link;
     
     
     private void manageError(Label errorLabel,TextField textField, BooleanProperty boolProp ){
@@ -235,5 +243,17 @@ public class FXML_registroController implements Initializable {
     private void pulsar_cancelar(ActionEvent event) {
         Stage stage = (Stage) button_cancel.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void iniciar_sesion(MouseEvent event) throws IOException {
+       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/inicio.fxml"));
+       Parent root = cargarRegistro.load();
+       
+       Stage stage = new Stage();
+       Stage stageinicial = (Stage) button_cancel.getScene().getWindow();
+       stage.setScene(new Scene(root));
+       stage.show();
+       stageinicial.close();
     }
 }
