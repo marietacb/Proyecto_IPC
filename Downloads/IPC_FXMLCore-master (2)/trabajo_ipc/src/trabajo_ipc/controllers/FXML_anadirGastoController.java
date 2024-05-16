@@ -136,6 +136,7 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private void pulsarAceptar(ActionEvent event) { //guardar datos en la tabla y cerrar ventana
         
+        //ERRORES MOSTRADOS == HECHO
         if(elegir_fecha.getDayCellFactory() == null){   //no se ha seleccionado fecha
             error_fecha.visibleProperty().set(true);
         }
@@ -147,54 +148,56 @@ public class FXML_anadirGastoController implements Initializable {
         }
         else{error_descripcion.visibleProperty().set(false);}
         
-        
-        if(nombre_gasto.getText().isEmpty()){
+        //TODO: comprobar tmb que no exista en los nombres creados por el usuario
+        if(nombre_gasto.getText().isEmpty()){   
             error_nombre.visibleProperty().set(true);
         }
         else{error_nombre.visibleProperty().set(true);}
         
         
-        //CORREGIR MENSAJE ERRORES (problem: no sale "Introduzca las unidades" cuando esta vacio)
-        if (precio_gasto.getText().isEmpty()) {               
-                error_unidades.setText("Introduzca el precio");
-                error_precio.visibleProperty().set(true);                
+        if ((precio_gasto.getText()).isEmpty()) {               
+            error_precio.setText("Introduzca el precio");
+            error_precio.visibleProperty().set(true);                
         }
         
-        try {   //que pruebe a convertir las unidades en double
-            Double precios = Double.parseDouble(precio_gasto.getText());
+        else{
+            try {   //que pruebe a convertir las unidades en double
+                Double precios = Double.parseDouble(precio_gasto.getText());
             
-            if (precios <= 0) { //si son precios negativos == error
+                if (precios <= 0) { //si son precios negativos == error
+                    error_precio.setText("El formato introducido no es correcto");
+                    error_precio.visibleProperty().set(true);
+                } 
+                else {error_precio.visibleProperty().set(false);}
+            
+            } catch (NumberFormatException e) { //si no es tipo double == error
                 error_precio.setText("El formato introducido no es correcto");
                 error_precio.visibleProperty().set(true);
-            } 
-            
-            else {error_precio.visibleProperty().set(false);}
-            
-        } catch (NumberFormatException e) { //si no es tipo double == error
-            error_precio.setText("El formato introducido no es correcto");
-            error_precio.visibleProperty().set(true);
+            }
         }
         
         
         //si no se introducen unidades
-        if (unidades_gasto.getText() == null) { //si no se introducen las unidades
+        if ((unidades_gasto.getText()).isEmpty()) { //si no se introducen las unidades
             error_unidades.setText("Introduzca las unidades");  //error mostrado
             error_unidades.visibleProperty().set(true); //visible = true
         }
         
-        try {   //si se introducen unidades, que pruebe a convertir las unidades en integer            
-            Integer units = Integer.parseInt(unidades_gasto.getText());
-            if (units <= 0) { //si se introducen valores negativos
+        else{
+            try {   //si se introducen unidades, que pruebe a convertir las unidades en integer            
+                Integer units = Integer.parseInt(unidades_gasto.getText());
+                if (units <= 0) { //si se introducen valores negativos
+                    error_unidades.setText("El formato introducido no es correcto");
+                    error_unidades.visibleProperty().set(true);
+                }
+                else {error_unidades.visibleProperty().set(false);}
+            
+            } catch (NumberFormatException e) { //si no es tipo integer = error
                 error_unidades.setText("El formato introducido no es correcto");
                 error_unidades.visibleProperty().set(true);
             }
-            else {error_unidades.visibleProperty().set(false);}
-            
-        } catch (NumberFormatException e) { //si no es tipo integer = error
-            error_unidades.setText("El formato introducido no es correcto");
-            error_unidades.visibleProperty().set(true);
-            
         }
+        
         
         
         

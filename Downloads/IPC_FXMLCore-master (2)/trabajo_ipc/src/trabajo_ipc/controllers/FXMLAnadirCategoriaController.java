@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Belén Rodríguez
  */
-public class FXMLAñadirCategoriaController implements Initializable {
+public class FXMLAnadirCategoriaController implements Initializable {
 
     /**
      * Initializes the controller class.
