@@ -79,8 +79,6 @@ public class FXML_anadirGastoController implements Initializable {
     private TextArea descripcion_gasto;
     @FXML
     private ImageView tiquet_gasto;
-    @FXML
-    private MenuItem categoria;    //categoria seleccionada
 
     @FXML
     private Label error_fecha;  //texto de error en la fecha
@@ -90,11 +88,8 @@ public class FXML_anadirGastoController implements Initializable {
     private Label error_precio; //texto de error en el precio
     @FXML
     private Label error_nombre;     //texto de error en el nombre
-    @FXML
-    private User usuario;
     
     
-    @FXML
     private FXMLDocumentController tablaController; //tabla vinculada a la pantalla principal
     @FXML
     private Label error_descripcion;
@@ -105,9 +100,13 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private VBox vBox2;
     @FXML
-    private TextField nombre_categoria;
+    private TextField categoria_gasto;
     @FXML
-    private TextArea descripcion_categoria;
+    private Label error_categoria;
+    @FXML
+    private Button botonImagen;
+    @FXML
+    private Label error_foto;
    
     
     /**
@@ -115,6 +114,7 @@ public class FXML_anadirGastoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         ArrayList<Charge> listaGastos = new ArrayList<Charge>();
        // listaGastos.getUserChargesDB(usuario.getNickName());
         
@@ -157,7 +157,7 @@ public class FXML_anadirGastoController implements Initializable {
 
     @FXML
     private void pulsarAceptar(ActionEvent event) throws AcountDAOException, IOException { //guardar datos en la tabla y cerrar ventana
-        
+                 
         //ERRORES MOSTRADOS == HECHO
         if(elegir_fecha.getDayCellFactory() == null){   //no se ha seleccionado fecha
             error_fecha.visibleProperty().set(true);
@@ -241,6 +241,11 @@ public class FXML_anadirGastoController implements Initializable {
         //Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
           
     }
-   
+
+    @FXML
+    private void añadirImagen(ActionEvent event) {
+        
     }
+   
+   }
     
