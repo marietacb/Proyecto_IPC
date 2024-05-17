@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -79,10 +81,10 @@ public class FXMLDocumentController implements Initializable {
         // Creo el tableview
         TableColumn<Charge, String> column1 = new TableColumn<>("Categoría");
         TableColumn<Charge, String> column2 = new TableColumn<>("Producto");
-        TableColumn<Charge, LocalDate> column3 = new TableColumn<>("Fecha");
-        TableColumn<Charge, Integer> column4 = new TableColumn<>("Unidades");
-        TableColumn<Charge, Integer> column5 = new TableColumn<>("Precio");
-        TableColumn<Charge, String> column6 = new TableColumn<>("Tiquet");
+        TableColumn<Charge, String> column3 = new TableColumn<>("Fecha");
+        TableColumn<Charge, Number> column4 = new TableColumn<>("Unidades");
+        TableColumn<Charge, Number> column5 = new TableColumn<>("Precio");
+        TableColumn<Charge, Image> column6 = new TableColumn<>("Tiquet");
         TableColumn<Charge, Image> column7 = new TableColumn<>(); //imagen papelera eliminar
         
         column1.setPrefWidth(102);  //tamaños de cada columna
@@ -106,8 +108,11 @@ public class FXMLDocumentController implements Initializable {
         border_pane.setCenter(tableView);
         
         //TODO: Inicializar el grafico aqui (ponerle informacion gastos)
-        //column1.setCellValueFactory(personaFila->new CategoryProperty(personaFila.getValue().getCategory()));
-        column2.setCellValueFactory(productoFila->new SimpleStringProperty(productoFila.getValue().getName()));
+        column1.setCellValueFactory(gastoFila->new SimpleStringProperty(gastoFila.getValue().getCategory().getName()));
+        column2.setCellValueFactory(gastoFila->new SimpleStringProperty(gastoFila.getValue().getName()));
+        column3.setCellValueFactory(gastoFila->new SimpleStringProperty(gastoFila.getValue().getDate().toString()));
+        column4.setCellValueFactory(gastoFila->new SimpleIntegerProperty(gastoFila.getValue().getUnits()));
+        column5.setCellValueFactory(gastoFila->new SimpleDoubleProperty(gastoFila.getValue().getCost()));
         
                 
     }    
