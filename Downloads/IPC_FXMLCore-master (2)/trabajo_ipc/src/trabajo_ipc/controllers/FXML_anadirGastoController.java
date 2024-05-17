@@ -98,7 +98,6 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private TextArea descripcion_categoria;
    
-    
     /**
      * Initializes the controller class.
      */
@@ -119,7 +118,7 @@ public class FXML_anadirGastoController implements Initializable {
        });
        
     }
-    
+
     
     
     private void pulsar_seleccionarFecha(MouseEvent event) {
@@ -210,7 +209,7 @@ public class FXML_anadirGastoController implements Initializable {
         }
         
         
-        
+        //inicializamos las variables a lo que introduzca el usuario
         
         String nombreGasto = nombre_gasto.getText();
         String descripcion = descripcion_gasto.getText();
@@ -218,8 +217,11 @@ public class FXML_anadirGastoController implements Initializable {
         int unidades = Integer.parseInt(unidades_gasto.getText());  //unidades a int
         double precio = Double.parseDouble(precio_gasto.getText()); //precio a double
         Image factura = tiquet_gasto.getImage();
-        //Category categoria = (categoria_gasto.getText()); quiero coger una cotegoria
+        //inicializamos lista
+        List<Category> listaCategorias = Acount.getInstance().getUserCategories();
+        Category categoria2 = listaCategorias.get(1);
         
+
         //TODO: añadir categoria
      
         //ESTE METODO REGISTRA EN LA CUENTA DEL USUARIO EL GASTO QUE HA AÑADIDO 
@@ -227,7 +229,7 @@ public class FXML_anadirGastoController implements Initializable {
         TableView<Charge> tabla = tablaController.getTabla();   //tabla controller document
             List<Category> list = Acount.getInstance().getUserCategories();
             //me falta añadir la categoria
-           Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
+           Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria2); 
            
     }
    

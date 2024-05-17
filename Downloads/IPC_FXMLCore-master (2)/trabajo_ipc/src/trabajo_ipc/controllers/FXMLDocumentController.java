@@ -4,10 +4,14 @@
  */
 package trabajo_ipc.controllers;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,9 +30,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Acount;
 import model.Charge;
 import model.User;
 import model.AcountDAO;
+import model.AcountDAOException;
+import model.Category;
 
 /**
  * FXML Controller class
@@ -54,7 +61,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private MenuItem boton_añadirGasto; //abre fxml añadir gasto
             
-    ObservableList<Charge> lista = FXCollections.observableArrayList(); //una lista de gastos
+    private ObservableList<Charge> gastos; //una lista de gastos
     
     public User user;  //usuario publico
     @FXML
@@ -83,15 +90,25 @@ public class FXMLDocumentController implements Initializable {
         column3.setPrefWidth(102);
         column4.setPrefWidth(102);
         column5.setPrefWidth(102);
-        column6.setPrefWidth(102);
-        column7.setPrefWidth(50);   //columna eliminar mas pequeña
+        //column6.setPrefWidth(102);
+        //column7.setPrefWidth(50);   //columna eliminar mas pequeña
+        try {
+            gastos = (ObservableList<Charge>) Acount.getInstance().getUserCharges();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
          
         //situamos y mostramos tabla en el centro del border pane
         tableView.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);    
-        tableView.setItems(lista);
+        tableView.setItems(gastos);
         border_pane.setCenter(tableView);
         
         //TODO: Inicializar el grafico aqui (ponerle informacion gastos)
+        //column1.setCellValueFactory(personaFila->new CategoryProperty(personaFila.getValue().getCategory()));
+        column2.setCellValueFactory(productoFila->new SimpleStringProperty(productoFila.getValue().getName()));
+        
                 
     }    
 
