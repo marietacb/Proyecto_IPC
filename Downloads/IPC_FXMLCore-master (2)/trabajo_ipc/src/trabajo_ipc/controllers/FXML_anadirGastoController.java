@@ -6,6 +6,9 @@ package trabajo_ipc.controllers;
  */
 
 import com.sun.javafx.scene.control.skin.Utils;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -243,8 +246,11 @@ public class FXML_anadirGastoController implements Initializable {
     }
 
     @FXML
-    private void añadirImagen(ActionEvent event) {
-        
+    private void añadirImagen(ActionEvent event) throws FileNotFoundException {
+        //me falta el path de la foto que ponga
+        String url = "c:"+File.separator+"images"+File.separator+"woman.PNG"; 
+        Image factura = new Image(new FileInputStream(url)); 
+        tiquet_gasto.imageProperty().setValue(factura);
     }
    
    }
