@@ -67,25 +67,36 @@ public class FXML_anadirGastoController implements Initializable {
     
      
      //textfields de cada parametro de una gasto
+    @FXML
     private TextField nombre_gasto;   
+    @FXML
     private DatePicker elegir_fecha;
+    @FXML
     private TextField unidades_gasto;
+    @FXML
     private TextField precio_gasto;
+    @FXML
     private TextArea descripcion_gasto;
+    @FXML
     private ImageView tiquet_gasto;
+    @FXML
     private MenuItem categoria;    //categoria seleccionada
 
-   
+    @FXML
     private Label error_fecha;  //texto de error en la fecha
+    @FXML
     private Label error_unidades;   //texto de error en las unidades
     @FXML
     private Label error_precio; //texto de error en el precio
+    @FXML
     private Label error_nombre;     //texto de error en el nombre
-     
+    @FXML
     private User usuario;
     
     
+    @FXML
     private FXMLDocumentController tablaController; //tabla vinculada a la pantalla principal
+    @FXML
     private Label error_descripcion;
     @FXML
     private HBox pantallaAñadirGasto;
@@ -121,7 +132,7 @@ public class FXML_anadirGastoController implements Initializable {
     }
     
     
-    
+    @FXML
     private void pulsar_seleccionarFecha(MouseEvent event) {
         elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
         return new DateCell() { 
@@ -225,10 +236,10 @@ public class FXML_anadirGastoController implements Initializable {
         //ESTE METODO REGISTRA EN LA CUENTA DEL USUARIO EL GASTO QUE HA AÑADIDO 
         
         TableView<Charge> tabla = tablaController.getTabla();   //tabla controller document
-            List<Category> list = Acount.getInstance().getUserCategories();
-            //me falta añadir la categoria
-           Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
-           
+        List<Category> list = Acount.getInstance().getUserCategories();
+        //me falta añadir la categoria
+        //Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
+          
     }
    
     }
