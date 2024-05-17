@@ -29,8 +29,11 @@ public class Trabajo_ipc extends Application {
        //1-creamos un grafo de escena a partir del fichero FXML 
         Application.setUserAgentStylesheet(STYLESHEET_CASPIAN); //estilo caspian
        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_registro.fxml"));
         Parent root = loader.load();
+        
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+        //Parent root = loader.load();
         
         //2-Creacion de la escena con el nodo raiz del grafo de escena
         scene = new Scene(root);

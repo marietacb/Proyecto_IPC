@@ -51,10 +51,15 @@
                   <VBox prefWidth="100.0" spacing="3.0">
                      <children>
                         <Label text="Foto de perfil: (Opcional)" />
-                        <ImageView fx:id="imagen_perfil" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/foto_perfil.jpg" />
-                           </image></ImageView>
+                        <Button fx:id="avatar" mnemonicParsing="false" onAction="#cambiar_avatar">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/foto_perfil.jpg" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </VBox>
                </children>
@@ -74,7 +79,7 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <Label fx:id="nombre_incorrecto" minWidth="450.0" prefWidth="200.0" text="Nombre no válido, seleccione otro diferente por favor." textFill="RED">
+                  <Label fx:id="nombre_incorrecto" minWidth="450.0" prefWidth="200.0" text="Nombre no válido, seleccione otro diferente por favor." textFill="RED" visible="false">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
@@ -102,7 +107,7 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <Label fx:id="apellido_incorrecto" minWidth="450.0" prefWidth="200.0" text="Campo obligatorio." textFill="RED">
+                  <Label fx:id="apellido_incorrecto" minWidth="450.0" prefWidth="200.0" text="Campo obligatorio." textFill="RED" visible="false">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -127,7 +132,7 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <Label fx:id="nombreusuario_incorrecto" minWidth="450.0" prefWidth="200.0" text="Nombre de Usuario no válido, seleccione otro diferente por favor." textFill="RED">
+                  <Label fx:id="nombreusuario_incorrecto" minWidth="450.0" prefWidth="200.0" text="Nombre de Usuario no válido, seleccione otro diferente por favor." textFill="RED" visible="false">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
@@ -152,7 +157,7 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <Label fx:id="correo_incorrecto" text="Correo Electrónico no válido, seleccione otro diferente por favor." textFill="RED" HBox.hgrow="ALWAYS">
+                  <Label fx:id="correo_incorrecto" text="Correo Electrónico no válido, seleccione otro diferente por favor." textFill="RED" visible="false" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
@@ -173,7 +178,7 @@
                         <PasswordField fx:id="field_contraseña" minHeight="26.0" minWidth="250.0" prefHeight="26.0" prefWidth="350.0" promptText="Introduzca su contraseña" />
                      </children>
                   </VBox>
-                  <Label fx:id="contraseña_incorrecto" text="La contraseña debe tener almenos 6 carácteres con letras, números y sin espacios." textFill="RED" HBox.hgrow="ALWAYS">
+                  <Label fx:id="contraseña_incorrecto" text="La contraseña debe tener almenos 6 carácteres con letras, números y sin espacios." textFill="RED" visible="false" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
@@ -188,20 +193,7 @@
             </HBox>
             <HBox prefWidth="200.0">
                <children>
-                  <VBox prefWidth="100.0" spacing="3.0">
-                     <children>
-                        <Label text="Confirmar Contraseña:*" />
-                        <PasswordField fx:id="field_contraseña2" minHeight="26.0" minWidth="250.0" prefHeight="26.0" prefWidth="350.0" promptText="Instroduzca su contraseña" />
-                     </children>
-                  </VBox>
-                  <Label fx:id="contraseña2_incorrecto" text="Las contraseñas no coinciden." textFill="RED">
-                     <HBox.margin>
-                        <Insets top="25.0" />
-                     </HBox.margin>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
+                  <VBox prefWidth="100.0" spacing="3.0" />
                </children>
                <padding>
                   <Insets left="30.0" right="20.0" top="10.0" />

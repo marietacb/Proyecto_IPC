@@ -1,8 +1,10 @@
 package trabajo_ipc.controllers;
 
 import com.sun.javafx.scene.control.skin.Utils;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -19,11 +21,17 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Acount;
+import model.AcountDAOException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * FXML Controller class
@@ -36,7 +44,6 @@ public class FXML_registroController implements Initializable {
     private BooleanProperty validSurname;
     private BooleanProperty validNickname;
     private BooleanProperty validPassword;
-    private BooleanProperty validRepassword;
     private BooleanProperty validEmail;
     private BooleanProperty equalPasswords;
 
@@ -56,8 +63,6 @@ public class FXML_registroController implements Initializable {
     private TextField field_correo;
     @FXML
     private PasswordField field_contraseña;
-    @FXML
-    private PasswordField field_contraseña2;
     
     
     //LOS BOTONES
@@ -76,14 +81,15 @@ public class FXML_registroController implements Initializable {
     private Label correo_incorrecto;
     @FXML
     private Label contraseña_incorrecto;
-    @FXML
-    private Label contraseña2_incorrecto;
-    @FXML
     private ImageView imagen_perfil;
     @FXML
     private Label apellido_incorrecto;
     @FXML
     private Hyperlink iniciar_link;
+    
+    private int fecha;
+    @FXML
+    private Button avatar;
     
     
     private void manageError(Label errorLabel,TextField textField, BooleanProperty boolProp ){
@@ -122,17 +128,13 @@ public class FXML_registroController implements Initializable {
         validSurname = new SimpleBooleanProperty(false);
         validNickname = new SimpleBooleanProperty(false);
         validPassword = new SimpleBooleanProperty(false);
-        validRepassword = new SimpleBooleanProperty(false);
         validEmail = new SimpleBooleanProperty(false);
-        equalPasswords = new SimpleBooleanProperty(false);
         
         validName.setValue(Boolean.FALSE);
         validSurname.setValue(Boolean.FALSE);
         validNickname.setValue(Boolean.FALSE);
         validPassword.setValue(Boolean.FALSE);
-        validRepassword.setValue(Boolean.FALSE);
         validEmail.setValue(Boolean.FALSE);
-        equalPasswords.setValue(Boolean.FALSE);
         
         field_correo.focusedProperty().addListener((observable, oldValue, newValue)->{
         if(!newValue){//focusLost
@@ -140,8 +142,6 @@ public class FXML_registroController implements Initializable {
         }
     }); 
         
-        BooleanBinding validFields = Bindings.and(validEmail, validPassword)
-                 .and(equalPasswords);
     } 
     
     public static  Boolean checkEmail (String email){   
@@ -183,26 +183,22 @@ public class FXML_registroController implements Initializable {
        String password = field_contraseña.getText();
     }
     
-    private void introducir_repassword(InputMethodEvent event) {
-        String repassword = field_contraseña2.getText();
-    }
-
     private void introducir_mail(InputMethodEvent event) {
         String mail = field_correo.getText();
     }
 
 
     @FXML
-    private void pulsar_registrarse(ActionEvent event) {
+    private void pulsar_registrarse(ActionEvent event) throws AcountDAOException, IOException {
         String nombre = field_nombre.getText();
         String apellidos = field_apellidos.getText();
         String nombreUsuario = field_nombreusuario.getText();
         String correo = field_correo.getText();
         String contraseña = field_contraseña.getText();
-        String contraseña2 = field_contraseña2.getText();
+        Image foto_perfil = imagen_perfil.getImage();
         
-        
-        
+        LocalDate fecha = LocalDate.now();
+
         if(CompobarEspacios(nombreUsuario,nombreUsuario.length())==true){
             nombre_incorrecto.visibleProperty().set(true);
         }
@@ -229,13 +225,12 @@ public class FXML_registroController implements Initializable {
         if(contraseña.isBlank()){
             contraseña_incorrecto.visibleProperty().set(true);
         }
-        if(contraseña2.isBlank()){
-            contraseña2_incorrecto.visibleProperty().set(true);
-        }
         
-        
-        if(contraseña.compareTo(contraseña2)!=0){
-            contraseña_incorrecto.visibleProperty().set(true);
+        boolean isOK= Acount.getInstance().registerUser(nombre, apellidos, correo, nombreUsuario, contraseña, foto_perfil, fecha);
+        if(isOK){
+            //MANDARLO A LA SIGUIENTE ESCENA
+        }else{
+            System.err.println("NO SE HA GUARDADO BIEN");
         }
     }
 
@@ -256,4 +251,17 @@ public class FXML_registroController implements Initializable {
        stage.show();
        stageinicial.close();
     }
+
+    @FXML
+    private void cambiar_avatar(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Profile Picture");
+        
+        // Filtro para limitar a solo archivos de imagen
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+    }
+
 }
