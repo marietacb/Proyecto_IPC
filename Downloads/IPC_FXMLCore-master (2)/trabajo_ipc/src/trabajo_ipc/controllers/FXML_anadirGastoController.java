@@ -25,6 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.Alert;
@@ -47,6 +48,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import model.Charge;    
 import model.User;
@@ -103,23 +106,21 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private VBox vBox2;
     @FXML
-    private TextField categoria_gasto;
-    @FXML
     private Label error_categoria;
     @FXML
-    private Button botonImagen;
-    @FXML
     private Label error_foto;
+    @FXML
+    private VBox vboxFactura;
+    @FXML
+    private MenuButton selectorCategoria;
    
+
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        ArrayList<Charge> listaGastos = new ArrayList<Charge>();
-       // listaGastos.getUserChargesDB(usuario.getNickName());
         
        //prueba para ver si al minimizar la pantalla, se adapata el fxml 
        pantallaAñadirGasto.widthProperty().addListener((observable,oldValue,newValue)->{
@@ -161,25 +162,44 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private void pulsarAceptar(ActionEvent event) throws AcountDAOException, IOException { //guardar datos en la tabla y cerrar ventana
                  
-        //ERRORES MOSTRADOS == HECHO
+        //ERRORES MOSTRADOS
+        
+        //ERROR FECHA
         if(elegir_fecha.getDayCellFactory() == null){   //no se ha seleccionado fecha
             error_fecha.visibleProperty().set(true);
         }
         else{error_fecha.visibleProperty().set(false);}
         
         
+        //ERROR DESCRIPCION
         if((descripcion_gasto.getText()).isEmpty()){
             error_descripcion.visibleProperty().set(true);
         }
         else{error_descripcion.visibleProperty().set(false);}
         
-        //TODO: comprobar tmb que no exista en los nombres creados por el usuario
+        
+        //ERROR NOMBRE
+        List<Charge> gastos = Acount.getInstance().getUserCharges();    //lista de gastos
         if(nombre_gasto.getText().isEmpty()){   
+            error_nombre.setText("Introduzca un nombre");
             error_nombre.visibleProperty().set(true);
         }
-        else{error_nombre.visibleProperty().set(true);}
+        else{ 
+            int i = 0;
+            while(i <= gastos.size()){  //mientras no recorra toda la lista
+                if(nombre_gasto.equals(gastos.get(i))){
+                    error_nombre.setText("El nombre introducido ya existe");
+                    error_nombre.visibleProperty().set(true);
+                    break;  //sale del bucle
+                }
+                else{i++;}  //sino que siga buscando
+            }
+            //si se sale sin encontrar nada
+            error_nombre.visibleProperty().set(false);  //no hay error
+        }
+
         
-        
+        //ERROR PRECIO
         if ((precio_gasto.getText()).isEmpty()) {               
             error_precio.setText("Introduzca el precio");
             error_precio.visibleProperty().set(true);                
@@ -202,7 +222,7 @@ public class FXML_anadirGastoController implements Initializable {
         }
         
         
-        //si no se introducen unidades
+        //ERROR UNIDADES
         if ((unidades_gasto.getText()).isEmpty()) { //si no se introducen las unidades
             error_unidades.setText("Introduzca las unidades");  //error mostrado
             error_unidades.visibleProperty().set(true); //visible = true
@@ -225,14 +245,14 @@ public class FXML_anadirGastoController implements Initializable {
         
         
         
-        
+        //CARGAR TABLA CON GASTOS
         String nombreGasto = nombre_gasto.getText();
         String descripcion = descripcion_gasto.getText();
         LocalDate fecha = elegir_fecha.getValue();
         int unidades = Integer.parseInt(unidades_gasto.getText());  //unidades a int
         double precio = Double.parseDouble(precio_gasto.getText()); //precio a double
         Image factura = tiquet_gasto.getImage();
-        //Category categoria = (categoria_gasto.getText()); quiero coger una cotegoria
+        Category categoria = (Category) (selectorCategoria.getItems()); //quiero coger una cotegoria
         
         //TODO: añadir categoria
      
@@ -241,17 +261,25 @@ public class FXML_anadirGastoController implements Initializable {
         TableView<Charge> tabla = tablaController.getTabla();   //tabla controller document
         List<Category> list = Acount.getInstance().getUserCategories();
         //me falta añadir la categoria
-        //Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
+        Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
           
     }
 
-    @FXML
-    private void añadirImagen(ActionEvent event) throws FileNotFoundException {
-        //me falta el path de la foto que ponga
-        String url = "c:"+File.separator+"images"+File.separator+"woman.PNG"; 
-        Image factura = new Image(new FileInputStream(url)); 
-        tiquet_gasto.imageProperty().setValue(factura);
+    @FXML   //seleccionar foto gasto desde archivos
+    private void añadirImagen(MouseEvent event) {
+        FileChooser ficheroSel = new FileChooser();    //seleccionador de archivos
+        ficheroSel.setTitle("Abrir imagen");   
+        ficheroSel.getExtensionFilters().addAll(
+            new ExtensionFilter("Imagenes", "*.png", "*.jpg")); //formate de imagen
+        
+        File seleccionado = ficheroSel.showOpenDialog( 
+        ((Node)event.getSource()).getScene().getWindow());
+        if (ficheroSel != null) {
+            tiquet_gasto.setFitHeight(250); //adaptamos tamaño foto
+            tiquet_gasto.setFitWidth(250);  
+            Image imagen = new Image(seleccionado.toURI().toString());
+            tiquet_gasto.setImage(imagen);
+        } 
     }
-   
    }
     
