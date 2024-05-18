@@ -85,6 +85,8 @@ public class FXML_anadirGastoController implements Initializable {
     private TextArea descripcion_gasto;
     @FXML
     private ImageView tiquet_gasto;
+    @FXML
+    private MenuButton selectorCategoria;
 
     @FXML
     private Label error_fecha;  //texto de error en la fecha
@@ -111,11 +113,10 @@ public class FXML_anadirGastoController implements Initializable {
     private Label error_foto;
     @FXML
     private VBox vboxFactura;
-    @FXML
-    private MenuButton selectorCategoria;
-   
-
     
+    private Charge gasto;
+ 
+        
     /**
      * Initializes the controller class.
      */
@@ -133,9 +134,7 @@ public class FXML_anadirGastoController implements Initializable {
             } 
         }; 
         }); 
-        
-        
-        
+                
        //prueba para ver si al minimizar la pantalla, se adapata el fxml 
        pantallaAñadirGasto.widthProperty().addListener((observable,oldValue,newValue)->{
            vBox1.setPrefWidth((Double)newValue/2);
@@ -149,7 +148,7 @@ public class FXML_anadirGastoController implements Initializable {
        
     }
     
-    
+   
     @FXML
     private void pulsarCancelar(ActionEvent event) {    //cerrar ventana
         Stage stage = (Stage) boton_Cancelar.getScene().getWindow();
@@ -240,26 +239,28 @@ public class FXML_anadirGastoController implements Initializable {
             }
         }
         
-        
+        if(!error_nombre.isVisible() ){
         
         //CARGAR TABLA CON GASTOS
-        String nombreGasto = nombre_gasto.getText();
-        String descripcion = descripcion_gasto.getText();
-        LocalDate fecha = elegir_fecha.getValue();
-        int unidades = Integer.parseInt(unidades_gasto.getText());  //unidades a int
-        double precio = Double.parseDouble(precio_gasto.getText()); //precio a double
-        Image factura = tiquet_gasto.getImage();
-        Category categoria = (Category) (selectorCategoria.getItems()); //quiero coger una cotegoria
+        
+        String nombreGasto = nombre_gasto.getText();    //obtenemos nombre gasto añadido
+        String descripcion = descripcion_gasto.getText();   //obtenemos descripcion gasto aññadido
+        LocalDate fecha = elegir_fecha.getValue();  //obtenemos fecha añadida
+        int unidades = Integer.parseInt(unidades_gasto.getText());  //obtenemos unidades gasto añadido
+        double precio = Double.parseDouble(precio_gasto.getText()); //obtenemos precio gasto añadido
+        Image factura = tiquet_gasto.getImage();    //obtenemos imagen gasto añadido
+        
         
         //TODO: añadir categoria
      
         //ESTE METODO REGISTRA EN LA CUENTA DEL USUARIO EL GASTO QUE HA AÑADIDO 
         
-        TableView<Charge> tabla = tablaController.getTabla();   //tabla controller document
-        List<Category> list = Acount.getInstance().getUserCategories();
+        
+        
+        List<Category> list = Acount.getInstance().getUserCategories(); //obtiene categorias
         //me falta añadir la categoria
-        Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
-          
+        //Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
+        }
     }
 
     @FXML   //seleccionar foto gasto desde archivos, HECHO
