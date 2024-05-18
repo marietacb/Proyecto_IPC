@@ -7,7 +7,13 @@ package trabajo_ipc.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -29,6 +36,7 @@ import javafx.stage.Stage;
 import model.Charge;
 import model.User;
 import model.AcountDAO;
+import model.Category;
 
 /**
  * FXML Controller class
@@ -42,62 +50,59 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button boton_gastos;    //muestra la tabla gastoss en la pantalla principal
     @FXML
-    private PieChart grafico;   //TODO: añadir informacion al grafico
-    @FXML
     private BorderPane border_pane;
             
-    private TableView<Charge> tableView = new TableView<>();    //creamos tableview
+    
     @FXML
     private Button boton_resumenGastos; //muestra grafico de gastos
     
     private Scene scene;
     @FXML
     private MenuItem boton_añadirGasto; //abre fxml añadir gasto
-            
-    ObservableList<Charge> lista = FXCollections.observableArrayList(); //una lista de gastos
-    
-    public User user;  //usuario publico
     @FXML
-    private MenuItem categoria;
+    private MenuItem anadirCategoria;
 
-
-
+    
+    private PieChart grafico;   //TODO añadir grafico con datos
+    
+    
+    private ObservableList<Charge> lista = FXCollections.observableArrayList();   //lista con los gastos  
+    @FXML
+    private TableView<Charge> tableView;
+    @FXML
+    private TableColumn<Charge, String> nombre;
+    @FXML
+    private TableColumn<Charge, LocalDate> fecha;
+    @FXML
+    private TableColumn<Charge, Integer> unidades;
+    @FXML
+    private TableColumn<Charge, Double> precio;
+    @FXML
+    private TableColumn<Charge, Image> tiquet;
+    @FXML
+    private TableColumn<Charge, Image> papeleraYmodificar;
+    @FXML
+    private TableColumn<Charge, Category> categoria;
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        loadData();
         
-        // Creo el tableview
-        TableColumn<Charge, String> column1 = new TableColumn<>("Categoría");
-        TableColumn<Charge, String> column2 = new TableColumn<>("Producto");
-        TableColumn<Charge, LocalDate> column3 = new TableColumn<>("Fecha");
-        TableColumn<Charge, Integer> column4 = new TableColumn<>("Unidades");
-        TableColumn<Charge, Integer> column5 = new TableColumn<>("Precio");
-        TableColumn<Charge, String> column6 = new TableColumn<>("Tiquet");
-        TableColumn<Charge, Image> column7 = new TableColumn<>(); //imagen papelera eliminar
-        
-        column1.setPrefWidth(102);  //tamaños de cada columna
-        column2.setPrefWidth(102);
-        column3.setPrefWidth(102);
-        column4.setPrefWidth(102);
-        column5.setPrefWidth(102);
-        column6.setPrefWidth(102);
-        column7.setPrefWidth(50);   //columna eliminar mas pequeña
-         
         //situamos y mostramos tabla en el centro del border pane
-        tableView.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);    
-        tableView.setItems(lista);
+        tableView.getColumns().addAll(categoria, nombre, fecha, unidades, precio, tiquet, papeleraYmodificar);    
+        tableView.setItems(lista);    //tabla de la lista de gastos existentes
         border_pane.setCenter(tableView);
+        
+        
         
         //TODO: Inicializar el grafico aqui (ponerle informacion gastos)
                 
     }    
-
-    public TableView<Charge> getTabla(){    //metodo que devuelve tabla
-        return tableView;
-    }   
     
     //HECHO
     @FXML
@@ -122,14 +127,16 @@ public class FXMLDocumentController implements Initializable {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
         Parent root = loader.load();
-
+        FXML_anadirGastoController controladorGasto = loader.getController();   //para poder añadir gasto a la tabla
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         
-        //stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initModality(Modality.APPLICATION_MODAL); //añade modalidad del escenario
         stage.showAndWait();    //espera a que se introduzac al información
 
+
+        
     }
 
     @FXML
@@ -141,6 +148,18 @@ public class FXMLDocumentController implements Initializable {
        Stage stage = new Stage();
        stage.setScene(new Scene(root));
        stage.showAndWait();
+    }
+    
+    public void loadData(){
+        categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
+        nombre.setCellValueFactory(nombreFila->new SimpleStringProperty(nombreFila.getValue().getName()));
+        fecha.setCellValueFactory(fechaFila -> new SimpleObjectProperty<LocalDate>(fechaFila.getValue().getDate()));
+        unidades.setCellValueFactory(unidadesFila -> new SimpleObjectProperty<Integer>(unidadesFila.getValue().getUnits()));
+        precio.setCellValueFactory(precioFila -> new SimpleObjectProperty<Double>(precioFila.getValue().getCost()));
+        tiquet.setCellValueFactory(tiquetFila -> new SimpleObjectProperty<Image>(tiquetFila.getValue().getImageScan()));
+        papeleraYmodificar.setCellValueFactory(papeleraFila -> new SimpleObjectProperty<Image>(papeleraFila.getValue().getImageScan()));
+
+
     }
     
 }
