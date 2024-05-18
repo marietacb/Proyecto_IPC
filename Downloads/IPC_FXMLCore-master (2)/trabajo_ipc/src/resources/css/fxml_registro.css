@@ -2,6 +2,9 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-
+    .imagenbordeazul {
+        -fx-border-color: blue;
+        -fx-border-width: 2px;
+        -fx-border-radius: 5px;
+        -fx-padding: 5px; 
 }
