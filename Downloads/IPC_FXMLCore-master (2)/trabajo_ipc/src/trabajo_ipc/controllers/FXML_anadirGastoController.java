@@ -122,6 +122,20 @@ public class FXML_anadirGastoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        //configurar datepicker
+        elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
+        return new DateCell() { 
+        @Override 
+            public void updateItem(LocalDate date, boolean empty) { 
+                super.updateItem(date, empty); 
+                LocalDate today = LocalDate.now(); 
+                setDisable(empty || date.compareTo(today) > 0 ); 
+            } 
+        }; 
+        }); 
+        
+        
+        
        //prueba para ver si al minimizar la pantalla, se adapata el fxml 
        pantallaAñadirGasto.widthProperty().addListener((observable,oldValue,newValue)->{
            vBox1.setPrefWidth((Double)newValue/2);
@@ -136,23 +150,6 @@ public class FXML_anadirGastoController implements Initializable {
     }
     
     
-    @FXML
-    private void pulsar_seleccionarFecha(MouseEvent event) {
-        elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
-        return new DateCell() { 
-            @Override 
-            public void updateItem(LocalDate date, boolean empty) { 
-                super.updateItem(date, empty); 
-                LocalDate today = LocalDate.now(); 
-                setDisable(empty || date.compareTo(today) > 0 ); 
-                //TODO: cambiar para que solo se vean los dia anteriores a hoy y hoy
-            } 
-        }; 
-    });
-        
-    }
-    
-
     @FXML
     private void pulsarCancelar(ActionEvent event) {    //cerrar ventana
         Stage stage = (Stage) boton_Cancelar.getScene().getWindow();
@@ -265,7 +262,7 @@ public class FXML_anadirGastoController implements Initializable {
           
     }
 
-    @FXML   //seleccionar foto gasto desde archivos
+    @FXML   //seleccionar foto gasto desde archivos, HECHO
     private void añadirImagen(MouseEvent event) {
         FileChooser ficheroSel = new FileChooser();    //seleccionador de archivos
         ficheroSel.setTitle("Abrir imagen");   
@@ -281,5 +278,6 @@ public class FXML_anadirGastoController implements Initializable {
             tiquet_gasto.setImage(imagen);
         } 
     }
+
    }
     

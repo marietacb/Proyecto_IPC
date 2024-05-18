@@ -50,7 +50,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <DatePicker fx:id="elegir_fecha" onMouseClicked="#pulsar_seleccionarFecha" opacity="0.8" promptText="Introduce una fecha">
+            <DatePicker fx:id="elegir_fecha" opacity="0.8" promptText="Introduce una fecha">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
