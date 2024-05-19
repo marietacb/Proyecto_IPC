@@ -71,8 +71,10 @@ public class FXML_inicioController implements Initializable {
        Parent root = cargarRegistro.load();
        
        Stage stage = new Stage();
+       Stage stageinicial = (Stage) botonRegistrarse.getScene().getWindow();
        stage.setScene(new Scene(root));
        stage.show();
+       stageinicial.close();
         
         
         }

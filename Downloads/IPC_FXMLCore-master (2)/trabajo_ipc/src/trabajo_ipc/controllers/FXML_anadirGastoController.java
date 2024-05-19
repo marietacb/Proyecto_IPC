@@ -6,6 +6,9 @@ package trabajo_ipc.controllers;
  */
 
 import com.sun.javafx.scene.control.skin.Utils;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -22,6 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.Alert;
@@ -44,6 +48,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import model.Charge;    
 import model.User;
@@ -67,25 +73,33 @@ public class FXML_anadirGastoController implements Initializable {
     
      
      //textfields de cada parametro de una gasto
+    @FXML
     private TextField nombre_gasto;   
+    @FXML
     private DatePicker elegir_fecha;
+    @FXML
     private TextField unidades_gasto;
+    @FXML
     private TextField precio_gasto;
+    @FXML
     private TextArea descripcion_gasto;
+    @FXML
     private ImageView tiquet_gasto;
-    private MenuItem categoria;    //categoria seleccionada
+    @FXML
+    private MenuButton selectorCategoria;
 
-   
+    @FXML
     private Label error_fecha;  //texto de error en la fecha
+    @FXML
     private Label error_unidades;   //texto de error en las unidades
     @FXML
     private Label error_precio; //texto de error en el precio
+    @FXML
     private Label error_nombre;     //texto de error en el nombre
-     
-    private User usuario;
     
     
     private FXMLDocumentController tablaController; //tabla vinculada a la pantalla principal
+    @FXML
     private Label error_descripcion;
     @FXML
     private HBox pantallaAñadirGasto;
@@ -94,18 +108,42 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private VBox vBox2;
     @FXML
-    private TextField nombre_categoria;
+    private Label error_categoria;
     @FXML
-    private TextArea descripcion_categoria;
-   
+    private Label error_foto;
+    @FXML
+    private VBox vboxFactura;
+    
+    private Charge gasto;
+    private ObservableList<Category> listaCategorias;
+ 
+        
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList<Charge> listaGastos = new ArrayList<Charge>();
-       // listaGastos.getUserChargesDB(usuario.getNickName());
         
+        try{
+            List<Category> categorias = Acount.getInstance().getUserCategories();
+            listaCategorias = (ObservableList)categorias;   //lista de las categorias del usuario
+            
+            ObservableList<MenuItem> items = selectorCategoria.getItems();  //items de categoria
+        }
+        catch(Exception e){}
+        
+        //configurar datepicker
+        elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
+        return new DateCell() { 
+        @Override 
+            public void updateItem(LocalDate date, boolean empty) { 
+                super.updateItem(date, empty); 
+                LocalDate today = LocalDate.now(); 
+                setDisable(empty || date.compareTo(today) > 0 ); 
+            } 
+        }; 
+        }); 
+                
        //prueba para ver si al minimizar la pantalla, se adapata el fxml 
        pantallaAñadirGasto.widthProperty().addListener((observable,oldValue,newValue)->{
            vBox1.setPrefWidth((Double)newValue/2);
@@ -118,25 +156,8 @@ public class FXML_anadirGastoController implements Initializable {
        });
        
     }
-
     
-    
-    private void pulsar_seleccionarFecha(MouseEvent event) {
-        elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
-        return new DateCell() { 
-            @Override 
-            public void updateItem(LocalDate date, boolean empty) { 
-                super.updateItem(date, empty); 
-                LocalDate today = LocalDate.now(); 
-                setDisable(empty || date.compareTo(today) > 0 ); 
-                //TODO: cambiar para que solo se vean los dia anteriores a hoy y hoy
-            } 
-        }; 
-    });
-        
-    }
-    
-
+   
     @FXML
     private void pulsarCancelar(ActionEvent event) {    //cerrar ventana
         Stage stage = (Stage) boton_Cancelar.getScene().getWindow();
@@ -145,26 +166,45 @@ public class FXML_anadirGastoController implements Initializable {
 
     @FXML
     private void pulsarAceptar(ActionEvent event) throws AcountDAOException, IOException { //guardar datos en la tabla y cerrar ventana
+                 
+        //ERRORES MOSTRADOS
         
-        //ERRORES MOSTRADOS == HECHO
+        //ERROR FECHA
         if(elegir_fecha.getDayCellFactory() == null){   //no se ha seleccionado fecha
             error_fecha.visibleProperty().set(true);
         }
         else{error_fecha.visibleProperty().set(false);}
         
         
+        //ERROR DESCRIPCION
         if((descripcion_gasto.getText()).isEmpty()){
             error_descripcion.visibleProperty().set(true);
         }
         else{error_descripcion.visibleProperty().set(false);}
         
-        //TODO: comprobar tmb que no exista en los nombres creados por el usuario
+        
+        //ERROR NOMBRE
+        List<Charge> gastos = Acount.getInstance().getUserCharges();    //lista de gastos
         if(nombre_gasto.getText().isEmpty()){   
+            error_nombre.setText("Introduzca un nombre");
             error_nombre.visibleProperty().set(true);
         }
-        else{error_nombre.visibleProperty().set(true);}
+        else{ 
+            int i = 0;
+            while(i <= gastos.size()){  //mientras no recorra toda la lista
+                if(nombre_gasto.equals(gastos.get(i))){
+                    error_nombre.setText("El nombre introducido ya existe");
+                    error_nombre.visibleProperty().set(true);
+                    break;  //sale del bucle
+                }
+                else{i++;}  //sino que siga buscando
+            }
+            //si se sale sin encontrar nada
+            error_nombre.visibleProperty().set(false);  //no hay error
+        }
+
         
-        
+        //ERROR PRECIO
         if ((precio_gasto.getText()).isEmpty()) {               
             error_precio.setText("Introduzca el precio");
             error_precio.visibleProperty().set(true);                
@@ -187,7 +227,7 @@ public class FXML_anadirGastoController implements Initializable {
         }
         
         
-        //si no se introducen unidades
+        //ERROR UNIDADES
         if ((unidades_gasto.getText()).isEmpty()) { //si no se introducen las unidades
             error_unidades.setText("Introduzca las unidades");  //error mostrado
             error_unidades.visibleProperty().set(true); //visible = true
@@ -208,30 +248,53 @@ public class FXML_anadirGastoController implements Initializable {
             }
         }
         
+        if(!error_nombre.isVisible() ){
         
-        //inicializamos las variables a lo que introduzca el usuario
+        //CARGAR TABLA CON GASTOS
         
-        String nombreGasto = nombre_gasto.getText();
-        String descripcion = descripcion_gasto.getText();
-        LocalDate fecha = elegir_fecha.getValue();
-        int unidades = Integer.parseInt(unidades_gasto.getText());  //unidades a int
-        double precio = Double.parseDouble(precio_gasto.getText()); //precio a double
-        Image factura = tiquet_gasto.getImage();
-        //inicializamos lista
-        List<Category> listaCategorias = Acount.getInstance().getUserCategories();
-        Category categoria2 = listaCategorias.get(1);
+        String nombreGasto = nombre_gasto.getText();    //obtenemos nombre gasto añadido
+        String descripcion = descripcion_gasto.getText();   //obtenemos descripcion gasto aññadido
+        LocalDate fecha = elegir_fecha.getValue();  //obtenemos fecha añadida
+        int unidades = Integer.parseInt(unidades_gasto.getText());  //obtenemos unidades gasto añadido
+        double precio = Double.parseDouble(precio_gasto.getText()); //obtenemos precio gasto añadido
+        Image factura = tiquet_gasto.getImage();    //obtenemos imagen gasto añadido
+        //Category categorias = Acount.
         
 
         //TODO: añadir categoria
      
         //ESTE METODO REGISTRA EN LA CUENTA DEL USUARIO EL GASTO QUE HA AÑADIDO 
         
-        TableView<Charge> tabla = tablaController.getTabla();   //tabla controller document
-            List<Category> list = Acount.getInstance().getUserCategories();
-            //me falta añadir la categoria
-           Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria2); 
-           
+        //Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
+        }
     }
-   
+
+    @FXML   //seleccionar foto gasto desde archivos, HECHO
+    private void añadirImagen(MouseEvent event) {
+        FileChooser ficheroSel = new FileChooser();    //seleccionador de archivos
+        ficheroSel.setTitle("Abrir imagen");   
+        ficheroSel.getExtensionFilters().addAll(
+            new ExtensionFilter("Imagenes", "*.png", "*.jpg")); //formate de imagen
+        
+        File seleccionado = ficheroSel.showOpenDialog( 
+        ((Node)event.getSource()).getScene().getWindow());
+        if (ficheroSel != null) {
+            tiquet_gasto.setFitHeight(250); //adaptamos tamaño foto
+            tiquet_gasto.setFitWidth(250);  
+            Image imagen = new Image(seleccionado.toURI().toString());
+            tiquet_gasto.setImage(imagen);
+        } 
     }
+
+    @FXML
+    private void mostrarCategorias(ActionEvent event) {
+        try{
+            List<Category> categorias = Acount.getInstance().getUserCategories();
+            listaCategorias = (ObservableList)categorias; 
+            selectorCategoria.getContentDisplay();  //obtener la categorias disponibles y que se muestren en el selector
+        }
+        catch(Exception e){}
+    }
+
+   }
     

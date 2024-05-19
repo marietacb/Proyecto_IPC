@@ -4,15 +4,17 @@
  */
 package trabajo_ipc.controllers;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -36,8 +39,8 @@ import model.Acount;
 import model.Charge;
 import model.User;
 import model.AcountDAO;
-import model.AcountDAOException;
 import model.Category;
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -51,75 +54,74 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button boton_gastos;    //muestra la tabla gastoss en la pantalla principal
     @FXML
-    private PieChart grafico;   //TODO: añadir informacion al grafico
-    @FXML
     private BorderPane border_pane;
             
-    private TableView<Charge> tableView = new TableView<>();    //creamos tableview
+    
     @FXML
     private Button boton_resumenGastos; //muestra grafico de gastos
     
     private Scene scene;
     @FXML
     private MenuItem boton_añadirGasto; //abre fxml añadir gasto
-            
-    private ObservableList<Charge> gastos; //una lista de gastos
+
     
-    public User user;  //usuario publico
+    private PieChart grafico;   //TODO añadir grafico con datos
+    
+    
     @FXML
-    private MenuItem categoria;
-
-
-
+    private TableView<Charge> tableView;
+    @FXML
+    private TableColumn<Charge, String> nombre;
+    @FXML
+    private TableColumn<Charge, LocalDate> fecha;
+    @FXML
+    private TableColumn<Charge, Integer> unidades;
+    @FXML
+    private TableColumn<Charge, Double> precio;
+    @FXML
+    private TableColumn<Charge, Image> tiquet;
+    @FXML
+    private TableColumn<Charge, Image> papeleraYmodificar;
+    @FXML
+    private TableColumn<Charge, Category> categoria;
+    private ObservableList<Charge> listaGastos;
+    @FXML
+    private MenuItem boton_añadircategoria;
+    
+    
     /**
      * Initializes the controller class.
+     * @throws model.AcountDAOException
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb){
+              
+        this.categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
+        this.nombre.setCellValueFactory(nombreFila->new SimpleStringProperty(nombreFila.getValue().getName()));
+        this.fecha.setCellValueFactory(fechaFila -> new SimpleObjectProperty<LocalDate>(fechaFila.getValue().getDate()));
+        this.unidades.setCellValueFactory(unidadesFila -> new SimpleObjectProperty<Integer>(unidadesFila.getValue().getUnits()));
+        this.precio.setCellValueFactory(precioFila -> new SimpleObjectProperty<Double>(precioFila.getValue().getCost()));
+        this.tiquet.setCellValueFactory(tiquetFila -> new SimpleObjectProperty<Image>(tiquetFila.getValue().getImageScan()));
+        this.papeleraYmodificar.setCellValueFactory(papeleraFila -> new SimpleObjectProperty<Image>(papeleraFila.getValue().getImageScan()));
         
-        
-        // Creo el tableview
-        TableColumn<Charge, String> column1 = new TableColumn<>("Categoría");
-        TableColumn<Charge, String> column2 = new TableColumn<>("Producto");
-        TableColumn<Charge, String> column3 = new TableColumn<>("Fecha");
-        TableColumn<Charge, Number> column4 = new TableColumn<>("Unidades");
-        TableColumn<Charge, Number> column5 = new TableColumn<>("Precio");
-        TableColumn<Charge, Image> column6 = new TableColumn<>("Tiquet");
-        TableColumn<Charge, Image> column7 = new TableColumn<>(); //imagen papelera eliminar
-        
-        column1.setPrefWidth(102);  //tamaños de cada columna
-        column2.setPrefWidth(102);
-        column3.setPrefWidth(102);
-        column4.setPrefWidth(102);
-        column5.setPrefWidth(102);
-        //column6.setPrefWidth(102);
-        //column7.setPrefWidth(50);   //columna eliminar mas pequeña
-        try {
-            gastos = (ObservableList<Charge>) Acount.getInstance().getUserCharges();
-        } catch (AcountDAOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        try{
+            //User usuario = Acount.getInstance().getLoggedUser();
+            List<Charge> lista = Acount.getInstance().getUserCharges(); //lista con los gastos del usuario
+            listaGastos = (ObservableList)lista;    //convertir lit a observable y meterla en la lista
+            this.tableView.setItems(listaGastos);
         }
-         
+        catch(Exception e){}  
+              
         //situamos y mostramos tabla en el centro del border pane
-        tableView.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);    
-        tableView.setItems(gastos);
+        tableView.getColumns().addAll(categoria, nombre, fecha, unidades, precio, tiquet, papeleraYmodificar);    
+        tableView.setItems(listaGastos);    //tabla de la lista de gastos existentes
         border_pane.setCenter(tableView);
         
-        //TODO: Inicializar el grafico aqui (ponerle informacion gastos)
-        column1.setCellValueFactory(gastoFila->new SimpleStringProperty(gastoFila.getValue().getCategory().getName()));
-        column2.setCellValueFactory(gastoFila->new SimpleStringProperty(gastoFila.getValue().getName()));
-        column3.setCellValueFactory(gastoFila->new SimpleStringProperty(gastoFila.getValue().getDate().toString()));
-        column4.setCellValueFactory(gastoFila->new SimpleIntegerProperty(gastoFila.getValue().getUnits()));
-        column5.setCellValueFactory(gastoFila->new SimpleDoubleProperty(gastoFila.getValue().getCost()));
         
+        //TODO: Inicializar el grafico aqui (ponerle informacion gastos)
                 
     }    
-
-    public TableView<Charge> getTabla(){    //metodo que devuelve tabla
-        return tableView;
-    }   
+    
     
     //HECHO
     @FXML
@@ -144,25 +146,34 @@ public class FXMLDocumentController implements Initializable {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
         Parent root = loader.load();
-
+        FXML_anadirGastoController controladorGasto = loader.getController();   //para poder añadir gasto a la tabla
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         
-        //stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initModality(Modality.APPLICATION_MODAL); //añade modalidad del escenario
         stage.showAndWait();    //espera a que se introduzac al información
 
+
+        
     }
 
     @FXML
-    private void añadircategoria(ActionEvent event) throws IOException {
+    private void añadircategoria(ActionEvent event) throws IOException { //abre la ventana de añadir categoria
+        // Cargar el archivo FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_añadirCategoria.fxml"));
+        Parent root = loader.load();
         
-       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXML_añadir_categoria.fxml"));
-       Parent root = cargarRegistro.load();
-       
-       Stage stage = new Stage();
-       stage.setScene(new Scene(root));
-       stage.showAndWait();
+        // Crear una nueva ventana
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        
+        // Configurar la ventana como modal
+        stage.initModality(Modality.APPLICATION_MODAL);
+        
+        // Mostrar la ventana y esperar a que se cierre
+        stage.show();
     }
-    
 }
+    
+    

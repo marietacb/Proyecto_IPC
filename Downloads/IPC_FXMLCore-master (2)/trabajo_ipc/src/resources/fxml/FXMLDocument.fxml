@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -37,7 +38,7 @@
             <MenuButton mnemonicParsing="false" text="+ Crear" translateX="10.0" translateY="20.0">
               <items>
                 <MenuItem fx:id="boton_añadirGasto" mnemonicParsing="false" onAction="#añadirGasto" text="Añadir gasto" />
-                <MenuItem fx:id="categoria" mnemonicParsing="false" onAction="#añadircategoria" text="Añadir categoría" />
+                <MenuItem fx:id="boton_añadircategoria" mnemonicParsing="false" onAction="#añadircategoria" text="Añadir categoría" />
               </items>
             </MenuButton>
           <Button fx:id="boton_resumenGastos" mnemonicParsing="false" onMouseClicked="#resumen_anual" text="Resumen anual" translateX="10.0" translateY="175.0" />
@@ -46,10 +47,16 @@
       </ToolBar>
    </left>
    <center>
-      <PieChart fx:id="grafico" title="Resumen anual" BorderPane.alignment="CENTER">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </PieChart>
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="categoria" prefWidth="100.0" text="Categoria" />
+          <TableColumn fx:id="nombre" prefWidth="100.0" text="Nombre" />
+            <TableColumn fx:id="fecha" prefWidth="100.0" text="Fecha" />
+            <TableColumn fx:id="unidades" prefWidth="100.0" text="Unidades" />
+            <TableColumn fx:id="precio" prefWidth="100.0" text="Precio" />
+            <TableColumn fx:id="tiquet" prefWidth="100.0" text="Tiquet" />
+            <TableColumn fx:id="papeleraYmodificar" prefWidth="90.0" />
+        </columns>
+      </TableView>
    </center>
 </BorderPane>
