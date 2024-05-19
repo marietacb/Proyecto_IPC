@@ -4,8 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -101,14 +100,11 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <MenuButton fx:id="selectorCategoria" mnemonicParsing="false" onAction="#mostrarCategorias" opacity="0.8" text="Seleccione una categoría">
-              <items>
-                <MenuItem mnemonicParsing="false" />
-              </items>
+            <SplitMenuButton fx:id="categorias_boton" mnemonicParsing="false" onMouseClicked="#seleccionar_categoria" text="Seleccionar Categoria">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
-            </MenuButton>
+            </SplitMenuButton>
             <Label fx:id="error_categoria" text="Seleccione una categoría" textFill="#ef0404" visible="false">
                <VBox.margin>
                   <Insets left="50.0" />

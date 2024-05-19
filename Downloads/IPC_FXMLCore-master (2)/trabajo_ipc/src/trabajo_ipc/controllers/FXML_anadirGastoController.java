@@ -35,6 +35,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -85,8 +86,6 @@ public class FXML_anadirGastoController implements Initializable {
     private TextArea descripcion_gasto;
     @FXML
     private ImageView tiquet_gasto;
-    @FXML
-    private MenuButton selectorCategoria;
 
     @FXML
     private Label error_fecha;  //texto de error en la fecha
@@ -116,6 +115,8 @@ public class FXML_anadirGastoController implements Initializable {
     
     private Charge gasto;
     private ObservableList<Category> listaCategorias;
+    @FXML
+    private SplitMenuButton categorias_boton;
  
         
     /**
@@ -128,7 +129,7 @@ public class FXML_anadirGastoController implements Initializable {
             List<Category> categorias = Acount.getInstance().getUserCategories();
             listaCategorias = (ObservableList)categorias;   //lista de las categorias del usuario
             
-            ObservableList<MenuItem> items = selectorCategoria.getItems();  //items de categoria
+            ObservableList<MenuItem> items = categorias_boton.getItems();  //items de categoria
         }
         catch(Exception e){}
         
@@ -258,7 +259,7 @@ public class FXML_anadirGastoController implements Initializable {
         int unidades = Integer.parseInt(unidades_gasto.getText());  //obtenemos unidades gasto añadido
         double precio = Double.parseDouble(precio_gasto.getText()); //obtenemos precio gasto añadido
         Image factura = tiquet_gasto.getImage();    //obtenemos imagen gasto añadido
-        //Category categorias = Acount.
+        //Category categorias = 
         
 
         //TODO: añadir categoria
@@ -284,17 +285,18 @@ public class FXML_anadirGastoController implements Initializable {
             Image imagen = new Image(seleccionado.toURI().toString());
             tiquet_gasto.setImage(imagen);
         } 
-    }
+    }    
 
     @FXML
-    private void mostrarCategorias(ActionEvent event) {
-        try{
-            List<Category> categorias = Acount.getInstance().getUserCategories();
-            listaCategorias = (ObservableList)categorias; 
-            selectorCategoria.getContentDisplay();  //obtener la categorias disponibles y que se muestren en el selector
+    private void seleccionar_categoria(MouseEvent event) throws AcountDAOException, IOException {
+        List<Category> categorias = Acount.getInstance().getUserCategories();
+            //limpiamos las categorias que pudiera haber cargadas
+        categorias_boton.getItems().clear();
+            // Agregamos nuevas categorías como elementos del menú recrriendo la lista
+        for (int i = 0; i < categorias.size(); i++) {
+            Category categoria = categorias.get(i);
+            MenuItem menuItem = new MenuItem(categoria.getName());
+            categorias_boton.getItems().add(menuItem);
         }
-        catch(Exception e){}
     }
-
-   }
-    
+}
