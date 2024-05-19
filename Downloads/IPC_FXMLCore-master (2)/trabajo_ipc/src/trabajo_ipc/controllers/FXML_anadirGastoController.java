@@ -115,6 +115,7 @@ public class FXML_anadirGastoController implements Initializable {
     private VBox vboxFactura;
     
     private Charge gasto;
+    private ObservableList<Category> listaCategorias;
  
         
     /**
@@ -122,6 +123,14 @@ public class FXML_anadirGastoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        try{
+            List<Category> categorias = Acount.getInstance().getUserCategories();
+            listaCategorias = (ObservableList)categorias;   //lista de las categorias del usuario
+            
+            ObservableList<MenuItem> items = selectorCategoria.getItems();  //items de categoria
+        }
+        catch(Exception e){}
         
         //configurar datepicker
         elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
@@ -249,16 +258,12 @@ public class FXML_anadirGastoController implements Initializable {
         int unidades = Integer.parseInt(unidades_gasto.getText());  //obtenemos unidades gasto añadido
         double precio = Double.parseDouble(precio_gasto.getText()); //obtenemos precio gasto añadido
         Image factura = tiquet_gasto.getImage();    //obtenemos imagen gasto añadido
-        
+        //Category categorias = Acount.
         
         //TODO: añadir categoria
      
         //ESTE METODO REGISTRA EN LA CUENTA DEL USUARIO EL GASTO QUE HA AÑADIDO 
         
-        
-        
-        List<Category> list = Acount.getInstance().getUserCategories(); //obtiene categorias
-        //me falta añadir la categoria
         //Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
         }
     }
@@ -278,6 +283,16 @@ public class FXML_anadirGastoController implements Initializable {
             Image imagen = new Image(seleccionado.toURI().toString());
             tiquet_gasto.setImage(imagen);
         } 
+    }
+
+    @FXML
+    private void mostrarCategorias(ActionEvent event) {
+        try{
+            List<Category> categorias = Acount.getInstance().getUserCategories();
+            listaCategorias = (ObservableList)categorias; 
+            selectorCategoria.getContentDisplay();  //obtener la categorias disponibles y que se muestren en el selector
+        }
+        catch(Exception e){}
     }
 
    }

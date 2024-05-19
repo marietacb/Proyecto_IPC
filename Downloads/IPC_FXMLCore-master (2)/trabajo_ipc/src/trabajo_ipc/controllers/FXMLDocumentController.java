@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -33,10 +35,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Acount;
 import model.Charge;
 import model.User;
 import model.AcountDAO;
 import model.Category;
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -66,7 +70,6 @@ public class FXMLDocumentController implements Initializable {
     private PieChart grafico;   //TODO añadir grafico con datos
     
     
-    private ObservableList<Charge> lista = FXCollections.observableArrayList();   //lista con los gastos  
     @FXML
     private TableView<Charge> tableView;
     @FXML
@@ -83,26 +86,42 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Charge, Image> papeleraYmodificar;
     @FXML
     private TableColumn<Charge, Category> categoria;
+    private ObservableList<Charge> listaGastos;
     
     
     /**
      * Initializes the controller class.
+     * @throws model.AcountDAOException
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb){
+              
+        this.categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
+        this.nombre.setCellValueFactory(nombreFila->new SimpleStringProperty(nombreFila.getValue().getName()));
+        this.fecha.setCellValueFactory(fechaFila -> new SimpleObjectProperty<LocalDate>(fechaFila.getValue().getDate()));
+        this.unidades.setCellValueFactory(unidadesFila -> new SimpleObjectProperty<Integer>(unidadesFila.getValue().getUnits()));
+        this.precio.setCellValueFactory(precioFila -> new SimpleObjectProperty<Double>(precioFila.getValue().getCost()));
+        this.tiquet.setCellValueFactory(tiquetFila -> new SimpleObjectProperty<Image>(tiquetFila.getValue().getImageScan()));
+        this.papeleraYmodificar.setCellValueFactory(papeleraFila -> new SimpleObjectProperty<Image>(papeleraFila.getValue().getImageScan()));
         
-        loadData();
-        
+        try{
+            //User usuario = Acount.getInstance().getLoggedUser();
+            List<Charge> lista = Acount.getInstance().getUserCharges(); //lista con los gastos del usuario
+            listaGastos = (ObservableList)lista;    //convertir lit a observable y meterla en la lista
+            this.tableView.setItems(listaGastos);
+        }
+        catch(Exception e){}  
+              
         //situamos y mostramos tabla en el centro del border pane
         tableView.getColumns().addAll(categoria, nombre, fecha, unidades, precio, tiquet, papeleraYmodificar);    
-        tableView.setItems(lista);    //tabla de la lista de gastos existentes
+        tableView.setItems(listaGastos);    //tabla de la lista de gastos existentes
         border_pane.setCenter(tableView);
-        
         
         
         //TODO: Inicializar el grafico aqui (ponerle informacion gastos)
                 
     }    
+    
     
     //HECHO
     @FXML
@@ -150,16 +169,5 @@ public class FXMLDocumentController implements Initializable {
        stage.showAndWait();
     }
     
-    public void loadData(){
-        categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
-        nombre.setCellValueFactory(nombreFila->new SimpleStringProperty(nombreFila.getValue().getName()));
-        fecha.setCellValueFactory(fechaFila -> new SimpleObjectProperty<LocalDate>(fechaFila.getValue().getDate()));
-        unidades.setCellValueFactory(unidadesFila -> new SimpleObjectProperty<Integer>(unidadesFila.getValue().getUnits()));
-        precio.setCellValueFactory(precioFila -> new SimpleObjectProperty<Double>(precioFila.getValue().getCost()));
-        tiquet.setCellValueFactory(tiquetFila -> new SimpleObjectProperty<Image>(tiquetFila.getValue().getImageScan()));
-        papeleraYmodificar.setCellValueFactory(papeleraFila -> new SimpleObjectProperty<Image>(papeleraFila.getValue().getImageScan()));
-
-
-    }
     
 }

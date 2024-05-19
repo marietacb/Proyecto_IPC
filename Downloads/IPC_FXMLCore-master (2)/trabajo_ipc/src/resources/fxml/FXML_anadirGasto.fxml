@@ -101,7 +101,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <MenuButton fx:id="selectorCategoria" mnemonicParsing="false" opacity="0.8" text="Seleccione una categoría">
+            <MenuButton fx:id="selectorCategoria" mnemonicParsing="false" onAction="#mostrarCategorias" opacity="0.8" text="Seleccione una categoría">
               <items>
                 <MenuItem mnemonicParsing="false" />
               </items>
