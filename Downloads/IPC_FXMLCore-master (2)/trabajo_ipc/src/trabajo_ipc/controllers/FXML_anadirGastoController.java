@@ -124,6 +124,8 @@ public class FXML_anadirGastoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        String css = this.getClass().getResource("/resources/css/anadir_gastofxml.css").toExternalForm();
+        pantallaAñadirGasto.getStylesheets().add(css);
         
         try{
             List<Category> categorias = Acount.getInstance().getUserCategories();

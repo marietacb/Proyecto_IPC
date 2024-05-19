@@ -3,13 +3,9 @@
  */
 
 .mainFxmlClass {
-    .aceptarButton{
-        -fx-backGround-color: #ffffff;
+    .button{
+        -fx-backGround-color: green;
         -fx-text-fill: black;
-    }
-    
-    .estiloLetra{
-        -fx-font-family: "Helvetica";
     }
     
 }
