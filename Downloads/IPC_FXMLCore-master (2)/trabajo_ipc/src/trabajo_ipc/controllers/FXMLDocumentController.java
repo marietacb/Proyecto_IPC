@@ -5,6 +5,8 @@
 package trabajo_ipc.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,14 +27,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Acount;
@@ -142,7 +149,35 @@ public class FXMLDocumentController implements Initializable {
    
     //HECHO
     @FXML
-    private void añadirGasto(ActionEvent event) throws IOException { //boton añadir gasto abre ventana
+    private void añadirGasto(ActionEvent event) throws IOException, AcountDAOException { 
+        //Si no hay categorias creadas nos lanza un mensaje de error
+        if(Acount.getInstance().getUserCategories().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Alerta");
+            alert.setHeaderText("No existen categorías de gasto");
+            alert.setContentText("Por favor introduce primero una categoría");
+        
+        //continuamos definiendo el mensaje
+            Exception excepción = new Exception("Detalles del error");
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            excepción.printStackTrace(pw);
+            String exceptionText = sw.toString();
+            Label label = new Label("Excepción:");
+            TextArea textArea =
+            new TextArea(exceptionText);
+            textArea.setEditable(false);
+            textArea.setWrapText(true);
+        
+            textArea.setMaxWidth(Double.MAX_VALUE);textArea.setMaxHeight(Double.MAX_VALUE);GridPane.setVgrow(textArea,Priority.ALWAYS);
+            GridPane.setHgrow(textArea,Priority.ALWAYS);
+            GridPane expContent = new GridPane();expContent.setMaxWidth(Double.MAX_VALUE);expContent.add(label, 0, 0);
+            expContent.add(textArea, 0, 1);
+            alert.getDialogPane().setExpandableContent(expContent);alert.showAndWait();
+        }
+
+        
+        //boton añadir gasto abre ventana
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
         Parent root = loader.load();
