@@ -40,7 +40,7 @@ public class Trabajo_ipc extends Application {
         //3-asignación de la escna al Stage que recibe el metodo        
         stage.setScene(scene);
         stage.setTitle("Mi dinerillo");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
 

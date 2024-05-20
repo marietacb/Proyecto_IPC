@@ -36,28 +36,36 @@
       <Region prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
-      <VBox fx:id="miVbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="miVbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <Region prefHeight="200.0" prefWidth="200.0" />
-            <Label text="Nick">
-               <font>
-                  <Font name="Segoe UI" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="nickField" promptText="PepeBotella" />
-            <Region prefHeight="200.0" prefWidth="200.0" />
-            <Label text="Contraseña">
-               <font>
-                  <Font name="Segoe UI" size="12.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="passwordField" />
-            <Region prefHeight="200.0" prefWidth="200.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                <children>
-                  <Button fx:id="botonAceptar" mnemonicParsing="false" onMouseClicked="#aceptar" prefWidth="90.0" text="Aceptar" />
-                  <Region prefHeight="26.0" prefWidth="67.0" />
-                  <Button fx:id="botonRegistrarse" mnemonicParsing="false" onMouseClicked="#registrarse" prefWidth="99.0" text="Registrarse" />
+                  <Label text="Nick" HBox.hgrow="NEVER">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <TextField fx:id="nickField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="PepeBotella" />
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" VBox.vgrow="NEVER">
+               <children>
+                  <Label text="Contraseña">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <PasswordField fx:id="passwordField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" />
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="25.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="botonAceptar" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#aceptar" prefHeight="25.0" prefWidth="75.0" text="Aceptar" HBox.hgrow="NEVER" />
+                  <Region prefHeight="35.0" prefWidth="50.0" />
+                  <Button fx:id="botonRegistrarse" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#registrarse" prefHeight="25.0" prefWidth="75.0" text="Registrarse" HBox.hgrow="NEVER" />
                </children>
             </HBox>
             <Region prefHeight="200.0" prefWidth="200.0" />
