@@ -120,7 +120,7 @@ public class FXML_anadirGastoController implements Initializable {
     private SplitMenuButton categorias_boton;
     
     private List<Category> categorias;    //lista categorias
-
+    
     int seleccionado;
         
     /**
@@ -143,6 +143,11 @@ public class FXML_anadirGastoController implements Initializable {
         }; 
         }); 
                 
+    }
+    
+    public void setTablaController(FXMLDocumentController tablaController){
+        this.tablaController = tablaController;
+    
     }
     
    
@@ -257,7 +262,7 @@ public class FXML_anadirGastoController implements Initializable {
             
             FXMLDocumentController controlador = tabla.getController();
             Charge gasto = Acount.getInstance().getUserCharges().get(Acount.getInstance().getUserCharges().size()-1);
-            controlador.initTabla(gasto);
+            controlador.addCharge(gasto);
             
             Stage stage = (Stage) boton_aceptar.getScene().getWindow();
             stage.close();
