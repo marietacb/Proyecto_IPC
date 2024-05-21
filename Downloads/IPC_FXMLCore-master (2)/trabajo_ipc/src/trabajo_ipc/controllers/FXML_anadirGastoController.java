@@ -257,7 +257,10 @@ public class FXML_anadirGastoController implements Initializable {
             
             FXMLDocumentController controlador = tabla.getController();
             Charge gasto = Acount.getInstance().getUserCharges().get(Acount.getInstance().getUserCharges().size()-1);
+            controlador.initTabla(gasto);
             
+            Stage stage = (Stage) boton_aceptar.getScene().getWindow();
+            stage.close();
             
         }
     }
