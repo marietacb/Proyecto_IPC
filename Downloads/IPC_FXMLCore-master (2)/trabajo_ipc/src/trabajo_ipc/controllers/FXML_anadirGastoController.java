@@ -114,10 +114,12 @@ public class FXML_anadirGastoController implements Initializable {
     private VBox vboxFactura;
     
     private Charge gasto;
-    private ObservableList<Category> listaCategorias;
     @FXML
     private SplitMenuButton categorias_boton;
- 
+    
+    private List<Category> categorias;    //lista categorias
+
+    int seleccionado;
         
     /**
      * Initializes the controller class.
@@ -126,14 +128,6 @@ public class FXML_anadirGastoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         String css = this.getClass().getResource("/resources/css/anadir_gastofxml.css").toExternalForm();
         pantallaAñadirGasto.getStylesheets().add(css);
-        
-        try{
-            List<Category> categorias = Acount.getInstance().getUserCategories();
-            listaCategorias = (ObservableList)categorias;   //lista de las categorias del usuario
-            
-            ObservableList<MenuItem> items = categorias_boton.getItems();  //items de categoria
-        }
-        catch(Exception e){}
         
         //configurar datepicker
         elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
@@ -261,14 +255,14 @@ public class FXML_anadirGastoController implements Initializable {
         int unidades = Integer.parseInt(unidades_gasto.getText());  //obtenemos unidades gasto añadido
         double precio = Double.parseDouble(precio_gasto.getText()); //obtenemos precio gasto añadido
         Image factura = tiquet_gasto.getImage();    //obtenemos imagen gasto añadido
-        //Category categorias = 
-        
+        Category cat = categorias.get(seleccionado);
 
         //TODO: añadir categoria
      
         //ESTE METODO REGISTRA EN LA CUENTA DEL USUARIO EL GASTO QUE HA AÑADIDO 
         
-        //Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,categoria); 
+        Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,cat); 
+        
         }
     }
 
@@ -291,13 +285,18 @@ public class FXML_anadirGastoController implements Initializable {
 
     @FXML
     private void seleccionar_categoria(MouseEvent event) throws AcountDAOException, IOException {
-        List<Category> categorias = Acount.getInstance().getUserCategories();
-            //limpiamos las categorias que pudiera haber cargadas
-        categorias_boton.getItems().clear();
+        categorias = Acount.getInstance().getUserCategories();
+        categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
             // Agregamos nuevas categorías como elementos del menú recrriendo la lista
         for (int i = 0; i < categorias.size(); i++) {
             Category categoria = categorias.get(i);
             MenuItem menuItem = new MenuItem(categoria.getName());
+
+            menuItem.setOnAction(evento -> {
+                categorias_boton.setText(categoria.getName());  // Opcional
+                seleccionado = categorias.indexOf(categoria);
+            });
+            
             categorias_boton.getItems().add(menuItem);
         }
     }
