@@ -46,6 +46,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -184,7 +185,7 @@ public class FXML_anadirGastoController implements Initializable {
         }
         else{ 
             int i = 0;
-            while(!gastos.isEmpty() && i <= gastos.size()){  //mientras no recorra toda la lista
+            while(!gastos.isEmpty() && i < gastos.size()){  //mientras no recorra toda la lista
                 if(nombre_gasto.equals(gastos.get(i))){
                     error_nombre.setText("El nombre introducido ya existe");
                     error_nombre.visibleProperty().set(true);
@@ -303,5 +304,13 @@ public class FXML_anadirGastoController implements Initializable {
             
             categorias_boton.getItems().add(menuItem);
         }
+    }
+
+    @FXML
+    private void comprobar_unidades(KeyEvent event) {
+    }
+
+    @FXML
+    private void comprobar_precio(KeyEvent event) {
     }
 }
