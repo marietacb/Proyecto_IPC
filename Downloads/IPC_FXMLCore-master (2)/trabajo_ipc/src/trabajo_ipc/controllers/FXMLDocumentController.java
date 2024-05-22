@@ -36,6 +36,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -94,6 +95,14 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<Charge> listaGastos;
     @FXML
     private MenuItem boton_añadircategoria;
+    @FXML
+    private Button bAyuda;
+    @FXML
+    private Button bPerfil;
+    @FXML
+    private ImageView bAjustes;
+    @FXML
+    private ImageView imagenPerfil;
     
     
     /**
@@ -144,6 +153,10 @@ public class FXMLDocumentController implements Initializable {
         border_pane.setCenter(grafico);
         boton_resumenGastos.setDisable(true);
        
+        try{
+        imagenPerfil.setImage(Acount.getInstance().getLoggedUser().getImage());
+        }
+        catch(Exception e){}
     }    
     
     
@@ -232,6 +245,11 @@ public class FXMLDocumentController implements Initializable {
     
     public void addCharge(Charge g){
         tableView.getItems().add(g);
+    }
+
+    @FXML
+    private void pulsarMiPerfil(ActionEvent event) {
+        
     }
     
 }
