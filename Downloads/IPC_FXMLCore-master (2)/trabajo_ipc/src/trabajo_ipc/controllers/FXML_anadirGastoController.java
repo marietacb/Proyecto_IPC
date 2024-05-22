@@ -184,7 +184,7 @@ public class FXML_anadirGastoController implements Initializable {
         }
         else{ 
             int i = 0;
-            while(i <= gastos.size()){  //mientras no recorra toda la lista
+            while(!gastos.isEmpty() && i <= gastos.size()){  //mientras no recorra toda la lista
                 if(nombre_gasto.equals(gastos.get(i))){
                     error_nombre.setText("El nombre introducido ya existe");
                     error_nombre.visibleProperty().set(true);
@@ -257,12 +257,12 @@ public class FXML_anadirGastoController implements Initializable {
             
         
             //modificamos datos tabla principal
-            FXMLLoader tabla = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument"));
+           /* FXMLLoader tabla = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument"));
             Parent root = tabla.load();
             
             FXMLDocumentController controlador = tabla.getController();
             Charge gasto = Acount.getInstance().getUserCharges().get(Acount.getInstance().getUserCharges().size()-1);
-            controlador.addCharge(gasto);
+            controlador.addCharge(gasto); */
             
             Stage stage = (Stage) boton_aceptar.getScene().getWindow();
             stage.close();
@@ -292,7 +292,7 @@ public class FXML_anadirGastoController implements Initializable {
         categorias = Acount.getInstance().getUserCategories();
         categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
             // Agregamos nuevas categorías como elementos del menú recrriendo la lista
-        for (int i = 0; i < categorias.size(); i++) {
+        for (int i = 0; i < categorias.size()-1; i++) {
             Category categoria = categorias.get(i);
             MenuItem menuItem = new MenuItem(categoria.getName());
 
