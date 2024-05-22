@@ -6,12 +6,14 @@ package trabajo_ipc.controllers;
 
 import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,6 +21,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import model.Acount;
+import model.AcountDAO;
+import model.Charge;
 import model.User;
 
 /**
@@ -42,6 +46,12 @@ public class PerfilUsuarioController implements Initializable {
     private Button guardar;
     @FXML
     private Button cancelar;
+    @FXML
+    private Label errorNombre;
+    @FXML
+    private Label errorApellidos;
+    @FXML
+    private Label errorEmail;
 
     /**
      * Initializes the controller class.
@@ -77,17 +87,47 @@ public class PerfilUsuarioController implements Initializable {
             fotoImage.setImage(imagen);
         } 
         
+        //activamos botones para hacer cambios
         guardar.setDisable(false);
         cancelar.setDisable(false);
     }
 
     @FXML
-    private void pulsarGuardar(ActionEvent event) {
-        
+    private void pulsarGuardar(ActionEvent event) throws Exception{
+        boolean error = true;
+        //si el nombre introducido esta mal
+        if(!nombreText.getText().chars().noneMatch(Character::isDigit) || nombreText.getText().length()<1 || nombreText.getText().isEmpty()){
+            errorNombre.setText("El nombre no debe contener números y debe ser mínimo de 2 caracteres");
+            errorNombre.setVisible(true);
+            error = false;
+        }
+        //si el apellido esta mal
+        if(apellidosText.getText().chars().noneMatch(Character::isDigit) || apellidosText.getText().length()<1 || apellidosText.getText().isEmpty()){
+            errorApellidos.setText("El apellido no debe contener números y debe ser mínimo de 2 caracteres");
+            errorApellidos.setVisible(true);
+            error = false;
+        }
+        //si el email esta mal
+        //if(emailText.getText() == Acount.getInstance(). || if (containsSpaces(correo)) {
+            //correo_incorrecto.setText("El correo no puede contener espacios.");
+            //correo_incorrecto.setVisible(true);
+            //error = false;
+        //}
+  
+        if(error == true){
+            Acount.getInstance().getLoggedUser().setSurname(nombreText.getText());       
+            Acount.getInstance().getLoggedUser().setSurname(apellidosText.getText());
+            Acount.getInstance().getLoggedUser().setEmail(emailText.getText());
+        }
     }
+    
 
     @FXML
-    private void pulsarCancelar(ActionEvent event) {
+    private void pulsarCancelar(ActionEvent event) throws Exception{      
+        nombreText.setText(Acount.getInstance().getLoggedUser().getName());
+        apellidosText.setText(Acount.getInstance().getLoggedUser().getSurname());
+        emailText.setText(Acount.getInstance().getLoggedUser().getEmail());
+        fotoImage.setImage(Acount.getInstance().getLoggedUser().getImage());
         
     }
 
@@ -107,13 +147,6 @@ public class PerfilUsuarioController implements Initializable {
     private void escribirEmail(KeyEvent event) {
         guardar.setDisable(false);
         cancelar.setDisable(false);
-    }
-
-    @FXML
-    private void escribirNickName(KeyEvent event) {
-        guardar.setDisable(false);
-        cancelar.setDisable(false);
-    }
-    
+    }  
     
 }

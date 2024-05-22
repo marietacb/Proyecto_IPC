@@ -58,26 +58,29 @@
                   </Label>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
-                        <TextField fx:id="nickname" maxWidth="180.0" onKeyTyped="#escribirNickName" prefWidth="180.0" />
-                        <Label text="Este nickname ya existe" textFill="#db0000" visible="false" />
+                        <TextField fx:id="nickname" disable="true" maxWidth="180.0" prefWidth="180.0" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <TextField fx:id="nombreText" maxWidth="180.0" onKeyTyped="#escribirNombre" prefWidth="180.0" />
-                        <Label text="Formato incorrecto" textFill="#db0000" visible="false" />
+                        <Label fx:id="errorNombre" textFill="#db0000" visible="false">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <TextField fx:id="apellidosText" maxWidth="180.0" onKeyTyped="#escribirApellidos" prefWidth="160.0" />
-                        <Label text="Formato incorrecto" textFill="#db0000" visible="false" />
+                        <Label fx:id="errorApellidos" textFill="#db0000" visible="false" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                         <TextField fx:id="emailText" maxWidth="180.0" onKeyTyped="#escribirEmail" prefWidth="200.0" />
-                        <Label textFill="#db0000" />
+                        <Label fx:id="errorEmail" textFill="#db0000" />
                      </children>
                   </VBox>
                </children>
