@@ -4,7 +4,6 @@
  */
 package trabajo_ipc;
 
-import java.util.HashSet;
 import java.util.Set;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

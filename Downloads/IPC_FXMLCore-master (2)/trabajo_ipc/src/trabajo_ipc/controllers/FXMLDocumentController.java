@@ -75,7 +75,6 @@ public class FXMLDocumentController implements Initializable {
     
     private PieChart grafico;   //TODO añadir grafico con datos
     
-    
     @FXML
     private TableView<Charge> tableView;
     @FXML
@@ -157,6 +156,9 @@ public class FXMLDocumentController implements Initializable {
         imagenPerfil.setImage(Acount.getInstance().getLoggedUser().getImage());
         }
         catch(Exception e){}
+        
+        //inicializar gridpane
+        
     }    
     
     
@@ -248,8 +250,16 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void pulsarMiPerfil(ActionEvent event) {
+    private void pulsarMiPerfil(ActionEvent event) throws Exception{
         
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/PerfilUsuario.fxml"));
+            Parent userProfilePane = loader.load();
+            border_pane.setCenter(userProfilePane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     
 }
