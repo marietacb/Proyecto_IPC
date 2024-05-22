@@ -202,6 +202,15 @@ public class FXML_registroController implements Initializable {
                 if (isOK) {
                     // Navegar a la siguiente escena
                     System.out.println("Usuario registrado con éxito");
+                    FXMLLoader cargarRegistro = new FXMLLoader(getClass().getResource("/resources/fxml/inicio.fxml"));
+                    Parent root = cargarRegistro.load();
+
+                    Stage stage = new Stage();
+                    Stage stageinicial = (Stage) button_cancel.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                    stageinicial.close();
+                    
                 } else {
                     System.err.println("NO SE HA GUARDADO BIEN");
                 }
@@ -220,6 +229,7 @@ public class FXML_registroController implements Initializable {
                 }
             }
         }
+        
     }
 
 
