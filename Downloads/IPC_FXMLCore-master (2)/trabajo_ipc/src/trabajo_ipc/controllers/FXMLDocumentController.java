@@ -102,7 +102,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-            
+        
         this.categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
         this.nombre.setCellValueFactory(nombreFila->new SimpleStringProperty(nombreFila.getValue().getName()));
         this.fecha.setCellValueFactory(fechaFila -> new SimpleObjectProperty<LocalDate>(fechaFila.getValue().getDate()));
@@ -125,19 +125,36 @@ public class FXMLDocumentController implements Initializable {
         tableView.setItems(listaGastos);    //tabla de la lista de gastos existentes
         border_pane.setCenter(tableView);
         
+        grafico = new PieChart();
+        grafico.setVisible(true);
+
         
-       
         //TODO: Inicializar el grafico aqui (ponerle informacion gastos)
-                
+        PieChart.Data slice1 = new PieChart.Data("Categoría A", 30);
+        PieChart.Data slice2 = new PieChart.Data("Categoría B", 25);
+        PieChart.Data slice3 = new PieChart.Data("Categoría C", 45);
+
+        // Crear el gráfico de sectores y añadir los datos
+        grafico.getData().add(slice1);
+        grafico.getData().add(slice2);
+        grafico.getData().add(slice3);
+        grafico.setTitle("Gráfico de Sectores de Ejemplo"); 
+        
+        
+        border_pane.setCenter(grafico);
+        boton_resumenGastos.setDisable(true);
+       
     }    
     
     
     //HECHO
     @FXML
     private void pulsarGastos(MouseEvent event) throws IOException { //boton gastos muestra tabla
-        grafico.setVisible(false);
-        tableView.setVisible(true);
-        boton_gastos.disableProperty();
+        grafico.setVisible(false);  
+        tableView.setVisible(true); 
+        border_pane.setCenter(tableView);
+        boton_gastos.setDisable(true);
+        boton_resumenGastos.setDisable(false);
     }
 
     //HECHO
@@ -145,7 +162,9 @@ public class FXMLDocumentController implements Initializable {
     private void resumen_anual(MouseEvent event) {  //boton resumen anual muestra grafico
         tableView.setVisible(false);
         grafico.setVisible(true);
-        boton_resumenGastos.disableProperty();
+        border_pane.setCenter(grafico);
+        boton_resumenGastos.setDisable(true);
+        boton_gastos.setDisable(false);
     }
 
    
