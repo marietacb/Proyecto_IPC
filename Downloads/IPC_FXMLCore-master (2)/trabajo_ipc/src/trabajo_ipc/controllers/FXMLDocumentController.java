@@ -104,6 +104,8 @@ public class FXMLDocumentController implements Initializable {
     private Button bAyuda;
     @FXML
     private ImageView bAjustes;
+    @FXML
+    private TableColumn<Charge, String> Descripción;
     
     
     /**
@@ -113,7 +115,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb){
         
-        this.categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
+        /*this.categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
         this.nombre.setCellValueFactory(nombreFila->new SimpleStringProperty(nombreFila.getValue().getName()));
         this.fecha.setCellValueFactory(fechaFila -> new SimpleObjectProperty<LocalDate>(fechaFila.getValue().getDate()));
         this.unidades.setCellValueFactory(unidadesFila -> new SimpleObjectProperty<Integer>(unidadesFila.getValue().getUnits()));
@@ -128,11 +130,31 @@ public class FXMLDocumentController implements Initializable {
             listaGastos = (ObservableList)lista;    //convertir lit a observable y meterla en la lista
             this.tableView.setItems(listaGastos);
         }
-        catch(Exception e){}  
-              
-        //situamos y mostramos tabla en el centro del border pane
+        catch(Exception e){} 
+         //situamos y mostramos tabla en el centro del border pane
         tableView.getColumns().addAll(categoria, nombre, fecha, unidades, precio, tiquet, papeleraYmodificar);    
         tableView.setItems(listaGastos);    //tabla de la lista de gastos existentes
+        
+        */ 
+        
+        try {
+            listaGastos = FXCollections.observableArrayList(Acount.getInstance().getUserCharges());
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tableView.setItems(listaGastos);
+
+        nombre.setCellValueFactory(new PropertyValueFactory<>("name"));
+        Descripción.setCellValueFactory(new PropertyValueFactory<>("description"));
+        fecha.setCellValueFactory(new PropertyValueFactory<>("date"));
+        unidades.setCellValueFactory(new PropertyValueFactory<>("units"));
+        precio.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        tiquet.setCellValueFactory(new PropertyValueFactory<>("scanImage"));
+        categoria.setCellValueFactory(new PropertyValueFactory<>("category"));
+        
+       
         border_pane.setCenter(tableView);
         
         grafico = new PieChart();
@@ -229,7 +251,9 @@ public class FXMLDocumentController implements Initializable {
             stage.setScene(new Scene(root));
         
             stage.initModality(Modality.APPLICATION_MODAL); //añade modalidad del escenario
-            stage.showAndWait();    //espera a que se introduzac al información
+            stage.show();    //espera a que se introduzac al información
+            Stage estestage = (Stage) bAyuda.getScene().getWindow();
+            estestage.close();
         }
         
         bPerfil.setDisable(false);

@@ -73,6 +73,7 @@
             <TableColumn fx:id="fecha" prefWidth="100.0" text="Fecha" />
             <TableColumn fx:id="unidades" prefWidth="100.0" text="Unidades" />
             <TableColumn fx:id="precio" prefWidth="100.0" text="Precio" />
+            <TableColumn fx:id="Descripción" prefWidth="75.0" text="Descripción" />
             <TableColumn fx:id="tiquet" prefWidth="100.0" text="Tiquet" />
             <TableColumn fx:id="papeleraYmodificar" prefWidth="90.0" />
         </columns>
