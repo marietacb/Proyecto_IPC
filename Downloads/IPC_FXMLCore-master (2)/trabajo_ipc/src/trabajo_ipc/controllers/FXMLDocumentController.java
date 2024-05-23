@@ -26,6 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -34,6 +35,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -95,13 +97,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private MenuItem boton_añadircategoria;
     @FXML
-    private Button bAyuda;
-    @FXML
     private Button bPerfil;
     @FXML
-    private ImageView bAjustes;
-    @FXML
     private ImageView imagenPerfil;
+    @FXML
+    private Button bAyuda;
+    @FXML
+    private ImageView bAjustes;
     
     
     /**
@@ -276,7 +278,7 @@ public class FXMLDocumentController implements Initializable {
         boton_resumenGastos.setDisable(false);
 
     }
-    
+
 }
     
     
