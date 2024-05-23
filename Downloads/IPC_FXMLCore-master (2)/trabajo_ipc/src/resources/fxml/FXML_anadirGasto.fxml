@@ -112,7 +112,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <SplitMenuButton fx:id="categorias_boton" mnemonicParsing="false" onMouseClicked="#seleccionar_categoria" text="Seleccionar Categoria">
+            <SplitMenuButton fx:id="categorias_boton" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" text="Seleccionar Categoria">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>

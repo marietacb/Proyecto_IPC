@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
@@ -92,7 +92,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Charge, Image> papeleraYmodificar;
     @FXML
-    private TableColumn<Charge, Category> categoria;
+    private TableColumn<Charge, String> categoria;
     private ObservableList<Charge> listaGastos;
     @FXML
     private MenuItem boton_añadircategoria;
@@ -106,6 +106,8 @@ public class FXMLDocumentController implements Initializable {
     private Button bAjustes;
     @FXML
     private TableColumn<Charge, String> Descripción;
+    @FXML
+    private ImageView iAjustes;
     
     
     /**
@@ -155,7 +157,9 @@ public class FXMLDocumentController implements Initializable {
         unidades.setCellValueFactory(new PropertyValueFactory<>("units"));
         precio.setCellValueFactory(new PropertyValueFactory<>("cost"));
         tiquet.setCellValueFactory(new PropertyValueFactory<>("scanImage"));
-        categoria.setCellValueFactory(new PropertyValueFactory<>("category"));
+        categoria.setCellValueFactory(cellData -> {Charge charge = cellData.getValue();
+                    return new SimpleStringProperty(charge.getCategory().getName());
+        });
         
        
         border_pane.setCenter(tableView);
