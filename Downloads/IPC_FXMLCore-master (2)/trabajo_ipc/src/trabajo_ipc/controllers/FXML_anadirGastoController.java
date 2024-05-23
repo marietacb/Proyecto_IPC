@@ -124,6 +124,22 @@ public class FXML_anadirGastoController implements Initializable {
     private List<Category> categorias;    //lista categorias
     
     int seleccionado;
+    @FXML
+    private Text nom;
+    @FXML
+    private Text fec;
+    @FXML
+    private Text un;
+    @FXML
+    private Text pre;
+    @FXML
+    private Text ca;
+    @FXML
+    private Text des;
+    @FXML
+    private Text ti;
+    @FXML
+    private Text titulo;
         
     /**
      * Initializes the controller class.

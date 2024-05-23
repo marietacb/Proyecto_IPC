@@ -1,17 +1,46 @@
-/*
- * Empty Stylesheet file.
- */
 
-    #boton_aceptar{
-        -fx-backGround-color: lightgreen;
-        -fx-text-fill: black;
-        -fx-border-color: limegreen;
-    }
-    #boton_Cancelar{
-        -fx-backGround-color: white;
-        -fx-text-fill: black;
-        -fx-border-color: black;
+#titulo{
+    -fx-font-family: monospace;
+    -fx-font-size: 250%;
+    -fx-font-weight: bold;
+    -fx-text-fill: #009933; /*verde militar*/
+}
 
-    }
+/*botones aceptar y cancelar diseño*/
+#boton_aceptar{
+    -fx-background-color: #ccffcc;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+}
+#boton_Cancelar{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+}
     
+#nom{
+    -fx-font-family: sans-serif;
+}
+#fec{
+    -fx-font-family: sans-serif;
+}
+#un{
+    -fx-font-family: sans-serif;
+}
+#pre{
+    -fx-font-family: sans-serif;
+}
+#ca{
+    -fx-font-family: sans-serif;
+}
+#des{
+    -fx-font-family: sans-serif;
+}
+#ti{
+    -fx-font-family: sans-serif;
+}
 

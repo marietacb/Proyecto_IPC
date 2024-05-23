@@ -18,7 +18,7 @@
    <children>
       <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="350.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir gasto">
+            <Text fx:id="titulo" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir gasto">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -26,25 +26,22 @@
                   <Font size="22.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nom" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <VBox.margin>
-                  <Insets bottom="5.0" left="50.0" top="20.0" />
+                  <Insets bottom="5.0" left="50.0" top="25.0" />
                </VBox.margin>
             </Text>
             <TextField fx:id="nombre_gasto" maxWidth="250.0" promptText="Introduce un nombre">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
             </TextField>
             <Label fx:id="error_nombre" text="Introduzca un nombre" textFill="#ef0404" visible="false">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
             </Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+            <Text fx:id="fec" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
                <VBox.margin>
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
@@ -59,7 +56,7 @@
                   <Insets left="50.0" />
                </VBox.margin>
             </Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades">
+            <Text fx:id="un" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades">
                <VBox.margin>
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
@@ -68,16 +65,13 @@
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
             </TextField>
             <Label fx:id="error_unidades" textFill="#ef0404" visible="false">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
             </Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Precio">
+            <Text fx:id="pre" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio">
                <VBox.margin>
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
@@ -85,9 +79,6 @@
             <HBox prefHeight="20.0" prefWidth="100.0">
                <children>
                   <TextField fx:id="precio_gasto" maxWidth="170.0" onKeyTyped="#comprobar_precio" prefHeight="25.0" prefWidth="170.0" promptText="Introduce un precio">
-                     <font>
-                        <Font name="System Italic" size="12.0" />
-                     </font>
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
@@ -107,7 +98,7 @@
                   <Insets left="50.0" />
                </VBox.margin>
             </Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría">
+            <Text fx:id="ca" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría">
                <VBox.margin>
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
@@ -122,7 +113,7 @@
                   <Insets left="50.0" />
                </VBox.margin>
             </Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
+            <Text fx:id="des" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
                <VBox.margin>
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
@@ -131,9 +122,6 @@
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
             </TextArea>
             <Label fx:id="error_descripcion" text="Introduzca una breve descripción" textFill="#ef0404" visible="false">
                <VBox.margin>
@@ -141,12 +129,15 @@
                </VBox.margin>
             </Label>
          </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
       </VBox>
       <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="350.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tiquet o factura">
+            <Text fx:id="ti" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiquet o factura">
                <VBox.margin>
-                  <Insets bottom="5.0" left="25.0" top="65.0" />
+                  <Insets bottom="5.0" left="25.0" top="75.0" />
                </VBox.margin>
             </Text>
             <VBox fx:id="vboxFactura" alignment="CENTER" maxHeight="250.0" maxWidth="250.0" prefHeight="250.0" prefWidth="100.0">

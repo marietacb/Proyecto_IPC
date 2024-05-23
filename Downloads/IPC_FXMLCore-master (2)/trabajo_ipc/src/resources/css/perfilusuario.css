@@ -35,8 +35,7 @@
 
 #centro{}
 
-/*colores y diseño botones guardar y cancelar*/
-
+/*colores botones guardar y cancelar*/
 #guardar{
     -fx-background-color: #ccffcc;
     -fx-text-fill: black;
@@ -46,7 +45,7 @@
 }
 
 #cancelar{
-    -fx-background-color: white;
+    -fx-background-color: #ffcccc;
     -fx-text-fill: black;
     -fx-border-color: black;
     -fx-border-radius: 8;
