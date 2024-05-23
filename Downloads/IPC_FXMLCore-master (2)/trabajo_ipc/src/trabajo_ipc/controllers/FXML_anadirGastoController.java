@@ -45,6 +45,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -153,9 +154,15 @@ public class FXML_anadirGastoController implements Initializable {
     
    
     @FXML
-    private void pulsarCancelar(ActionEvent event) {    //cerrar ventana
-        Stage stage = (Stage) boton_Cancelar.getScene().getWindow();
-        stage.close();
+    private void pulsarCancelar(ActionEvent event) throws IOException {    //cerrar ventana
+       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+       Parent root = cargarRegistro.load();
+       
+       Stage stage = new Stage();
+       Stage stageinicial = (Stage) categorias_boton.getScene().getWindow();
+       stage.setScene(new Scene(root));
+       stage.show();
+       stageinicial.close();
     }
 
     @FXML
@@ -264,9 +271,17 @@ public class FXML_anadirGastoController implements Initializable {
             FXMLDocumentController controlador = tabla.getController();
             Charge gasto = Acount.getInstance().getUserCharges().get(Acount.getInstance().getUserCharges().size()-1);
             controlador.addCharge(gasto); */
-            
-            Stage stage = (Stage) boton_aceptar.getScene().getWindow();
-            stage.close();
+           
+           
+           //volvemos a la pantalla principal
+           FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+           Parent root = cargarRegistro.load();
+       
+           Stage stage = new Stage();
+           Stage stageinicial = (Stage) categorias_boton.getScene().getWindow();
+           stage.setScene(new Scene(root));
+           stage.show();
+           stageinicial.close();
             
         }
     }
@@ -308,9 +323,56 @@ public class FXML_anadirGastoController implements Initializable {
 
     @FXML
     private void comprobar_unidades(KeyEvent event) {
+        try {   //si se introducen unidades, que pruebe a convertir las unidades en integer            
+                Integer units = Integer.parseInt(unidades_gasto.getText());
+                if (units <= 0) { //si se introducen valores negativos
+                    error_unidades.setText("El formato introducido no es correcto");
+                    error_unidades.visibleProperty().set(true);
+                }
+                else {error_unidades.visibleProperty().set(false);}
+            
+            } catch (NumberFormatException e) { //si no es tipo integer = error
+                error_unidades.setText("El formato introducido no es correcto");
+                error_unidades.visibleProperty().set(true);
+                unidades_gasto.setText("");
+            }
+
     }
 
     @FXML
     private void comprobar_precio(KeyEvent event) {
+        try {   //que pruebe a convertir las unidades en double
+                Double precios = Double.parseDouble(precio_gasto.getText());
+            
+                if (precios <= 0) { //si son precios negativos == error
+                    error_precio.setText("El formato introducido no es correcto");
+                    error_precio.visibleProperty().set(true);
+                } 
+                else {error_precio.visibleProperty().set(false);}
+            
+            } catch (NumberFormatException e) { //si no es tipo double == error
+                error_precio.setText("El formato introducido no es correcto");
+                error_precio.visibleProperty().set(true);
+                precio_gasto.setText("");
+            }
+
+    }
+
+    @FXML
+    private void seleccionar_categoria1(ContextMenuEvent event) throws AcountDAOException, IOException {
+        categorias = Acount.getInstance().getUserCategories();
+        categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
+            // Agregamos nuevas categorías como elementos del menú recrriendo la lista
+        for (int i = 0; i < categorias.size()-1; i++) {
+            Category categoria = categorias.get(i);
+            MenuItem menuItem = new MenuItem(categoria.getName());
+
+            menuItem.setOnAction(evento -> {
+                categorias_boton.setText(categoria.getName());  // Opcional
+                seleccionado = categorias.indexOf(categoria);
+            });
+            
+            categorias_boton.getItems().add(menuItem);
+        }
     }
 }

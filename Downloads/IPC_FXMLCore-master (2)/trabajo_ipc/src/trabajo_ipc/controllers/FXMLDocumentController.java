@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
@@ -115,6 +115,9 @@ public class FXMLDocumentController implements Initializable {
     private HBox bordeSuperior;
     @FXML
     private ToolBar toolbar;
+
+    private ImageView iAjustes;
+
     
     
     /**
@@ -146,6 +149,10 @@ public class FXMLDocumentController implements Initializable {
         
         */ 
         
+        String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
+        border_pane.getStylesheets().add(css);
+
+        
         try {
             listaGastos = FXCollections.observableArrayList(Acount.getInstance().getUserCharges());
         } catch (AcountDAOException ex) {
@@ -161,8 +168,7 @@ public class FXMLDocumentController implements Initializable {
         unidades.setCellValueFactory(new PropertyValueFactory<>("units"));
         precio.setCellValueFactory(new PropertyValueFactory<>("cost"));
         tiquet.setCellValueFactory(new PropertyValueFactory<>("scanImage"));
-        categoria.setCellValueFactory(new PropertyValueFactory<>("category"));
-        
+        categoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCategory()));
        
         border_pane.setCenter(tableView);
         
@@ -189,13 +195,7 @@ public class FXMLDocumentController implements Initializable {
         imagenPerfil.setImage(Acount.getInstance().getLoggedUser().getImage());
         }
         catch(Exception e){}
-        
-        
-        //inicializar gridpane
-        
-        String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
-        border_pane.getStylesheets().add(css);
-        
+       
         Circle clip = new Circle(20, 20, 20); // Centrado en (20, 20) con radio 20
         imagenPerfil.setClip(clip);
         
