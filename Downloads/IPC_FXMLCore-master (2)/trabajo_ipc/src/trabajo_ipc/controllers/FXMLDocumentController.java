@@ -116,8 +116,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ToolBar toolbar;
 
-    private ImageView iAjustes;
-
     
     
     /**

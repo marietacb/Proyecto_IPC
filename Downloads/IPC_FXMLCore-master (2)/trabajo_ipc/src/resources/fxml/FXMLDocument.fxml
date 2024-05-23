@@ -44,7 +44,6 @@
                </HBox.margin>
                <graphic>
                   <ImageView fx:id="imagenAjustes" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                  <ImageView fx:id="iAjustes" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/263100.png" />
                      </image>
