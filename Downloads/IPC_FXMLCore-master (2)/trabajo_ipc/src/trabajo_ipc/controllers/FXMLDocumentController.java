@@ -1,4 +1,4 @@
-    /*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
@@ -32,20 +32,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Acount;
@@ -95,7 +93,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Charge, Image> papeleraYmodificar;
     @FXML
-    private TableColumn<Charge, Category> categoria;
+    private TableColumn<Charge, String> categoria;
     private ObservableList<Charge> listaGastos;
     @FXML
     private MenuItem boton_añadircategoria;
@@ -110,12 +108,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Charge, String> Descripción;
     @FXML
-    private ImageView imagenAjustes;
-    @FXML
-    private HBox bordeSuperior;
-    @FXML
-    private ToolBar toolbar;
-
+    private ImageView iAjustes;
     
     
     /**
@@ -124,28 +117,6 @@ public class FXMLDocumentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        
-        /*this.categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
-        this.nombre.setCellValueFactory(nombreFila->new SimpleStringProperty(nombreFila.getValue().getName()));
-        this.fecha.setCellValueFactory(fechaFila -> new SimpleObjectProperty<LocalDate>(fechaFila.getValue().getDate()));
-        this.unidades.setCellValueFactory(unidadesFila -> new SimpleObjectProperty<Integer>(unidadesFila.getValue().getUnits()));
-        this.precio.setCellValueFactory(precioFila -> new SimpleObjectProperty<Double>(precioFila.getValue().getCost()));
-        this.tiquet.setCellValueFactory(tiquetFila -> new SimpleObjectProperty<Image>(tiquetFila.getValue().getImageScan()));
-        this.papeleraYmodificar.setCellValueFactory(papeleraFila -> new SimpleObjectProperty<Image>(papeleraFila.getValue().getImageScan()));      
-        
-        
-        try{
-            //User usuario = Acount.getInstance().getLoggedUser();
-            List<Charge> lista = Acount.getInstance().getUserCharges(); //lista con los gastos del usuario
-            listaGastos = (ObservableList)lista;    //convertir lit a observable y meterla en la lista
-            this.tableView.setItems(listaGastos);
-        }
-        catch(Exception e){} 
-         //situamos y mostramos tabla en el centro del border pane
-        tableView.getColumns().addAll(categoria, nombre, fecha, unidades, precio, tiquet, papeleraYmodificar);    
-        tableView.setItems(listaGastos);    //tabla de la lista de gastos existentes
-        
-        */ 
         
         String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
         border_pane.getStylesheets().add(css);
@@ -166,8 +137,12 @@ public class FXMLDocumentController implements Initializable {
         unidades.setCellValueFactory(new PropertyValueFactory<>("units"));
         precio.setCellValueFactory(new PropertyValueFactory<>("cost"));
         tiquet.setCellValueFactory(new PropertyValueFactory<>("scanImage"));
-        categoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCategory()));
-       
+        tiquet.setCellFactory(c-> new ImagenTabCell());
+        categoria.setCellValueFactory(cellData -> {Charge charge = cellData.getValue();
+                    return new SimpleStringProperty(charge.getCategory().getName());
+        });
+        
+        tableView.setFixedCellSize(50); // Establece una altura fija para todas las celdas
         border_pane.setCenter(tableView);
         
         grafico = new PieChart();
@@ -193,9 +168,8 @@ public class FXMLDocumentController implements Initializable {
         imagenPerfil.setImage(Acount.getInstance().getLoggedUser().getImage());
         }
         catch(Exception e){}
-       
-        Circle clip = new Circle(20, 20, 20); // Centrado en (20, 20) con radio 20
-        imagenPerfil.setClip(clip);
+        
+        //inicializar gridpane
         
     }    
     
@@ -316,7 +290,31 @@ public class FXMLDocumentController implements Initializable {
         boton_resumenGastos.setDisable(false);
 
     }
-
+    
+    class ImagenTabCell extends TableCell<Charge, Image> {
+            private ImageView view = new ImageView();
+            @Override
+            protected void updateItem(Image t, boolean bln) {
+                super.updateItem(t, bln);
+                if (t == null || bln) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                     try {
+                // Puedes ajustar el tamaño de la imagen aquí según tus necesidades
+                view.setFitWidth(25);
+                view.setFitHeight(25);
+                view.setImage(t);
+                setGraphic(view);
+            } catch (Exception e) {
+                // Maneja cualquier excepción que ocurra al cargar la imagen
+                System.err.println("Error al cargar la imagen: " + e.getMessage());
+                setText("Error");
+                setGraphic(null);
+            }
+            }
+    }   
+   }
 }
     
     
