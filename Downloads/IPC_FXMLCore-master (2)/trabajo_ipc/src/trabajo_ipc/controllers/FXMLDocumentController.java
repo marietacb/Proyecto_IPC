@@ -170,6 +170,8 @@ public class FXMLDocumentController implements Initializable {
         border_pane.setCenter(tableView);
         boton_gastos.setDisable(true);
         boton_resumenGastos.setDisable(false);
+        
+        bPerfil.setDisable(false);
     }
 
     //HECHO
@@ -180,6 +182,9 @@ public class FXMLDocumentController implements Initializable {
         border_pane.setCenter(grafico);
         boton_resumenGastos.setDisable(true);
         boton_gastos.setDisable(false);
+        
+        bPerfil.setDisable(false);
+
     }
 
    
@@ -200,8 +205,7 @@ public class FXMLDocumentController implements Initializable {
             excepción.printStackTrace(pw);
             String exceptionText = sw.toString();
             Label label = new Label("Excepción:");
-            TextArea textArea =
-            new TextArea(exceptionText);
+            TextArea textArea = new TextArea(exceptionText);
             textArea.setEditable(false);
             textArea.setWrapText(true);
         
@@ -209,22 +213,24 @@ public class FXMLDocumentController implements Initializable {
             GridPane.setHgrow(textArea,Priority.ALWAYS);
             GridPane expContent = new GridPane();expContent.setMaxWidth(Double.MAX_VALUE);expContent.add(label, 0, 0);
             expContent.add(textArea, 0, 1);
-            alert.getDialogPane().setExpandableContent(expContent);alert.showAndWait();
+            alert.getDialogPane().setExpandableContent(expContent);
+            alert.showAndWait();
         }
 
         
         //boton añadir gasto abre ventana
+        else{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
+            Parent root = loader.load();
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
-        Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
         
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL); //añade modalidad del escenario
+            stage.showAndWait();    //espera a que se introduzac al información
+        }
         
-        stage.initModality(Modality.APPLICATION_MODAL); //añade modalidad del escenario
-        stage.showAndWait();    //espera a que se introduzac al información
-
-
+        bPerfil.setDisable(false);
         
     }
 
@@ -243,15 +249,20 @@ public class FXMLDocumentController implements Initializable {
         
         // Mostrar la ventana y esperar a que se cierre
         stage.show();
+        
+        bPerfil.setDisable(false);
+
     }
     
     public void addCharge(Charge g){
         tableView.getItems().add(g);
     }
+    
 
     @FXML
     private void pulsarMiPerfil(ActionEvent event) throws Exception{
         
+        bPerfil.setDisable(true);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/PerfilUsuario.fxml"));
             Parent userProfilePane = loader.load();
@@ -259,6 +270,10 @@ public class FXMLDocumentController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        boton_gastos.setDisable(false);
+        boton_añadirGasto.setDisable(false);
+        boton_añadircategoria.setDisable(false);
+        boton_resumenGastos.setDisable(false);
 
     }
     
