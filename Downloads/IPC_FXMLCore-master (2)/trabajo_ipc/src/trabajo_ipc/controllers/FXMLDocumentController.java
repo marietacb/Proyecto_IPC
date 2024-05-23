@@ -103,7 +103,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button bAyuda;
     @FXML
-    private ImageView bAjustes;
+    private Button bAjustes;
     @FXML
     private TableColumn<Charge, String> Descripción;
     
@@ -251,7 +251,7 @@ public class FXMLDocumentController implements Initializable {
             stage.setScene(new Scene(root));
         
             stage.initModality(Modality.APPLICATION_MODAL); //añade modalidad del escenario
-            stage.show();    //espera a que se introduzac al información
+            stage.showAndWait();    //espera a que se introduzac al información
             Stage estestage = (Stage) bAyuda.getScene().getWindow();
             estestage.close();
         }

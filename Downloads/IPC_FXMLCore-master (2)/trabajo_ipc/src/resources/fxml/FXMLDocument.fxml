@@ -16,27 +16,27 @@
    <top>
       <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bAyuda" mnemonicParsing="false">
+            <Button fx:id="bAyuda" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
                <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/2753.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="bPerfil" mnemonicParsing="false" onAction="#pulsarMiPerfil">
+            <Button fx:id="bPerfil" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" onAction="#pulsarMiPerfil" prefHeight="30.0" prefWidth="40.0">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
                <graphic>
-                  <ImageView fx:id="imagenPerfil" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imagenPerfil" fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false">
+            <Button fx:id="bAjustes" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
