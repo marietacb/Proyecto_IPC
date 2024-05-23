@@ -22,14 +22,6 @@ public class FXML_Comparador_Controller {
     @FXML
     private BorderPane border_pane;
     @FXML
-    private MenuItem boton_añadirGasto;
-    @FXML
-    private MenuItem boton_añadircategoria;
-    @FXML
-    private Button boton_resumenGastos;
-    @FXML
-    private Button boton_gastos;
-    @FXML
     private BarChart<?, ?> gracigo_barras;
     @FXML
     private TextField año_actual;
@@ -42,21 +34,6 @@ public class FXML_Comparador_Controller {
     @FXML
     private Button comparar_otro;
 
-    @FXML
-    private void añadirGasto(ActionEvent event) {
-    }
-
-    @FXML
-    private void añadircategoria(ActionEvent event) {
-    }
-
-    @FXML
-    private void resumen_anual(MouseEvent event) {
-    }
-
-    @FXML
-    private void pulsarGastos(MouseEvent event) {
-    }
 
     @FXML
     private void comparando_actual(ActionEvent event) {

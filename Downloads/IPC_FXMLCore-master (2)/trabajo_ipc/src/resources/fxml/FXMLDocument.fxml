@@ -50,6 +50,15 @@
                   </ImageView>
                </graphic>
             </Button>
+            <MenuButton fx:id="bSalir" mnemonicParsing="false" prefHeight="26.0" prefWidth="20.0">
+              <items>
+                <MenuItem fx:id="cPerfil" mnemonicParsing="false" onAction="#cambiarperfil" text="Cambiar Perfil" />
+                <MenuItem fx:id="boton_salir" mnemonicParsing="false" onAction="#sailr" text="Salir" />
+              </items>
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </MenuButton>
          </children>
       </HBox>
    </top>
@@ -65,6 +74,7 @@
             <SplitPane orientation="VERTICAL" prefHeight="5.0" prefWidth="50.0" translateY="180.0" />
           <Button fx:id="boton_resumenGastos" mnemonicParsing="false" onMouseClicked="#resumen_anual" text="Resumen anual" translateX="10.0" translateY="200.0" />
             <Button fx:id="boton_gastos" mnemonicParsing="false" onMouseClicked="#pulsarGastos" text="Mis gastos" translateX="10.0" translateY="205.0" />
+            <Button fx:id="comparar_boton" mnemonicParsing="false" onAction="#comparar" text="Comparar gastos" translateX="10.0" translateY="210.0" />
         </items>
       </ToolBar>
    </left>

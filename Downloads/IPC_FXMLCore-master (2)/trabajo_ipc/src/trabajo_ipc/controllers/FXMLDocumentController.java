@@ -11,6 +11,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,20 +30,25 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -108,7 +114,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Charge, String> Descripción;
     @FXML
-    private ImageView iAjustes;
+    private HBox bordeSuperior;
+    @FXML
+    private ImageView imagenAjustes;
+    @FXML
+    private ToolBar toolbar;
+    @FXML
+    private Button comparar_boton;
+    @FXML
+    private MenuButton bSalir;
+    @FXML
+    private MenuItem cPerfil;
+    @FXML
+    private MenuItem boton_salir;
     
     
     /**
@@ -136,7 +154,7 @@ public class FXMLDocumentController implements Initializable {
         fecha.setCellValueFactory(new PropertyValueFactory<>("date"));
         unidades.setCellValueFactory(new PropertyValueFactory<>("units"));
         precio.setCellValueFactory(new PropertyValueFactory<>("cost"));
-        tiquet.setCellValueFactory(new PropertyValueFactory<>("scanImage"));
+        tiquet.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getImageScan()));
         tiquet.setCellFactory(c-> new ImagenTabCell());
         categoria.setCellValueFactory(cellData -> {Charge charge = cellData.getValue();
                     return new SimpleStringProperty(charge.getCategory().getName());
@@ -290,6 +308,52 @@ public class FXMLDocumentController implements Initializable {
         boton_resumenGastos.setDisable(false);
 
     }
+
+    @FXML
+    private void comparar(ActionEvent event) throws IOException {
+       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXML_Comparador_gastos.fxml"));
+       Parent root = cargarRegistro.load();
+       
+       Stage stage = new Stage();
+       stage.setScene(new Scene(root));
+       stage.showAndWait();
+    }
+
+    @FXML
+    private void cambiarperfil(ActionEvent event) throws IOException, AcountDAOException {
+      Alert alert = new Alert(AlertType.CONFIRMATION);
+      alert.setTitle("confirmación");
+      alert.setHeaderText("");
+      alert.setContentText("¿Seguro que quieres abandonar sesión?");
+      Optional<ButtonType> result = alert.showAndWait();
+      if (result.isPresent() && result.get() == ButtonType.OK){System.out.println("OK");
+      Acount.getInstance().logOutUser();
+      FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/inicio.fxml"));
+       Parent root = cargarRegistro.load();
+       Stage stage = new Stage();
+       Stage stageinicial = (Stage) bPerfil.getScene().getWindow();
+       stage.setScene(new Scene(root));
+       stage.show();
+       stageinicial.close();
+      } else {
+     System.out.println("CANCEL");
+     }
+    }
+
+    @FXML
+    private void sailr(ActionEvent event) throws IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+      alert.setTitle("confirmación");
+      alert.setHeaderText("");
+      alert.setContentText("¿Seguro que quieres salir?");
+      Optional<ButtonType> result = alert.showAndWait();
+      if (result.isPresent() && result.get() == ButtonType.OK){System.out.println("OK");
+       Stage stageinicial = (Stage) bPerfil.getScene().getWindow();
+       stageinicial.close();
+      } else {
+     System.out.println("CANCEL");
+     }
+    }
     
     class ImagenTabCell extends TableCell<Charge, Image> {
             private ImageView view = new ImageView();
@@ -302,8 +366,8 @@ public class FXMLDocumentController implements Initializable {
                 } else {
                      try {
                 // Puedes ajustar el tamaño de la imagen aquí según tus necesidades
-                view.setFitWidth(25);
-                view.setFitHeight(25);
+                view.setFitWidth(40);
+                view.setFitHeight(40);
                 view.setImage(t);
                 setGraphic(view);
             } catch (Exception e) {
