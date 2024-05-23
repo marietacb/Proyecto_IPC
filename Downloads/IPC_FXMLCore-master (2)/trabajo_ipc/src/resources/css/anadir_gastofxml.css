@@ -2,10 +2,16 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-    .button{
-        -fx-backGround-color: green;
+    #boton_aceptar{
+        -fx-backGround-color: lightgreen;
         -fx-text-fill: black;
+        -fx-border-color: limegreen;
+    }
+    #boton_Cancelar{
+        -fx-backGround-color: white;
+        -fx-text-fill: black;
+        -fx-border-color: black;
+
     }
     
-}
+
