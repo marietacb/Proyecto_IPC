@@ -3,13 +3,31 @@
  */
 
 #bPerfil{
-    
+    -fx-padding: 20;            /* Espaciado interno */
+    -fx-border-radius: 50%;     /* Hace que los bordes sean redondos */
+    -fx-background-radius: 50%; /* Hace que el fondo sea redondo */
+    -fx-alignment: center;      /* Centra el contenido del botón */
 }
 
 #bAyuda{
-    
+    -fx-padding: 20;            /* Espaciado interno */
+    -fx-border-radius: 50%;     /* Hace que los bordes sean redondos */
+    -fx-background-radius: 50%; /* Hace que el fondo sea redondo */
+    -fx-alignment: center;      /* Centra el contenido del botón */
 }
 
 #bAjustes{
-    
+    -fx-padding: 20;            /* Espaciado interno */
+    -fx-border-radius: 50%;     /* Hace que los bordes sean redondos */
+    -fx-background-radius: 50%; /* Hace que el fondo sea redondo */
+    -fx-alignment: center;      /* Centra el contenido del botón */
 }
+
+#toolbar{
+    -fx-background-color: #99e89d;
+}
+
+#bordeSuperior{
+    -fx-background-color: #99e89d;
+}
+

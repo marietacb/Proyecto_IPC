@@ -81,26 +81,27 @@ public class FXML_inicioController implements Initializable {
  
         //si el booleano está en true, abre nuestro perfil.
         if (aceptar) {
-       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
-       Parent root = cargarRegistro.load();
+            FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+            Parent root = cargarRegistro.load();
 
-       Stage stage = new Stage();
-       Stage stageinicial = (Stage) botonRegistrarse.getScene().getWindow();
-       stage.setScene(new Scene(root));
-       stage.show();
-       stageinicial.close();
+            Stage stage = new Stage();
+            Stage stageinicial = (Stage) botonRegistrarse.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+            stageinicial.close();
         } else {
             
-        // si no es correcto lanza un mensaje
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("Error al iniciar sesión");
-        //distinguimos entre error de contraseña o de usuario no registrado
-        if(Acount.getInstance().existsLogin(usuario) ){
-        alert.setContentText("La contraseña es incorrecta");
-        }else{
-        alert.setContentText("El usuario no se encuentra registrado");
-        }
+            // si no es correcto lanza un mensaje
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error al iniciar sesión");
+            //distinguimos entre error de contraseña o de usuario no registrado
+            if(Acount.getInstance().existsLogin(usuario) ){
+                alert.setContentText("La contraseña es incorrecta");
+            }else{
+                alert.setContentText("El usuario no se encuentra registrado");
+            }
+            
         //continuamos definiendo el mensaje
         Exception excepción = new Exception("Detalles del error");
         StringWriter sw = new StringWriter();

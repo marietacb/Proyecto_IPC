@@ -36,13 +36,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Acount;
@@ -106,6 +109,12 @@ public class FXMLDocumentController implements Initializable {
     private Button bAjustes;
     @FXML
     private TableColumn<Charge, String> Descripción;
+    @FXML
+    private ImageView imagenAjustes;
+    @FXML
+    private HBox bordeSuperior;
+    @FXML
+    private ToolBar toolbar;
     
     
     /**
@@ -114,9 +123,6 @@ public class FXMLDocumentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        
-        String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
-        border_pane.getStylesheets().add(css);
         
         /*this.categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
         this.nombre.setCellValueFactory(nombreFila->new SimpleStringProperty(nombreFila.getValue().getName()));
@@ -184,7 +190,14 @@ public class FXMLDocumentController implements Initializable {
         }
         catch(Exception e){}
         
+        
         //inicializar gridpane
+        
+        String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
+        border_pane.getStylesheets().add(css);
+        
+        Circle clip = new Circle(20, 20, 20); // Centrado en (20, 20) con radio 20
+        imagenPerfil.setClip(clip);
         
     }    
     
