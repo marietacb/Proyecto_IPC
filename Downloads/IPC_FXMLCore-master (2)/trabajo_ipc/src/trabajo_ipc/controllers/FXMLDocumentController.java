@@ -119,28 +119,7 @@ public class FXMLDocumentController implements Initializable {
         
         String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
         border_pane.getStylesheets().add(css);
-        
-        /*this.categoria.setCellValueFactory(categoriaFila->new SimpleObjectProperty<Category>(categoriaFila.getValue().getCategory()));
-        this.nombre.setCellValueFactory(nombreFila->new SimpleStringProperty(nombreFila.getValue().getName()));
-        this.fecha.setCellValueFactory(fechaFila -> new SimpleObjectProperty<LocalDate>(fechaFila.getValue().getDate()));
-        this.unidades.setCellValueFactory(unidadesFila -> new SimpleObjectProperty<Integer>(unidadesFila.getValue().getUnits()));
-        this.precio.setCellValueFactory(precioFila -> new SimpleObjectProperty<Double>(precioFila.getValue().getCost()));
-        this.tiquet.setCellValueFactory(tiquetFila -> new SimpleObjectProperty<Image>(tiquetFila.getValue().getImageScan()));
-        this.papeleraYmodificar.setCellValueFactory(papeleraFila -> new SimpleObjectProperty<Image>(papeleraFila.getValue().getImageScan()));      
-        
-        
-        try{
-            //User usuario = Acount.getInstance().getLoggedUser();
-            List<Charge> lista = Acount.getInstance().getUserCharges(); //lista con los gastos del usuario
-            listaGastos = (ObservableList)lista;    //convertir lit a observable y meterla en la lista
-            this.tableView.setItems(listaGastos);
-        }
-        catch(Exception e){} 
-         //situamos y mostramos tabla en el centro del border pane
-        tableView.getColumns().addAll(categoria, nombre, fecha, unidades, precio, tiquet, papeleraYmodificar);    
-        tableView.setItems(listaGastos);    //tabla de la lista de gastos existentes
-        
-        */ 
+
         
         try {
             listaGastos = FXCollections.observableArrayList(Acount.getInstance().getUserCharges());
