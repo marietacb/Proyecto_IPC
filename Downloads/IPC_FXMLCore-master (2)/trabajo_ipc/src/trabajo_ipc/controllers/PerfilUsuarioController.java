@@ -27,7 +27,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import model.Acount;
 import model.AcountDAO;
@@ -50,7 +52,7 @@ public class PerfilUsuarioController implements Initializable {
     @FXML
     private ImageView fotoImage;
     @FXML
-    private TextField nickname;
+    private Label nickname;
     @FXML
     private Button guardar;
     @FXML
@@ -61,6 +63,24 @@ public class PerfilUsuarioController implements Initializable {
     private Label errorApellidos;
     @FXML
     private Label errorEmail;
+    @FXML
+    private Label titulo;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private GridPane gridpane;
+    @FXML
+    private Label fotolabel;
+    @FXML
+    private TextField textNick;
+    @FXML
+    private Label apell;
+    @FXML
+    private Label ema;
+    @FXML
+    private Label nom;
+    @FXML
+    private HBox centro;
 
     /**
      * Initializes the controller class.
@@ -72,7 +92,7 @@ public class PerfilUsuarioController implements Initializable {
             nombreText.setText(Acount.getInstance().getLoggedUser().getName());
             apellidosText.setText(Acount.getInstance().getLoggedUser().getSurname());
             emailText.setText(Acount.getInstance().getLoggedUser().getEmail());
-            nickname.setText(Acount.getInstance().getLoggedUser().getNickName());
+            textNick.setText(Acount.getInstance().getLoggedUser().getNickName());
             fotoImage.setImage(Acount.getInstance().getLoggedUser().getImage());
             
             guardar.setDisable(true);
@@ -80,6 +100,9 @@ public class PerfilUsuarioController implements Initializable {
             
         }
         catch(Exception e){}
+        
+        String css = this.getClass().getResource("/resources/css/perfilusuario.css").toExternalForm();
+        vbox.getStylesheets().add(css);
     }    
 
     @FXML
@@ -100,6 +123,7 @@ public class PerfilUsuarioController implements Initializable {
         guardar.setDisable(false);
         cancelar.setDisable(false);
     }
+    
 
     @FXML
     private void pulsarGuardar(ActionEvent event) throws Exception{  

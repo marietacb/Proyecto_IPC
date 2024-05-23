@@ -1,7 +1,55 @@
-/*
- * Empty Stylesheet file.
- */
 
-.mainFxmlClass {
+/*titulo en negrita*/
+#titulo{
+    -fx-font-family: monospace;
+    -fx-font-size: 250%;
+    -fx-font-weight: bold;
+    -fx-text-fill: #009933; /*verde militar*/
+}
+
+/*titulos campos donde introducir datos en negrita*/
+#nickname{
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+#nom{
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+#apell{
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+#ema{
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+#fotolabel{
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+#centro{}
+
+/*colores y diseño botones guardar y cancelar*/
+
+#guardar{
+    -fx-background-color: #ccffcc;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+}
+
+#cancelar{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
 
 }
