@@ -25,9 +25,45 @@
 
 #toolbar{
     -fx-background-color: #99e89d;
+    -fx-border-color: black;
+
 }
 
 #bordeSuperior{
-    -fx-background-color: #99e89d;
+    -fx-background-color: white;
+    -fx-border-bottom-color: black;
+
 }
+#nombre{
+    -fx-background-color: #ffffff;
+    -fx-border-color: black;
+}
+#categoria{
+    -fx-background-color: #ffffff;
+}
+#fecha{
+    -fx-background-color: #ffffff;
+    -fx-border-color: black;
+}
+#unidades{
+    -fx-background-color: #ffffff;
+    -fx-border-color: black;
+}
+#precio{
+    -fx-background-color: #ffffff;
+    -fx-border-color: black;
+}
+#descripcion{
+    -fx-background-color: #ffffff;
+    -fx-border-color: black;
+}
+#tiquet{
+    -fx-background-color: #ffffff;
+    -fx-border-color: black;
+}
+
+#splitpane{
+    -fx-background-color: black;
+}
+
 

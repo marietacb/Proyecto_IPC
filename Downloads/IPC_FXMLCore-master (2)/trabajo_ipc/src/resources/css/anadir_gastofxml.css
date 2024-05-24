@@ -3,7 +3,7 @@
     -fx-font-family: "montserrat";
     -fx-font-size: 250%;
     -fx-font-weight: bold;
-    -fx-text-fill: #009933; /*verde militar*/
+    -fx-text-fill: green; /*verde militar*/
 }
 
 /*botones aceptar y cancelar diseño*/

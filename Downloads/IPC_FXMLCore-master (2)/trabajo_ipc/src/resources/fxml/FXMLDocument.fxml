@@ -93,7 +93,7 @@
                         <TableColumn fx:id="fecha" prefWidth="80.00006103515625" text="Fecha" />
                         <TableColumn fx:id="unidades" prefWidth="66.40008544921875" text="Unidades" />
                         <TableColumn fx:id="precio" prefWidth="51.20001220703125" text="Precio" />
-                        <TableColumn fx:id="Descripción" prefWidth="92.79998779296875" text="Descripción" />
+                        <TableColumn fx:id="descripcion" prefWidth="92.79998779296875" text="Descripción" />
                         <TableColumn fx:id="tiquet" prefWidth="72.80001831054688" text="Tiquet" />
                     </columns>
                      <HBox.margin>

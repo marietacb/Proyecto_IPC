@@ -75,7 +75,7 @@
       </VBox>
    </center>
    <bottom>
-      <Hyperlink fx:id="hiperlink" onMouseClicked="#registrarse" text="¿No tienes cuenta? Regístrate" BorderPane.alignment="CENTER">
+      <Hyperlink fx:id="hiperlink" onMouseClicked="#registrarse" text="¿No tienes cuenta? Regístrate" textFill="#19ae1e" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="40.0" />
          </BorderPane.margin>

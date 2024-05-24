@@ -68,8 +68,6 @@ public class PerfilUsuarioController implements Initializable {
     @FXML
     private VBox vbox;
     @FXML
-    private GridPane gridpane;
-    @FXML
     private Label fotolabel;
     @FXML
     private TextField textNick;
@@ -79,8 +77,6 @@ public class PerfilUsuarioController implements Initializable {
     private Label ema;
     @FXML
     private Label nom;
-    @FXML
-    private HBox centro;
 
     /**
      * Initializes the controller class.

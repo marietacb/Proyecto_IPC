@@ -2,6 +2,30 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
 
+    #titulo{
+        -fx-font-family: "montserrat";
+        -fx-font-size: 250%;
+        -fx-font-weight: bold;
+        -fx-text-fill: #009933; /*verde militar*/
+    }
+    #boton_aceptar{
+        -fx-background-color: #ccffcc;
+        -fx-text-fill: black;
+        -fx-border-color: black;
+        -fx-border-radius: 8;
+        -fx-background-radius: 30%;
+}
+    #boton_cancelar{
+        -fx-background-color: white;
+        -fx-text-fill: black;
+        -fx-border-color: black;
+        -fx-border-radius: 8;
+        -fx-background-radius: 30%;
+}
+#nombre{
+    -fx-font-family: sans-serif;
+}
+#desc{
+    -fx-font-family: sans-serif;
 }

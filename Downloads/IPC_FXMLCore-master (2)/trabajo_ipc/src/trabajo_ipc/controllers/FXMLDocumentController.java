@@ -36,6 +36,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -110,8 +111,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button bAjustes;
     @FXML
-    private TableColumn<Charge, String> Descripción;
-    @FXML
     private HBox bordeSuperior;
     @FXML
     private ImageView imagenAjustes;
@@ -139,6 +138,8 @@ public class FXMLDocumentController implements Initializable {
     private MenuItem modificar_Gasto;
     @FXML
     private HBox prueba;
+    @FXML
+    private TableColumn<Charge, String> descripcion;
     
     
     /**
@@ -150,7 +151,7 @@ public class FXMLDocumentController implements Initializable {
         
         String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
         border_pane.getStylesheets().add(css);
-
+        
         try {
             listaGastos = FXCollections.observableArrayList(Acount.getInstance().getUserCharges());
         } catch (AcountDAOException ex) {
@@ -161,7 +162,7 @@ public class FXMLDocumentController implements Initializable {
         tableView.setItems(listaGastos);
 
         nombre.setCellValueFactory(new PropertyValueFactory<>("name"));
-        Descripción.setCellValueFactory(new PropertyValueFactory<>("description"));
+        descripcion.setCellValueFactory(new PropertyValueFactory<>("description"));
         fecha.setCellValueFactory(new PropertyValueFactory<>("date"));
         unidades.setCellValueFactory(new PropertyValueFactory<>("units"));
         precio.setCellValueFactory(new PropertyValueFactory<>("cost"));

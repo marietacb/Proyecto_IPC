@@ -17,6 +17,8 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
@@ -43,9 +45,17 @@ public class FXML_añadirCategoriaController implements Initializable {
     //variables asociadas a los elementos del scene
     private String nuevaCategoria;
     private String descripcion;
-    
+     
     @FXML
     private Label error_descripcion;
+    @FXML
+    private HBox hbox;
+    @FXML
+    private Text titulo;
+    @FXML
+    private Text nombre;
+    @FXML
+    private Text desc;
 
     /**
      * Initializes the controller class.
@@ -53,6 +63,8 @@ public class FXML_añadirCategoriaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        String css = this.getClass().getResource("/resources/css/fxml_añadircategoria.css").toExternalForm();
+        hbox.getStylesheets().add(css);
     }    
 
     @FXML
