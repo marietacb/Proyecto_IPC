@@ -55,6 +55,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Charge;    
 import model.User;
@@ -121,7 +122,9 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private SplitMenuButton categorias_boton;
     
-    private List<Category> categorias;    //lista categorias
+    private List<Category> categorias;
+    private List<Charge> cargos;
+    private ObservableList<Charge> cargosO;    //lista categorias
     
     int seleccionado;
     @FXML
@@ -140,6 +143,10 @@ public class FXML_anadirGastoController implements Initializable {
     private Text ti;
     @FXML
     private Text titulo;
+    
+    private Boolean editGasto;
+    
+    private Stage stage;
         
     /**
      * Initializes the controller class.
@@ -279,16 +286,6 @@ public class FXML_anadirGastoController implements Initializable {
      
             Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,cat); 
             
-        
-            //modificamos datos tabla principal
-           /* FXMLLoader tabla = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument"));
-            Parent root = tabla.load();
-            
-            FXMLDocumentController controlador = tabla.getController();
-            Charge gasto = Acount.getInstance().getUserCharges().get(Acount.getInstance().getUserCharges().size()-1);
-            controlador.addCharge(gasto); */
-           
-           
            //volvemos a la pantalla principal LA DE LA TABLA
            FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
            Parent root = cargarRegistro.load();
@@ -391,4 +388,35 @@ public class FXML_anadirGastoController implements Initializable {
             categorias_boton.getItems().add(menuItem);
         }
     }
+    
+    public void editGasto(Charge charge) throws AcountDAOException, IOException{
+        editGasto = true;
+        cargos = Acount.getInstance().getUserCharges();
+        cargosO = FXCollections.observableList(cargos);
+
+        String nombreGasto = nombre_gasto.getText();
+        String descripcion = descripcion_gasto.getText();   //obtenemos descripcion gasto aññadido
+        LocalDate fecha = elegir_fecha.getValue();  //obtenemos fecha añadida
+        int unidades = Integer.parseInt(unidades_gasto.getText());  //obtenemos unidades gasto añadido
+        double precio = Double.parseDouble(precio_gasto.getText()); //obtenemos precio gasto añadido
+        Image factura = tiquet_gasto.getImage();    //obtenemos imagen gasto añadido
+        Category cat = categorias.get(seleccionado);
+        Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,cat);  
+        
+    }
+    public void setStage(Stage sta) {
+        stage = sta;
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+    }
+    
+    public void setScene(Stage sta){
+        stage = sta;
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+    
+    
+    
+    }
+
 }

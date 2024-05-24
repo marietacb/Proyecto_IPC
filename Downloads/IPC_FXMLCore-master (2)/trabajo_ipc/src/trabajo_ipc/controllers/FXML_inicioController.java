@@ -59,7 +59,6 @@ public class FXML_inicioController implements Initializable {
   
     @FXML
     private Button botonAceptar;
-    private Button botonRegistrarse;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -101,7 +100,7 @@ public class FXML_inicioController implements Initializable {
             Parent root = cargarRegistro.load();
 
             Stage stage = new Stage();
-            Stage stageinicial = (Stage) botonRegistrarse.getScene().getWindow();
+            Stage stageinicial = (Stage) botonSalir.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
             stageinicial.close();

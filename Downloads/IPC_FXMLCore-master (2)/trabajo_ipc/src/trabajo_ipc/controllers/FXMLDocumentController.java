@@ -413,7 +413,7 @@ public class FXMLDocumentController implements Initializable {
         Charge selectedCategory = tableView.getSelectionModel().getSelectedItem();
         if (selectedCategory != null) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Eliminar Categoría");
+            alert.setTitle("Eliminar Gasto");
             alert.setHeaderText(null);
             alert.setContentText("¿Estás seguro que quieres eliminar el gasto");
             alert.showAndWait().ifPresent(response -> {
@@ -451,7 +451,26 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void modificarGasto(ActionEvent event) {
+    private void modificarGasto(ActionEvent event) throws IOException, AcountDAOException {
+        
+
+        // Cargar el archivo FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
+        Parent root = loader.load();
+        
+        // Obtener el controlador asociado
+        FXML_anadirGastoController controlerGasto = loader.getController();
+        controlerGasto.editGasto(tableView.getSelectionModel().getSelectedItem());
+        Stage newStage = new Stage();
+        
+        // Crear una nueva ventana
+        
+        newStage.setTitle("Modificar Gasto");
+        newStage.setScene(new Scene(root));
+        controlerGasto.setStage(newStage);
+        newStage.show();
+        
+        
     }
     
     class ImagenTabCell extends TableCell<Charge, Image> {
@@ -477,7 +496,7 @@ public class FXMLDocumentController implements Initializable {
             }
             }
     }   
-   }
+   }   
 }
     
     
