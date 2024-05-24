@@ -103,10 +103,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private MenuItem boton_añadircategoria;
     @FXML
-    private Button bPerfil;
-    @FXML
-    private ImageView imagenPerfil;
-    @FXML
     private Button bAyuda;
     @FXML
     private Button bAjustes;
@@ -140,6 +136,12 @@ public class FXMLDocumentController implements Initializable {
     private HBox prueba;
     @FXML
     private TableColumn<Charge, String> descripcion;
+    @FXML
+    private MenuItem miPerfil;
+    @FXML
+    private ImageView imagenPerf;
+    @FXML
+    private MenuButton botonCrear;
     
     
     /**
@@ -196,7 +198,7 @@ public class FXMLDocumentController implements Initializable {
         boton_resumenGastos.setDisable(true);
        
         try{
-        imagenPerfil.setImage(Acount.getInstance().getLoggedUser().getImage());
+        imagenPerf.setImage(Acount.getInstance().getLoggedUser().getImage());
         }
         catch(Exception e){}
         
@@ -215,7 +217,6 @@ public class FXMLDocumentController implements Initializable {
         boton_gastos.setDisable(true);
         boton_resumenGastos.setDisable(false);
         
-        bPerfil.setDisable(false);
     }
 
     //HECHO
@@ -227,7 +228,6 @@ public class FXMLDocumentController implements Initializable {
         boton_resumenGastos.setDisable(true);
         boton_gastos.setDisable(false);
         
-        bPerfil.setDisable(false);
 
     }
 
@@ -276,7 +276,6 @@ public class FXMLDocumentController implements Initializable {
             estestage.close();
         }
         
-        bPerfil.setDisable(false);
         
     }
 
@@ -296,7 +295,6 @@ public class FXMLDocumentController implements Initializable {
         // Mostrar la ventana y esperar a que se cierre
         stage.show();
         
-        bPerfil.setDisable(false);
 
     }
     
@@ -304,24 +302,6 @@ public class FXMLDocumentController implements Initializable {
         tableView.getItems().add(g);
     }
     
-
-    @FXML
-    private void pulsarMiPerfil(ActionEvent event) throws Exception{
-        
-        bPerfil.setDisable(true);
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/PerfilUsuario.fxml"));
-            Parent userProfilePane = loader.load();
-            border_pane.setCenter(userProfilePane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        boton_gastos.setDisable(false);
-        boton_añadirGasto.setDisable(false);
-        boton_añadircategoria.setDisable(false);
-        boton_resumenGastos.setDisable(false);
-
-    }
 
     @FXML
     private void comparar(ActionEvent event) throws IOException {
@@ -345,7 +325,7 @@ public class FXMLDocumentController implements Initializable {
       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/inicio.fxml"));
        Parent root = cargarRegistro.load();
        Stage stage = new Stage();
-       Stage stageinicial = (Stage) bPerfil.getScene().getWindow();
+       Stage stageinicial = (Stage) bSalir.getScene().getWindow();
        stage.setScene(new Scene(root));
        stage.show();
        stageinicial.close();
@@ -362,8 +342,8 @@ public class FXMLDocumentController implements Initializable {
       alert.setContentText("¿Seguro que quieres salir?");
       Optional<ButtonType> result = alert.showAndWait();
       if (result.isPresent() && result.get() == ButtonType.OK){System.out.println("OK");
-       Stage stageinicial = (Stage) bPerfil.getScene().getWindow();
-       stageinicial.close();
+      Stage stageinicial = (Stage) bSalir.getScene().getWindow();
+      stageinicial.close();
       } else {
      System.out.println("CANCEL");
      }
@@ -455,7 +435,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void modificarGasto(ActionEvent event) throws IOException, AcountDAOException {
         
-
         // Cargar el archivo FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
         Parent root = loader.load();
@@ -473,6 +452,20 @@ public class FXMLDocumentController implements Initializable {
         newStage.show();
         
         
+    }
+
+
+
+    @FXML
+    private void pulsarMiperfil(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/PerfilUsuario.fxml"));
+        Parent userProfilePane = loader.load();
+        border_pane.setCenter(userProfilePane);
+        
+        boton_gastos.setDisable(false);
+        boton_añadirGasto.setDisable(false);
+        boton_añadircategoria.setDisable(false);
+        boton_resumenGastos.setDisable(false);
     }
     
     class ImagenTabCell extends TableCell<Charge, Image> {

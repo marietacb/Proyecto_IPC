@@ -2,37 +2,38 @@
  * Empty Stylesheet file.
  */
 
-#bPerfil{
-    -fx-padding: 20;            /* Espaciado interno */
-    -fx-border-radius: 50%;     /* Hace que los bordes sean redondos */
-    -fx-background-radius: 50%; /* Hace que el fondo sea redondo */
-    -fx-alignment: center;      /* Centra el contenido del botón */
-}
-
 #bAyuda{
-    -fx-padding: 20;            /* Espaciado interno */
-    -fx-border-radius: 50%;     /* Hace que los bordes sean redondos */
-    -fx-background-radius: 50%; /* Hace que el fondo sea redondo */
+    -fx-padding: 10;            /* Espaciado interno */
+    -fx-border-radius: 60;     /* Hace que los bordes sean redondos */
+    -fx-background-radius: 60; /* Hace que el fondo sea redondo */
     -fx-alignment: center;      /* Centra el contenido del botón */
+    -fx-background-color: white;
+
 }
 
 #bAjustes{
-    -fx-padding: 20;            /* Espaciado interno */
-    -fx-border-radius: 50%;     /* Hace que los bordes sean redondos */
-    -fx-background-radius: 50%; /* Hace que el fondo sea redondo */
+    -fx-padding: 10;            /* Espaciado interno */
+    -fx-border-radius: 60;     /* Hace que los bordes sean redondos */
+    -fx-background-radius: 60; /* Hace que el fondo sea redondo */
     -fx-alignment: center;      /* Centra el contenido del botón */
+    -fx-background-color: white;
+}
+#bSalir{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
 }
 
 #toolbar{
-    -fx-background-color: #99e89d;
-    -fx-border-color: black;
+    -fx-background-color: #ccffcc;
 
 }
 
 #bordeSuperior{
-    -fx-background-color: white;
-    -fx-border-bottom-color: black;
-
+    -fx-background-color: #ccffcc;
 }
 #nombre{
     -fx-background-color: #ffffff;
@@ -87,4 +88,37 @@
     -fx-background-color: black;
 }
 
+#botonCrear{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
+}
+
+#boton_resumenGastos{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
+}
+#boton_gastos{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
+}
+#comparar_boton{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
+}
 

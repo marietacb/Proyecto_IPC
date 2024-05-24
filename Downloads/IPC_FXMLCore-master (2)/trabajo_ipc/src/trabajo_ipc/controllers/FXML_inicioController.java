@@ -64,14 +64,14 @@ public class FXML_inicioController implements Initializable {
     @FXML
     private Label nick;
     @FXML
-    private Label contraseña;
-    @FXML
     private Menu ayuda;
     private Hyperlink registrarse;
     @FXML
     private Button botonSalir;
     @FXML
     private Hyperlink hiperlink;
+    @FXML
+    private Label cont;
 
     /**
      * Initializes the controller class.
@@ -92,8 +92,8 @@ public class FXML_inicioController implements Initializable {
         String usuario = nickField.getText();
         
         //obtenemos contraseña
-        String contraseña = passwordField.getText();
-        boolean aceptar = Acount.getInstance().logInUserByCredentials(usuario, contraseña);
+        String contra = passwordField.getText();
+        boolean aceptar = Acount.getInstance().logInUserByCredentials(usuario, contra);
  
         //si el booleano está en true, abre nuestro perfil.
         if (aceptar) {

@@ -30,14 +30,6 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="bPerfil" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" onAction="#pulsarMiPerfil" prefHeight="30.0" prefWidth="40.0">
-               <HBox.margin>
-                  <Insets right="10.0" top="10.0" />
-               </HBox.margin>
-               <graphic>
-                  <ImageView fx:id="imagenPerfil" fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
             <Button fx:id="bAjustes" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
@@ -50,13 +42,14 @@
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton fx:id="bSalir" mnemonicParsing="false" prefHeight="27.0" prefWidth="42.0">
+            <MenuButton fx:id="bSalir" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0">
               <items>
+                  <MenuItem fx:id="miPerfil" mnemonicParsing="false" onAction="#pulsarMiperfil" text="Mi perfil" />
                 <MenuItem fx:id="cPerfil" mnemonicParsing="false" onAction="#cambiarperfil" text="Cambiar Perfil" />
                 <MenuItem fx:id="boton_salir" mnemonicParsing="false" onAction="#sailr" text="Salir" />
               </items>
                <graphic>
-                  <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imagenPerf" fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
                <HBox.margin>
                   <Insets right="20.0" top="10.0" />
@@ -68,7 +61,7 @@
    <left>
       <ToolBar fx:id="toolbar" orientation="VERTICAL" prefHeight="350.0" prefWidth="140.0" BorderPane.alignment="CENTER">
         <items>
-            <MenuButton mnemonicParsing="false" text="+ Crear" translateX="10.0" translateY="50.0">
+            <MenuButton fx:id="botonCrear" mnemonicParsing="false" text="+ Crear" translateX="10.0" translateY="50.0">
               <items>
                 <MenuItem fx:id="boton_añadirGasto" mnemonicParsing="false" onAction="#añadirGasto" text="Añadir gasto" />
                 <MenuItem fx:id="boton_añadircategoria" mnemonicParsing="false" onAction="#añadircategoria" text="Añadir categoría" />

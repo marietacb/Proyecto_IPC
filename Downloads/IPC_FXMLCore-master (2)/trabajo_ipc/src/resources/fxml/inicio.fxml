@@ -54,7 +54,7 @@
             <Region prefHeight="200.0" prefWidth="200.0" />
             <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" VBox.vgrow="NEVER">
                <children>
-                  <Label fx:id="contraseña" text="Contraseña">
+                  <Label fx:id="cont" text="Contraseña">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
@@ -63,11 +63,17 @@
             </HBox>
             <PasswordField fx:id="passwordField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" />
             <Region prefHeight="200.0" prefWidth="200.0" />
-            <HBox alignment="CENTER" fillHeight="false" prefHeight="25.0" prefWidth="200.0">
+            <HBox alignment="CENTER" fillHeight="false" maxWidth="300.0" minWidth="300.0" prefHeight="25.0" prefWidth="300.0">
                <children>
-                  <Button fx:id="botonAceptar" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#aceptar" prefHeight="25.0" prefWidth="80.0" text="Aceptar" HBox.hgrow="NEVER" />
-                  <Region prefHeight="35.0" prefWidth="50.0" />
-                  <Button fx:id="botonSalir" maxWidth="-Infinity" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#salir" prefHeight="25.0" prefWidth="80.0" text="Salir" HBox.hgrow="NEVER" />
+                  <Button fx:id="botonAceptar" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onMouseClicked="#aceptar" prefHeight="30.0" prefWidth="90.0" text="Aceptar" HBox.hgrow="NEVER" />
+                  <Region prefHeight="35.0" prefWidth="50.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Region>
+                  <Button fx:id="botonSalir" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onMouseClicked="#salir" prefHeight="30.0" prefWidth="90.0" text="Salir" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Button>
                </children>
             </HBox>
             <Region prefHeight="180.0" prefWidth="200.0" />

@@ -17,7 +17,7 @@
 #nick{
     -fx-font-family: sans-serif;
 }
-#contraseña{    /*no reconoce el label contraseña*/
+#cont{   
     -fx-font-family: sans-serif;
 }
 #botonAceptar{
@@ -26,6 +26,8 @@
     -fx-border-color: black;
     -fx-border-radius: 8;
     -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
+
 }
 #botonSalir{
     -fx-background-color: white;
@@ -33,4 +35,9 @@
     -fx-border-color: black;
     -fx-border-radius: 8;
     -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
+
+}
+#hiperlink{
+    -fx-font-family: sans-serif;
 }
