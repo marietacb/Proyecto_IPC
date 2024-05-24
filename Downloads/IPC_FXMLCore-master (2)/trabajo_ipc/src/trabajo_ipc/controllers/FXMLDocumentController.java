@@ -152,6 +152,7 @@ public class FXMLDocumentController implements Initializable {
         String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
         border_pane.getStylesheets().add(css);
         
+        
         try {
             listaGastos = FXCollections.observableArrayList(Acount.getInstance().getUserCharges());
         } catch (AcountDAOException ex) {

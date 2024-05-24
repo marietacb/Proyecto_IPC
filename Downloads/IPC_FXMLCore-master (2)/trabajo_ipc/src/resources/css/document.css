@@ -36,30 +36,51 @@
 }
 #nombre{
     -fx-background-color: #ffffff;
-    -fx-border-color: black;
+    -fx-border-color: green;
+    -fx-font-family: sans-serif;
 }
 #categoria{
     -fx-background-color: #ffffff;
+    -fx-border-color: green;
+    -fx-font-family: sans-serif;
+
+
 }
 #fecha{
     -fx-background-color: #ffffff;
-    -fx-border-color: black;
+    -fx-border-color: green;
+    -fx-font-family: sans-serif;
+
 }
 #unidades{
     -fx-background-color: #ffffff;
-    -fx-border-color: black;
+    -fx-border-color: green;
+    -fx-font-family: sans-serif;
+
 }
 #precio{
     -fx-background-color: #ffffff;
-    -fx-border-color: black;
+    -fx-border-color: green;
+        -fx-font-family: sans-serif;
+
 }
 #descripcion{
     -fx-background-color: #ffffff;
-    -fx-border-color: black;
+    -fx-border-color: green;
+        -fx-font-family: sans-serif;
+
 }
 #tiquet{
     -fx-background-color: #ffffff;
-    -fx-border-color: black;
+    -fx-border-color: green;
+        -fx-font-family: sans-serif;
+
+}
+
+.TableColumn{
+    -fx-background-color: #ffffff;
+    -fx-border-color: green;
+        -fx-font-family: sans-serif;
 }
 
 #splitpane{

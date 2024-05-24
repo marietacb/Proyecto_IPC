@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="border_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXMLDocumentController">
+<BorderPane fx:id="border_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXMLDocumentController">
    <top>
       <HBox fx:id="bordeSuperior" alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -91,8 +91,8 @@
                       <TableColumn fx:id="categoria" prefWidth="84.79998624324799" text="Categoria" />
                       <TableColumn fx:id="nombre" prefWidth="80.00000762939453" text="Nombre" />
                         <TableColumn fx:id="fecha" prefWidth="80.00006103515625" text="Fecha" />
-                        <TableColumn fx:id="unidades" prefWidth="66.40008544921875" text="Unidades" />
-                        <TableColumn fx:id="precio" prefWidth="51.20001220703125" text="Precio" />
+                        <TableColumn fx:id="unidades" prefWidth="60.0" text="Unidades" />
+                        <TableColumn fx:id="precio" prefWidth="50.0" text="Precio" />
                         <TableColumn fx:id="descripcion" prefWidth="92.79998779296875" text="Descripción" />
                         <TableColumn fx:id="tiquet" prefWidth="72.80001831054688" text="Tiquet" />
                     </columns>
