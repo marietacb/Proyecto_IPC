@@ -67,7 +67,7 @@
                <children>
                   <Button fx:id="botonAceptar" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#aceptar" prefHeight="25.0" prefWidth="80.0" text="Aceptar" HBox.hgrow="NEVER" />
                   <Region prefHeight="35.0" prefWidth="50.0" />
-                  <Button fx:id="botonSalir" maxWidth="-Infinity" minWidth="80.0" mnemonicParsing="false" onAction="#salir" onMouseClicked="#registrarse" prefHeight="25.0" prefWidth="80.0" text="Salir" HBox.hgrow="NEVER" />
+                  <Button fx:id="botonSalir" maxWidth="-Infinity" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#salir" prefHeight="25.0" prefWidth="80.0" text="Salir" HBox.hgrow="NEVER" />
                </children>
             </HBox>
             <Region prefHeight="180.0" prefWidth="200.0" />
@@ -75,7 +75,7 @@
       </VBox>
    </center>
    <bottom>
-      <Hyperlink fx:id="registrarse" text="¿No tienes cuenta? Regístrate" BorderPane.alignment="CENTER">
+      <Hyperlink fx:id="hiperlink" onMouseClicked="#registrarse" text="¿No tienes cuenta? Regístrate" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="40.0" />
          </BorderPane.margin>

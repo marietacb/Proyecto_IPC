@@ -68,10 +68,11 @@ public class FXML_inicioController implements Initializable {
     private Label contraseña;
     @FXML
     private Menu ayuda;
-    @FXML
     private Hyperlink registrarse;
     @FXML
     private Button botonSalir;
+    @FXML
+    private Hyperlink hiperlink;
 
     /**
      * Initializes the controller class.
@@ -101,7 +102,7 @@ public class FXML_inicioController implements Initializable {
             Parent root = cargarRegistro.load();
 
             Stage stage = new Stage();
-            Stage stageinicial = (Stage) botonRegistrarse.getScene().getWindow();
+            Stage stageinicial = (Stage) botonAceptar.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
             stageinicial.close();
@@ -139,13 +140,16 @@ public class FXML_inicioController implements Initializable {
         }
     }
 
+
+
+
     @FXML
     private void registrarse(MouseEvent event) throws IOException {
-       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXML_registro.fxml"));
+       FXMLLoader cargarRegistro = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_registro.fxml"));
        Parent root = cargarRegistro.load();
        
        Stage stage = new Stage();
-       Stage stageinicial = (Stage) registrarse.getScene().getWindow();
+       Stage stageinicial = (Stage) hiperlink.getScene().getWindow();
        stage.setScene(new Scene(root));
        stage.show();
        stageinicial.close();
@@ -153,7 +157,12 @@ public class FXML_inicioController implements Initializable {
     }
 
     @FXML
-    private void salir(ActionEvent event) {
+    private void salir(MouseEvent event) {
+       Stage stage = new Stage();
+       Stage stageinicial = (Stage) botonSalir.getScene().getWindow();
+       stageinicial.close();
     }
+
+    
     
 }
