@@ -2,9 +2,25 @@
  * Empty Stylesheet file.
  */
 
-    .imagenbordeazul {
-        -fx-border-color: blue;
-        -fx-border-width: 2px;
-        -fx-border-radius: 5px;
-        -fx-padding: 5px; 
+#titulo{
+    -fx-font-family: "montserrat";
+    -fx-font-size: 250%;
+    -fx-font-weight: bold;
+    -fx-text-fill: green; 
+}
+#button_login{
+    -fx-font-family: sans-serif;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+}
+#button_cancel{
+    -fx-font-family: sans-serif;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
 }

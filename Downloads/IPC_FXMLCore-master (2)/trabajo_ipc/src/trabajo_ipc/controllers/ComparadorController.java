@@ -14,6 +14,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import model.Acount;
 import model.AcountDAOException;
 import model.Charge;
@@ -32,6 +33,8 @@ public class ComparadorController implements Initializable {
     private TextField boton_mes;
     @FXML
     private Button añadir_boton;
+    @FXML
+    private BorderPane fondocomparador;
 
     /**
      * Initializes the controller class.
@@ -39,6 +42,8 @@ public class ComparadorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        String css = this.getClass().getResource("/resources/css/perfilusuario.css").toExternalForm();
+        fondocomparador.getStylesheets().add(css);
     }    
 
     @FXML
