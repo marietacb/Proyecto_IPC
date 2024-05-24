@@ -248,7 +248,7 @@ public class FXMLDocumentController implements Initializable {
         }
 
         
-        //boton añadir gasto abre ventana
+        //boton añadir gasto abre ventana, cuando se añada el gasto, esta debe quedarse abierta
         else{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
             Parent root = loader.load();

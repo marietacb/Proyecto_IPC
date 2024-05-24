@@ -2,11 +2,23 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
+/*.mainFxmlClass {
      css.border-pane {
        -fx-background-image: url("@../../images/foto_perfil.jpg");
        -fx-background-size: cover;
        -fx-background-position: center center;
    }
 
+}*/
+
+#miMenu{
+    -fx-font-family: sans-serif;
+}
+
+#nick{
+    -fx-font-family: sans-serif;
+
+}
+#contraseña{
+    -fx-font-family: sans-serif;
 }

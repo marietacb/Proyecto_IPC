@@ -289,10 +289,10 @@ public class FXML_anadirGastoController implements Initializable {
             controlador.addCharge(gasto); */
            
            
-           //volvemos a la pantalla principal
+           //volvemos a la pantalla principal LA DE LA TABLA
            FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
            Parent root = cargarRegistro.load();
-       
+     
            Stage stage = new Stage();
            Stage stageinicial = (Stage) categorias_boton.getScene().getWindow();
            stage.setScene(new Scene(root));

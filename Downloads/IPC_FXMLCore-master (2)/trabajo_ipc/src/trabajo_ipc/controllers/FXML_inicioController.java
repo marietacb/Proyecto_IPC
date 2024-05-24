@@ -60,6 +60,10 @@ public class FXML_inicioController implements Initializable {
     private Button botonRegistrarse;
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private Label nick;
+    @FXML
+    private Label contraseña;
 
     /**
      * Initializes the controller class.
@@ -71,6 +75,10 @@ public class FXML_inicioController implements Initializable {
 
     @FXML
     private void aceptar(MouseEvent event) throws AcountDAOException, IOException {
+        
+        //añadimos css
+        String css = this.getClass().getResource("/resources/css/fxml_inicio.css").toExternalForm();
+        borderPane.getStylesheets().add(css);
         
         //obtenemos el usuario
         String usuario = nickField.getText();
