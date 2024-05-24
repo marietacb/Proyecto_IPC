@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane stylesheets="@../css/fxml_registro.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_registroController">
    <bottom>
@@ -47,7 +46,6 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
             <HBox prefWidth="200.0">
                <children>
                   <VBox prefWidth="100.0" spacing="3.0">
@@ -55,7 +53,7 @@
                         <Label text="Foto de perfil: (Opcional)" />
                         <HBox VBox.vgrow="NEVER">
                            <children>
-                              <ImageView fx:id="avatarid" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#cambiar_avatar" pickOnBounds="true" preserveRatio="true" styleClass="imagenbordeazul">
+                              <ImageView fx:id="avatarid" fitHeight="140.0" fitWidth="140.0" onMouseClicked="#cambiar_avatar" pickOnBounds="true" preserveRatio="true" styleClass="imagenbordeazul">
                                  <viewport>
                                     <Rectangle2D />
                                  </viewport>
@@ -77,7 +75,7 @@
                   <VBox prefWidth="100.0" spacing="3.0">
                      <children>
                         <Label text="Nombre:*" />
-                        <TextField fx:id="field_nombre" minHeight="26.0" minWidth="250.0" prefHeight="26.0" prefWidth="350.0" promptText="Introduzca su nombre">
+                        <TextField fx:id="field_nombre" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="150.0" promptText="Introduzca su nombre">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -91,6 +89,9 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
                </children>
                <VBox.margin>
@@ -105,7 +106,7 @@
                   <VBox prefWidth="100.0" spacing="3.0">
                      <children>
                         <Label text="Apellidos:*" />
-                        <TextField fx:id="field_apellidos" minHeight="26.0" minWidth="250.0" prefHeight="26.0" prefWidth="350.0" promptText="Introduzca sus apellidos">
+                        <TextField fx:id="field_apellidos" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="150.0" promptText="Introduzca sus apellidos">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -119,6 +120,9 @@
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
                </children>
                <padding>
@@ -129,8 +133,8 @@
                <children>
                   <VBox prefWidth="100.0" spacing="3.0">
                      <children>
-                        <Label text="Nombre de Usuario:*" />
-                        <TextField fx:id="field_nombreusuario" minHeight="26.0" minWidth="250.0" prefHeight="26.0" prefWidth="350.0" promptText="Introduzca su nombre de usuario">
+                        <Label text="Nickname:*" />
+                        <TextField fx:id="field_nombreusuario" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="150.0" promptText="Introduzca su nickname">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -144,6 +148,9 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
                </children>
                <padding>
@@ -169,6 +176,9 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
                </children>
                <padding>
@@ -180,7 +190,7 @@
                   <VBox prefWidth="100.0" spacing="3.0">
                      <children>
                         <Label text="Contraseña:*" />
-                        <PasswordField fx:id="field_contraseña" minHeight="26.0" minWidth="250.0" prefHeight="26.0" prefWidth="350.0" promptText="Introduzca su contraseña" />
+                        <PasswordField fx:id="field_contraseña" minHeight="26.0" minWidth="200.0" prefHeight="26.0" prefWidth="350.0" promptText="Introduzca su contraseña" />
                      </children>
                   </VBox>
                   <Label fx:id="contraseña_incorrecto" text="La contraseña debe tener almenos 6 carácteres con letras, números y sin espacios." textFill="RED" visible="false" HBox.hgrow="ALWAYS">
@@ -190,15 +200,10 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
-               </children>
-               <padding>
-                  <Insets left="30.0" right="20.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox prefWidth="200.0">
-               <children>
-                  <VBox prefWidth="100.0" spacing="3.0" />
                </children>
                <padding>
                   <Insets left="30.0" right="20.0" top="10.0" />
@@ -209,7 +214,7 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets left="60.0" top="25.0" />
+                  <Insets left="40.0" top="25.0" />
                </VBox.margin>
             </Hyperlink>
          </children>
@@ -218,17 +223,17 @@
    <top>
       <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Text fx:id="Registro" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro usuario">
+            <Label fx:id="titulo" text="Registro usuario">
                <font>
-                  <Font name="AdobeArabic-Regular" size="51.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
-            </Text>
+            </Label>
          </children>
          <BorderPane.margin>
-            <Insets top="10.0" />
+            <Insets />
          </BorderPane.margin>
          <padding>
-            <Insets bottom="10.0" left="30.0" right="20.0" top="10.0" />
+            <Insets bottom="10.0" left="30.0" right="20.0" />
          </padding>
       </HBox>
    </top>
