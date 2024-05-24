@@ -303,7 +303,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void comparar(ActionEvent event) throws IOException {
-       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXML_Comparador_gastos.fxml"));
+       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/Comparador.fxml"));
        Parent root = cargarRegistro.load();
        
        Stage stage = new Stage();
