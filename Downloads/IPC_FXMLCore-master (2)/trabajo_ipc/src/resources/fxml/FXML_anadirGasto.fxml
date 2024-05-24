@@ -31,7 +31,7 @@
                   <Insets bottom="5.0" left="50.0" top="25.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="nombre_gasto" maxWidth="250.0" promptText="Introduce un nombre">
+            <TextField fx:id="nombre_gasto" maxWidth="150.0" prefWidth="150.0" promptText="Introduce un nombre">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -61,7 +61,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="unidades_gasto" maxWidth="150.0" onKeyTyped="#comprobar_unidades" prefWidth="171.0" promptText="Introduce las unidades">
+            <TextField fx:id="unidades_gasto" maxWidth="70.0" onKeyTyped="#comprobar_unidades" prefWidth="70.0">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -78,7 +78,7 @@
             </Text>
             <HBox prefHeight="20.0" prefWidth="100.0">
                <children>
-                  <TextField fx:id="precio_gasto" maxWidth="170.0" onKeyTyped="#comprobar_precio" prefHeight="25.0" prefWidth="170.0" promptText="Introduce un precio">
+                  <TextField fx:id="precio_gasto" maxWidth="170.0" onKeyTyped="#comprobar_precio" prefHeight="25.0" prefWidth="50.0">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
