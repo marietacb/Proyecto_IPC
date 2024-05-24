@@ -271,9 +271,7 @@ public class FXMLDocumentController implements Initializable {
             stage.setScene(new Scene(root));
         
             stage.initModality(Modality.APPLICATION_MODAL); //añade modalidad del escenario
-            stage.showAndWait();    //espera a que se introduzac al información
-            Stage estestage = (Stage) bAyuda.getScene().getWindow();
-            estestage.close();
+            stage.show();    //espera a que se introduzac al información
         }
         
         

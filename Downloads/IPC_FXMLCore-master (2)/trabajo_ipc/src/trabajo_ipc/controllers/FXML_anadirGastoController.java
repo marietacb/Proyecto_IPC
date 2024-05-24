@@ -177,15 +177,9 @@ public class FXML_anadirGastoController implements Initializable {
     
    
     @FXML
-    private void pulsarCancelar(ActionEvent event) throws IOException {    //cerrar ventana
-       FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
-       Parent root = cargarRegistro.load();
-       
-       Stage stage = new Stage();
-       Stage stageinicial = (Stage) categorias_boton.getScene().getWindow();
-       stage.setScene(new Scene(root));
-       stage.show();
-       stageinicial.close();
+    private void pulsarCancelar(MouseEvent event) throws IOException {    //cerrar ventana
+       Stage stage = (Stage) boton_Cancelar.getScene().getWindow();
+       stage.close();
     }
 
     @FXML
@@ -290,11 +284,8 @@ public class FXML_anadirGastoController implements Initializable {
            FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
            Parent root = cargarRegistro.load();
      
-           Stage stage = new Stage();
-           Stage stageinicial = (Stage) categorias_boton.getScene().getWindow();
-           stage.setScene(new Scene(root));
-           stage.show();
-           stageinicial.close();
+           Stage stage = (Stage) boton_aceptar.getScene().getWindow();
+           stage.close();
             
         }
     }

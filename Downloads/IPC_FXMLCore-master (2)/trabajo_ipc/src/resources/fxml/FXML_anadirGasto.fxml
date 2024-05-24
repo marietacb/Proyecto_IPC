@@ -103,7 +103,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <SplitMenuButton fx:id="categorias_boton" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" text="Seleccionar Categoria">
+            <SplitMenuButton fx:id="categorias_boton" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" prefHeight="25.0" text="Seleccionar Categoria">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -159,12 +159,12 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="boton_aceptar" minHeight="20.0" mnemonicParsing="false" onAction="#pulsarAceptar" prefWidth="78.0" text="Aceptar">
+                  <Button fx:id="boton_aceptar" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#pulsarAceptar" prefHeight="30.0" prefWidth="80.0" text="Aceptar">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="boton_Cancelar" minHeight="20.0" mnemonicParsing="false" onAction="#pulsarCancelar" prefWidth="80.0" text="Cancelar">
+                  <Button fx:id="boton_Cancelar" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#pulsarCancelar" prefHeight="30.0" prefWidth="80.0" text="Cancelar">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>

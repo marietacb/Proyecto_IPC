@@ -4,12 +4,13 @@
 
 
     #titulo{
-        -fx-font-family: "montserrat";
+        -fx-font-family: sans-serif;
         -fx-font-size: 250%;
         -fx-font-weight: bold;
-        -fx-text-fill: #009933; /*verde militar*/
+        -fx-fill: green; /*verde militar*/
     }
     #boton_aceptar{
+         -fx-font-family: sans-serif;
         -fx-background-color: #ccffcc;
         -fx-text-fill: black;
         -fx-border-color: black;
@@ -17,6 +18,7 @@
         -fx-background-radius: 30%;
 }
     #boton_cancelar{
+        -fx-font-family: sans-serif;
         -fx-background-color: white;
         -fx-text-fill: black;
         -fx-border-color: black;

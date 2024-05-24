@@ -37,7 +37,8 @@
 
 /*colores botones guardar y cancelar*/
 #guardar{
-    -fx-background-color: #ccffcc;
+    -fx-font-family: sans-serif;
+    -fx-background-color: white;
     -fx-text-fill: black;
     -fx-border-color: black;
     -fx-border-radius: 8;
@@ -45,10 +46,10 @@
 }
 
 #cancelar{
-    -fx-background-color: #ffcccc;
+    -fx-font-family: sans-serif;
+    -fx-background-color: white;
     -fx-text-fill: black;
     -fx-border-color: black;
     -fx-border-radius: 8;
     -fx-background-radius: 30%;
-
 }

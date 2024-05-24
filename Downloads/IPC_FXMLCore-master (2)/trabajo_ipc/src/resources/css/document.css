@@ -72,16 +72,11 @@
 
 }
 #tiquet{
+    
     -fx-background-color: #ffffff;
     -fx-border-color: green;
-        -fx-font-family: sans-serif;
+    -fx-font-family: sans-serif;
 
-}
-
-.TableColumn{
-    -fx-background-color: #ffffff;
-    -fx-border-color: green;
-        -fx-font-family: sans-serif;
 }
 
 #splitpane{
@@ -89,6 +84,7 @@
 }
 
 #botonCrear{
+    -fx-font-family: sans-serif;
     -fx-background-color: white;
     -fx-text-fill: black;
     -fx-border-color: black;
@@ -121,4 +117,17 @@
     -fx-background-radius: 30%;
     -fx-font-family: sans-serif;
 }
-
+#eliminar_boton{
+    -fx-background-color: #33cc00;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 20%;
+    -fx-font-family: sans-serif;
+}
+#modificar_boton{
+    -fx-background-color: #33cc00;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 20%;
+    -fx-font-family: sans-serif;
+}

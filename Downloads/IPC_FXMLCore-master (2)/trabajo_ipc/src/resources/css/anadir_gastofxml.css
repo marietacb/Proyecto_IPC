@@ -1,9 +1,9 @@
 
 #titulo{
-    -fx-font-family: "montserrat";
+    -fx-font-family: sans-serif;
     -fx-font-size: 250%;
     -fx-font-weight: bold;
-    -fx-text-fill: green; /*verde militar*/
+    -fx-fill: green; /*verde militar*/
 }
 
 /*botones aceptar y cancelar diseño*/
@@ -13,6 +13,7 @@
     -fx-border-color: black;
     -fx-border-radius: 8;
     -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
 }
 #boton_Cancelar{
     -fx-background-color: white;
@@ -20,6 +21,7 @@
     -fx-border-color: black;
     -fx-border-radius: 8;
     -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
 }
     
 #nom{
@@ -43,4 +45,7 @@
 #ti{
     -fx-font-family: sans-serif;
 }
-
+#categorias_boton{
+    -fx-background-color: white;
+    -fx-font-family: sans-serif;
+}
