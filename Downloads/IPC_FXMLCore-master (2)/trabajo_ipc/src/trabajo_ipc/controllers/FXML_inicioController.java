@@ -34,6 +34,9 @@ import model.Acount;
 import model.AcountDAO;
 import model.AcountDAOException;
 import java.io.FileNotFoundException;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Menu;
 
 
 /**
@@ -56,7 +59,6 @@ public class FXML_inicioController implements Initializable {
   
     @FXML
     private Button botonAceptar;
-    @FXML
     private Button botonRegistrarse;
     @FXML
     private PasswordField passwordField;
@@ -64,6 +66,12 @@ public class FXML_inicioController implements Initializable {
     private Label nick;
     @FXML
     private Label contraseña;
+    @FXML
+    private Menu ayuda;
+    @FXML
+    private Hyperlink registrarse;
+    @FXML
+    private Button botonSalir;
 
     /**
      * Initializes the controller class.
@@ -71,14 +79,14 @@ public class FXML_inicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+          //añadimos css
+        String css = this.getClass().getResource("/resources/css/fxml_inicio.css").toExternalForm();
+        borderPane.getStylesheets().add(css);
+        
     }    
 
     @FXML
     private void aceptar(MouseEvent event) throws AcountDAOException, IOException {
-        
-        //añadimos css
-        String css = this.getClass().getResource("/resources/css/fxml_inicio.css").toExternalForm();
-        borderPane.getStylesheets().add(css);
         
         //obtenemos el usuario
         String usuario = nickField.getText();
@@ -137,11 +145,15 @@ public class FXML_inicioController implements Initializable {
        Parent root = cargarRegistro.load();
        
        Stage stage = new Stage();
-       Stage stageinicial = (Stage) botonRegistrarse.getScene().getWindow();
+       Stage stageinicial = (Stage) registrarse.getScene().getWindow();
        stage.setScene(new Scene(root));
        stage.show();
        stageinicial.close();
 
+    }
+
+    @FXML
+    private void salir(ActionEvent event) {
     }
     
 }
