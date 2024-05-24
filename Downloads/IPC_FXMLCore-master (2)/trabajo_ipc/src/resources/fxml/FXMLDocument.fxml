@@ -40,7 +40,7 @@
             </Button>
             <Button fx:id="bAjustes" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0">
                <HBox.margin>
-                  <Insets right="20.0" top="10.0" />
+                  <Insets right="10.0" top="10.0" />
                </HBox.margin>
                <graphic>
                   <ImageView fx:id="imagenAjustes" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -50,14 +50,17 @@
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton fx:id="bSalir" mnemonicParsing="false" prefHeight="26.0" prefWidth="20.0">
+            <MenuButton fx:id="bSalir" mnemonicParsing="false" prefHeight="27.0" prefWidth="42.0">
               <items>
                 <MenuItem fx:id="cPerfil" mnemonicParsing="false" onAction="#cambiarperfil" text="Cambiar Perfil" />
                 <MenuItem fx:id="boton_salir" mnemonicParsing="false" onAction="#sailr" text="Salir" />
               </items>
                <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
+               <HBox.margin>
+                  <Insets right="20.0" top="10.0" />
+               </HBox.margin>
             </MenuButton>
          </children>
       </HBox>
@@ -81,23 +84,44 @@
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox>
+            <HBox fx:id="prueba" prefHeight="700.0" prefWidth="700.0">
                <children>
-                  <TableView fx:id="tableView" prefHeight="400.0" prefWidth="575.0">
+                  <TableView fx:id="tableView" prefHeight="400.0" prefWidth="532.0">
                     <columns>
-                      <TableColumn fx:id="categoria" prefWidth="82.0" text="Categoria" />
-                      <TableColumn fx:id="nombre" prefWidth="82.0" text="Nombre" />
-                        <TableColumn fx:id="fecha" prefWidth="82.0" text="Fecha" />
-                        <TableColumn fx:id="unidades" prefWidth="82.0" text="Unidades" />
-                        <TableColumn fx:id="precio" prefWidth="82.0" text="Precio" />
-                        <TableColumn fx:id="Descripción" prefWidth="82.0" text="Descripción" />
-                        <TableColumn fx:id="tiquet" prefWidth="82.0" text="Tiquet" />
-                        <TableColumn fx:id="papeleraYmodificar" prefWidth="90.0" />
+                      <TableColumn fx:id="categoria" prefWidth="84.79998624324799" text="Categoria" />
+                      <TableColumn fx:id="nombre" prefWidth="80.00000762939453" text="Nombre" />
+                        <TableColumn fx:id="fecha" prefWidth="80.00006103515625" text="Fecha" />
+                        <TableColumn fx:id="unidades" prefWidth="66.40008544921875" text="Unidades" />
+                        <TableColumn fx:id="precio" prefWidth="51.20001220703125" text="Precio" />
+                        <TableColumn fx:id="Descripción" prefWidth="92.79998779296875" text="Descripción" />
+                        <TableColumn fx:id="tiquet" prefWidth="72.80001831054688" text="Tiquet" />
                     </columns>
                      <HBox.margin>
                         <Insets left="10.0" top="20.0" />
                      </HBox.margin>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
+                  <VBox>
+                     <children>
+                        <MenuButton fx:id="eliminar_boton" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Eliminar">
+                          <items>
+                            <MenuItem fx:id="categoria_eliminar" mnemonicParsing="false" onAction="#eliminarCategoria" text="Categoria" />
+                            <MenuItem fx:id="gasto_eliminar" mnemonicParsing="false" onAction="#eliminarGasto" text="Gasto" />
+                          </items>
+                        </MenuButton>
+                        <MenuButton fx:id="modificar_boton" mnemonicParsing="false" text="Modificar">
+                          <items>
+                            <MenuItem fx:id="modificar_categoria" mnemonicParsing="false" onAction="#modificarCategoria" text="Categoría" />
+                            <MenuItem fx:id="modificar_Gasto" mnemonicParsing="false" onAction="#modificarGasto" text="Gasto" />
+                          </items>
+                        </MenuButton>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </VBox>
                </children>
             </HBox>
          </children>

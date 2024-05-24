@@ -97,8 +97,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Charge, Image> tiquet;
     @FXML
-    private TableColumn<Charge, Image> papeleraYmodificar;
-    @FXML
     private TableColumn<Charge, String> categoria;
     private ObservableList<Charge> listaGastos;
     @FXML
@@ -127,6 +125,20 @@ public class FXMLDocumentController implements Initializable {
     private MenuItem cPerfil;
     @FXML
     private MenuItem boton_salir;
+    @FXML
+    private MenuButton eliminar_boton;
+    @FXML
+    private MenuItem categoria_eliminar;
+    @FXML
+    private MenuItem gasto_eliminar;
+    @FXML
+    private MenuButton modificar_boton;
+    @FXML
+    private MenuItem modificar_categoria;
+    @FXML
+    private MenuItem modificar_Gasto;
+    @FXML
+    private HBox prueba;
     
     
     /**
@@ -139,7 +151,6 @@ public class FXMLDocumentController implements Initializable {
         String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
         border_pane.getStylesheets().add(css);
 
-        
         try {
             listaGastos = FXCollections.observableArrayList(Acount.getInstance().getUserCharges());
         } catch (AcountDAOException ex) {
@@ -161,7 +172,7 @@ public class FXMLDocumentController implements Initializable {
         });
         
         tableView.setFixedCellSize(50); // Establece una altura fija para todas las celdas
-        border_pane.setCenter(tableView);
+        //border_pane.setCenter(tableView);
         
         grafico = new PieChart();
         grafico.setVisible(true);
@@ -197,7 +208,8 @@ public class FXMLDocumentController implements Initializable {
     private void pulsarGastos(MouseEvent event) throws IOException { //boton gastos muestra tabla
         grafico.setVisible(false);  
         tableView.setVisible(true); 
-        border_pane.setCenter(tableView);
+        //border_pane.setCenter(tableView);
+        border_pane.setCenter(prueba);
         boton_gastos.setDisable(true);
         boton_resumenGastos.setDisable(false);
         
@@ -342,7 +354,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void sailr(ActionEvent event) throws IOException {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+      Alert alert = new Alert(AlertType.CONFIRMATION);
       alert.setTitle("confirmación");
       alert.setHeaderText("");
       alert.setContentText("¿Seguro que quieres salir?");
@@ -353,6 +365,93 @@ public class FXMLDocumentController implements Initializable {
       } else {
      System.out.println("CANCEL");
      }
+    }
+
+    @FXML
+    private void eliminarCategoria(ActionEvent event) throws IOException,AcountDAOException {
+        Category selectedCategory = tableView.getSelectionModel().getSelectedItem().getCategory();
+        Charge selectedCharge = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Eliminar Categoría");
+            alert.setHeaderText("¿Estás seguro que quieres eliminar la Categoría");
+            alert.setContentText("Se borrarán todos los gastos de esa categoría");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                        boolean success;
+                    try {
+                        success = Acount.getInstance().removeCategory(selectedCategory);
+                        if (success) {
+                            listaGastos.remove(selectedCharge);
+                        } else {
+                            Alert errorAlert = new Alert(AlertType.ERROR);
+                            errorAlert.setTitle("Error");
+                            errorAlert.setHeaderText("Error al eliminar la categoría");
+                            errorAlert.setContentText("No se pudo eliminar la categoría. Inténtalo de nuevo.");
+                            errorAlert.showAndWait();
+                        }
+                    } catch (AcountDAOException ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    }       
+                }
+            });
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Eliminar Categoría");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, selecciona un categoría.");
+            alert.showAndWait();
+        }
+        
+        
+    }
+
+    @FXML
+    private void eliminarGasto(ActionEvent event) {
+        Charge selectedCategory = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Eliminar Categoría");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Estás seguro que quieres eliminar el gasto");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                        boolean success;
+                    try {
+                        success = Acount.getInstance().removeCharge(selectedCategory);
+                        if (success) {
+                            listaGastos.remove(selectedCategory);
+                        } else {
+                            Alert errorAlert = new Alert(AlertType.ERROR);
+                            errorAlert.setTitle("Error");
+                            errorAlert.setHeaderText("Error al eliminar el gasto");
+                            errorAlert.setContentText("No se pudo eliminar el gasto. Inténtalo de nuevo.");
+                            errorAlert.showAndWait();
+                        }
+                    } catch (AcountDAOException ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    }       
+                }
+            });
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Eliminar Categoría");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, selecciona un gasto.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void modificarCategoria(ActionEvent event) {
+    }
+
+    @FXML
+    private void modificarGasto(ActionEvent event) {
     }
     
     class ImagenTabCell extends TableCell<Charge, Image> {
