@@ -1,4 +1,4 @@
-package resources.fxml;
+package trabajo_ipc.controllers;
 
 import java.io.IOException;
 import java.net.URL;
