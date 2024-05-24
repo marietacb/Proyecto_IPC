@@ -11,14 +11,19 @@
 
 }*/
 
-#miMenu{
+#ayuda{
     -fx-font-family: sans-serif;
 }
-
 #nick{
     -fx-font-family: sans-serif;
-
 }
-#contraseña{
+#contraseña{    /*no reconoce el label contraseña*/
     -fx-font-family: sans-serif;
+}
+#botonAceptar{
+    -fx-background-color: #ccffcc;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
 }
