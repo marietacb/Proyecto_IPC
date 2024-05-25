@@ -324,7 +324,7 @@ public class FXML_anadirGastoController implements Initializable {
         categorias = Acount.getInstance().getUserCategories();
         categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
             // Agregamos nuevas categorías como elementos del menú recrriendo la lista
-        for (int i = 0; i < categorias.size()-1; i++) {
+        for (int i = 0; i < categorias.size(); i++) {
             Category categoria = categorias.get(i);
             MenuItem menuItem = new MenuItem(categoria.getName());
 

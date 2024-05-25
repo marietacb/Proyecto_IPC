@@ -517,19 +517,19 @@ public class FXMLDocumentController implements Initializable {
                 document.open();
                 
                  // Añadir el título
-                    Font titleFont = FontFactory.getFont("Arial", 18, Font.BOLD, colorVerde);
-                    Paragraph title = new Paragraph("Gastos Totales", titleFont);
-                    title.setAlignment(Element.ALIGN_CENTER);
-                    document.add(title);
-                    document.add( new Paragraph("\n") );
+                Font titleFont = FontFactory.getFont("Arial", 18, Font.BOLD, colorVerde);
+                Paragraph title = new Paragraph("Gastos Totales", titleFont);
+                title.setAlignment(Element.ALIGN_CENTER);
+                document.add(title);
+                document.add( new Paragraph("\n") );
 
 
                 // Crear una tabla en el PDF con el mismo número de columnas
                 PdfPTable table = new PdfPTable(7);
 
-                     // Fuente para los encabezados
-            Font headerFont = FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK);
-            BaseColor colorFondo = new BaseColor(189, 236, 182);
+                // Fuente para los encabezados
+                Font headerFont = FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK);
+                BaseColor colorFondo = new BaseColor(189, 236, 182);
 
                 // Añadir encabezados de columnas
                 PdfPCell header;
@@ -587,7 +587,7 @@ public class FXMLDocumentController implements Initializable {
                     Charge charge = listaGastos.get(i);
                     Image imagenCelda = charge.getImageScan();
 
-                    // Añadir los datos a las celdas de la tabla
+                // Añadir los datos a las celdas de la tabla y decorarlas
                 PdfPCell celda1 = new PdfPCell();
                 celda1.setFixedHeight(30);
                 celda1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -617,11 +617,12 @@ public class FXMLDocumentController implements Initializable {
                 celda4.setPhrase(new Phrase(String.valueOf(charge.getUnits()), fuente));
                 
                 PdfPCell celda5 = new PdfPCell();
+                String coste = (charge.getCost() + " €");
                 celda5.setFixedHeight(30);
                 celda5.setHorizontalAlignment(Element.ALIGN_CENTER);
                 celda5.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 celda5.setBorderColor(colorVerde);
-                celda5.setPhrase(new Phrase(charge.getDate().format(formatoDia), fuente));
+                celda5.setPhrase(new Phrase(coste, fuente));
                 
                 PdfPCell celda6 = new PdfPCell();
                 celda6.setFixedHeight(30);
@@ -652,7 +653,7 @@ public class FXMLDocumentController implements Initializable {
                     celda7.setPhrase(new Phrase("No hay imagen", fuente));
                 }
 
-                
+             //añadimos cada una de las celdas a la tabla   
                 
                 table.addCell(celda1);
                 table.addCell(celda2);
@@ -675,7 +676,7 @@ public class FXMLDocumentController implements Initializable {
                 alert.showAndWait();
 
             } catch (IOException | DocumentException e) {
-                // Manejar la excepción en caso de error
+                // Mensaje de error
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error al guardar PDF");
                 alert.setHeaderText(null);
