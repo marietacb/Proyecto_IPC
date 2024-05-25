@@ -27,7 +27,10 @@
 }
 #nombre{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #desc{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
 }

@@ -16,9 +16,13 @@
 }
 #nick{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #cont{   
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #botonAceptar{
     -fx-background-color: #ccffcc;

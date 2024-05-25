@@ -86,7 +86,7 @@ public class FXMLDocumentController implements Initializable {
     private PieChart grafico;   //TODO añadir grafico con datos
     
     @FXML
-    private TableView<Charge> tableView;
+    public TableView<Charge> tableView;
     @FXML
     private TableColumn<Charge, String> nombre;
     @FXML
@@ -153,16 +153,8 @@ public class FXMLDocumentController implements Initializable {
         
         String css = this.getClass().getResource("/resources/css/document.css").toExternalForm();
         border_pane.getStylesheets().add(css);
-        
-        
-        try {
-            listaGastos = FXCollections.observableArrayList(Acount.getInstance().getUserCharges());
-        } catch (AcountDAOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tableView.setItems(listaGastos);
+       
+        actualizarGastos();
 
         nombre.setCellValueFactory(new PropertyValueFactory<>("name"));
         descripcion.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -206,6 +198,16 @@ public class FXMLDocumentController implements Initializable {
         
     }    
     
+    public void actualizarGastos(){
+        try {
+                listaGastos = FXCollections.observableArrayList(Acount.getInstance().getUserCharges());
+            } catch (AcountDAOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        tableView.setItems(listaGastos);
+    }
     
     //HECHO
     @FXML
@@ -217,8 +219,6 @@ public class FXMLDocumentController implements Initializable {
         boton_gastos.setDisable(true);
         boton_resumenGastos.setDisable(false);
         comparar_boton.setDisable(false);
-
-        
     }
 
     //HECHO
@@ -230,9 +230,6 @@ public class FXMLDocumentController implements Initializable {
         boton_resumenGastos.setDisable(true);
         boton_gastos.setDisable(false);
         comparar_boton.setDisable(false);
-
-        
-
     }
 
    
@@ -270,6 +267,12 @@ public class FXMLDocumentController implements Initializable {
         else{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
             Parent root = loader.load();
+            
+            // Obtener el controlador del archivo FXML cargado
+            FXML_anadirGastoController añadirGastoController = loader.getController();
+
+            // Pasar la instancia actual de FXMLDocumentController a AñadirGastoController
+            añadirGastoController.setFXMLDocumentController(this);
         
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

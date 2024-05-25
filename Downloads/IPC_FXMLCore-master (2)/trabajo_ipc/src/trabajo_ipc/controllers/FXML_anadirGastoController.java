@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -148,6 +150,13 @@ public class FXML_anadirGastoController implements Initializable {
     
     private Stage stage;
         
+    private FXMLDocumentController fxmlDocumentController;
+
+    // Método para recibir la instancia actual de FXMLDocumentController
+    public void setFXMLDocumentController(FXMLDocumentController fxmlDocumentController) {
+        this.fxmlDocumentController = fxmlDocumentController;
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -270,16 +279,19 @@ public class FXML_anadirGastoController implements Initializable {
         
         //CARGAR TABLA CON GASTOS
         
-            String nombreGasto = nombre_gasto.getText();    //obtenemos nombre gasto añadido
-            String descripcion = descripcion_gasto.getText();   //obtenemos descripcion gasto aññadido
-            LocalDate fecha = elegir_fecha.getValue();  //obtenemos fecha añadida
-            int unidades = Integer.parseInt(unidades_gasto.getText());  //obtenemos unidades gasto añadido
-            double precio = Double.parseDouble(precio_gasto.getText()); //obtenemos precio gasto añadido
-            Image factura = tiquet_gasto.getImage();    //obtenemos imagen gasto añadido
-            Category cat = categorias.get(seleccionado);
+           String nombreGasto = nombre_gasto.getText();    //obtenemos nombre gasto añadido
+           String descripcion = descripcion_gasto.getText();   //obtenemos descripcion gasto aññadido
+           LocalDate fecha = elegir_fecha.getValue();  //obtenemos fecha añadida
+           int unidades = Integer.parseInt(unidades_gasto.getText());  //obtenemos unidades gasto añadido
+           double precio = Double.parseDouble(precio_gasto.getText()); //obtenemos precio gasto añadido
+           Image factura = tiquet_gasto.getImage();    //obtenemos imagen gasto añadido
+           Category cat = categorias.get(seleccionado);
      
-            Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,cat); 
-            
+           Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,cat); 
+           
+           //actualizar tabla
+           fxmlDocumentController.actualizarGastos();
+           
            //volvemos a la pantalla principal LA DE LA TABLA
            FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
            Parent root = cargarRegistro.load();

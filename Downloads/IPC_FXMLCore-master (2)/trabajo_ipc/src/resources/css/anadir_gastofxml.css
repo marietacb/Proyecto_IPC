@@ -26,24 +26,38 @@
     
 #nom{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #fec{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #un{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #pre{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #ca{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #des{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #ti{
     -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+
 }
 #categorias_boton{
     -fx-background-color: white;
