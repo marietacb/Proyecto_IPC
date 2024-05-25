@@ -26,6 +26,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -77,6 +78,8 @@ public class PerfilUsuarioController implements Initializable {
     private Label ema;
     @FXML
     private Label nom;
+    @FXML
+    private BorderPane borderpane;
 
     /**
      * Initializes the controller class.
@@ -98,7 +101,7 @@ public class PerfilUsuarioController implements Initializable {
         catch(Exception e){}
         
         String css = this.getClass().getResource("/resources/css/perfilusuario.css").toExternalForm();
-        vbox.getStylesheets().add(css);
+        borderpane.getStylesheets().add(css);
     }    
 
     @FXML

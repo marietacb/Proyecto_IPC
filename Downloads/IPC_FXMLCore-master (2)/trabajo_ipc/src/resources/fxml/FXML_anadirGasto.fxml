@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox fx:id="pantallaAñadirGasto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="700.0" stylesheets="@Source Packages/resources.css/anadir_gastofxml.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_anadirGastoController">
+<HBox fx:id="pantallaAñadirGasto" minHeight="650.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" stylesheets="@Source Packages/resources.css/anadir_gastofxml.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_anadirGastoController">
    <children>
       <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="350.0">
          <children>
@@ -31,7 +31,7 @@
                   <Insets bottom="5.0" left="50.0" top="25.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="nombre_gasto" maxWidth="150.0" prefWidth="150.0" promptText="Introduce un nombre">
+            <TextField fx:id="nombre_gasto" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="150.0" promptText="Introduce un nombre">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -46,7 +46,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <DatePicker fx:id="elegir_fecha" opacity="0.8" promptText="Introduce una fecha">
+            <DatePicker fx:id="elegir_fecha" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="160.0" opacity="0.8" prefHeight="25.0" prefWidth="150.0" promptText="Introduce una fecha">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -61,7 +61,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="unidades_gasto" maxWidth="70.0" onKeyTyped="#comprobar_unidades" prefWidth="70.0">
+            <TextField fx:id="unidades_gasto" maxHeight="25.0" maxWidth="70.0" minHeight="25.0" minWidth="70.0" onKeyTyped="#comprobar_unidades" prefHeight="25.0" prefWidth="70.0">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -78,7 +78,7 @@
             </Text>
             <HBox prefHeight="20.0" prefWidth="100.0">
                <children>
-                  <TextField fx:id="precio_gasto" maxWidth="170.0" onKeyTyped="#comprobar_precio" prefHeight="25.0" prefWidth="50.0">
+                  <TextField fx:id="precio_gasto" maxHeight="25.0" maxWidth="50.0" minHeight="25.0" minWidth="50.0" onKeyTyped="#comprobar_precio" prefHeight="25.0" prefWidth="50.0">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
@@ -103,7 +103,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <SplitMenuButton fx:id="categorias_boton" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" prefHeight="25.0" text="Seleccionar Categoria">
+            <SplitMenuButton fx:id="categorias_boton" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" prefHeight="25.0" prefWidth="160.0" text="Seleccionar Categoria">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -118,7 +118,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <TextArea fx:id="descripcion_gasto" maxHeight="220.0" maxWidth="225.0" prefHeight="80.0" prefWidth="200.0" promptText="Introduce una breve descripción">
+            <TextArea fx:id="descripcion_gasto" maxHeight="100.0" maxWidth="200.0" minHeight="80.0" minWidth="200.0" prefHeight="80.0" prefWidth="200.0" promptText="Introduce una breve descripción">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -140,7 +140,7 @@
                   <Insets bottom="5.0" left="25.0" top="75.0" />
                </VBox.margin>
             </Text>
-            <VBox fx:id="vboxFactura" alignment="CENTER" maxHeight="250.0" maxWidth="250.0" prefHeight="250.0" prefWidth="100.0">
+            <VBox fx:id="vboxFactura" alignment="CENTER" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="tiquet_gasto" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#añadirImagen" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -157,7 +157,7 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox minHeight="60.0" minWidth="200.0" prefHeight="60.0" prefWidth="200.0">
                <children>
                   <Button fx:id="boton_aceptar" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#pulsarAceptar" prefHeight="30.0" prefWidth="80.0" text="Aceptar">
                      <HBox.margin>
@@ -171,7 +171,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets left="120.0" top="275.0" />
+                  <Insets left="120.0" top="270.0" />
                </VBox.margin>
             </HBox>
          </children>
