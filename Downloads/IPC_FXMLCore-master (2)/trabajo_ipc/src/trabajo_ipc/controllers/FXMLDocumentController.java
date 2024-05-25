@@ -4,19 +4,14 @@
  */
 package trabajo_ipc.controllers;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import com.itextpdf.kernel.colors.DeviceRgb;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.borders.SolidBorder;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -27,22 +22,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToolBar;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -51,14 +32,27 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Acount;
-import model.Charge;
-import model.User;
-import model.AcountDAO;
-import model.Category;
 import model.AcountDAOException;
+import model.Category;
+import model.Charge;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * FXML Controller class
@@ -142,7 +136,9 @@ public class FXMLDocumentController implements Initializable {
     private ImageView imagenPerf;
     @FXML
     private MenuButton botonCrear;
-    
+    @FXML
+    private Button imprimir_boton;
+    private Stage EscenarioPrincipal;
     
     /**
      * Initializes the controller class.
@@ -463,6 +459,107 @@ public class FXMLDocumentController implements Initializable {
         boton_añadircategoria.setDisable(false);
         boton_resumenGastos.setDisable(false);
     }
+
+    @FXML
+    private void imprimir(ActionEvent event) {
+        EscenarioPrincipal = (Stage) boton_gastos.getScene().getWindow();
+        // El usuario elige donde guardará la tabla
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar el PDF");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf"));
+        File file = fileChooser.showSaveDialog(EscenarioPrincipal);
+        if (file != null) {
+        try {
+            PdfWriter writer = new PdfWriter(file);
+            PdfDocument pdfDoc = new PdfDocument(writer);
+            Document document = new Document(pdfDoc);
+
+            // Crear una tabla en el PDF con el mismo número de columnas
+            Table table = new Table(7);
+
+            // Añadir encabezados de columnas
+            table.addHeaderCell(categoria.getText());
+            table.addHeaderCell(nombre.getText());
+            table.addHeaderCell(fecha.getText());
+            table.addHeaderCell(unidades.getText());
+            table.addHeaderCell(precio.getText());
+            table.addHeaderCell(descripcion.getText());
+            table.addHeaderCell(tiquet.getText());
+
+            // Añadir datos de las filas
+            listaGastos = FXCollections.observableList(Acount.getInstance().getUserCharges());
+            for (int i = 0; i < listaGastos.size(); i++) {
+                Charge charge = listaGastos.get(i);
+                DeviceRgb VerdePastel = new DeviceRgb(189, 236, 182);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                // Celda 1
+                Cell celda1 = new Cell().add(new Paragraph(charge.getName())
+                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
+                        .setHeight(20)
+                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
+                        .setBorder(new SolidBorder(VerdePastel, 1));
+                // Celda 2
+                Cell celda2 = new Cell().add(new Paragraph(charge.getDescription())
+                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
+                        .setHeight(20)
+                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
+                        .setBorder(new SolidBorder(VerdePastel, 1));
+                // Celda 3
+                Cell celda3 = new Cell().add(new Paragraph(charge.getCategory().getName())
+                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
+                        .setHeight(20)
+                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
+                        .setBorder(new SolidBorder(VerdePastel, 1));
+                // Celda 4
+                Cell celda4 = new Cell().add(new Paragraph(Double.toString(charge.getCost()))
+                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
+                        .setHeight(20)
+                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
+                        .setBorder(new SolidBorder(VerdePastel, 1));
+                // Celda 5
+                Cell celda5 = new Cell().add(new Paragraph(charge.getDate().format(formatter))
+                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
+                        .setHeight(20)
+                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
+                        .setBorder(new SolidBorder(VerdePastel, 1));
+                // Agregar las celdas a la tabla
+                table.addCell(celda1);
+                table.addCell(celda2);
+                table.addCell(celda3);
+                table.addCell(celda4);
+                table.addCell(celda5);
+
+            }
+
+            document.add(table);
+            document.close();
+            } catch (FileNotFoundException e) {
+            // Manejar la excepción FileNotFoundException
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error al guardar PDF");
+                alert.setHeaderText(null);
+                alert.setContentText("No se pudo guardar el PDF: " + e.getMessage());
+                alert.showAndWait();
+            } catch (IOException e) {
+            // Manejar la excepción IOException
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error al guardar PDF");
+                alert.setHeaderText(null);
+                alert.setContentText("No se pudo guardar el PDF: " + e.getMessage());
+                alert.showAndWait();
+            } catch (AcountDAOException e) {
+            // Manejar la excepción AcountDAOException
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error al obtener los datos");
+                alert.setHeaderText(null);
+                alert.setContentText("No se pudieron obtener los datos: " + e.getMessage());
+                alert.showAndWait();
+        }
+    }
+}
     
     class ImagenTabCell extends TableCell<Charge, Image> {
             private ImageView view = new ImageView();
@@ -487,7 +584,8 @@ public class FXMLDocumentController implements Initializable {
             }
             }
     }   
-   }   
+   }
 }
+
     
     
