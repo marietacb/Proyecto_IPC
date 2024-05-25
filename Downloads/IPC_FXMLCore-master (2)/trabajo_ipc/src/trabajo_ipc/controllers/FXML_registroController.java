@@ -1,5 +1,7 @@
 package trabajo_ipc.controllers;
 
+import com.sun.javafx.logging.Logger;
+import com.sun.javafx.logging.PlatformLogger.Level;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
@@ -28,6 +30,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -86,6 +89,22 @@ public class FXML_registroController implements Initializable {
                 checkEditEmail();
             }
         });
+        field_nombreusuario.textProperty().addListener((observable, oldValue, newValue) -> {
+                new Thread(() -> {
+                    boolean exists;
+                    try {
+                        exists = Acount.getInstance().existsLogin(newValue);
+                        Platform.runLater(() -> {
+                                if (exists) {
+                                    nombreusuario_incorrecto.setText("Nickname ya esta en uso");
+                                } else {
+                                    nombreusuario_incorrecto.setText("");
+                                }
+                        });
+                    } catch (AcountDAOException | IOException ex) {}
+                   }).start(); 
+            });     
+
     }
 
     private static Boolean checkEmail(String email) {
