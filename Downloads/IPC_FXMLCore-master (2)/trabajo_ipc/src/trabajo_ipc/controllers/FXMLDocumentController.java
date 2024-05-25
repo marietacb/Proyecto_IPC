@@ -4,14 +4,24 @@
  */
 package trabajo_ipc.controllers;
 
-import com.itextpdf.kernel.colors.DeviceRgb;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.borders.SolidBorder;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+
+
+
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -40,7 +50,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
+import javafx.scene.image.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
@@ -58,6 +68,7 @@ import model.Charge;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -68,7 +79,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert.AlertType;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -489,102 +502,186 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void imprimir(ActionEvent event) {
+    private void imprimir(ActionEvent event) throws AcountDAOException {
         EscenarioPrincipal = (Stage) boton_gastos.getScene().getWindow();
-        // El usuario elige donde guardará la tabla
+        // El usuario elige donde guardará el PDF
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar el PDF");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf"));
         File file = fileChooser.showSaveDialog(EscenarioPrincipal);
+        BaseColor colorVerde = new BaseColor(66, 70, 50);
         if (file != null) {
-        try {
-            PdfWriter writer = new PdfWriter(file);
-            PdfDocument pdfDoc = new PdfDocument(writer);
-            Document document = new Document(pdfDoc);
+            try {
+                Document document = new Document(PageSize.A4.rotate());
+                PdfWriter.getInstance(document, new FileOutputStream(file));
+                document.open();
+                
+                 // Añadir el título
+                    Font titleFont = FontFactory.getFont("Arial", 18, Font.BOLD, colorVerde);
+                    Paragraph title = new Paragraph("Gastos Totales", titleFont);
+                    title.setAlignment(Element.ALIGN_CENTER);
+                    document.add(title);
+                    document.add( new Paragraph("\n") );
 
-            // Crear una tabla en el PDF con el mismo número de columnas
-            Table table = new Table(7);
 
-            // Añadir encabezados de columnas
-            table.addHeaderCell(categoria.getText());
-            table.addHeaderCell(nombre.getText());
-            table.addHeaderCell(fecha.getText());
-            table.addHeaderCell(unidades.getText());
-            table.addHeaderCell(precio.getText());
-            table.addHeaderCell(descripcion.getText());
-            table.addHeaderCell(tiquet.getText());
+                // Crear una tabla en el PDF con el mismo número de columnas
+                PdfPTable table = new PdfPTable(7);
 
-            // Añadir datos de las filas
-            listaGastos = FXCollections.observableList(Acount.getInstance().getUserCharges());
-            for (int i = 0; i < listaGastos.size(); i++) {
-                Charge charge = listaGastos.get(i);
-                DeviceRgb VerdePastel = new DeviceRgb(189, 236, 182);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                     // Fuente para los encabezados
+            Font headerFont = FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK);
+            BaseColor colorFondo = new BaseColor(189, 236, 182);
 
-                // Celda 1
-                Cell celda1 = new Cell().add(new Paragraph(charge.getName())
-                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
-                        .setHeight(20)
-                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
-                        .setBorder(new SolidBorder(VerdePastel, 1));
-                // Celda 2
-                Cell celda2 = new Cell().add(new Paragraph(charge.getDescription())
-                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
-                        .setHeight(20)
-                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
-                        .setBorder(new SolidBorder(VerdePastel, 1));
-                // Celda 3
-                Cell celda3 = new Cell().add(new Paragraph(charge.getCategory().getName())
-                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
-                        .setHeight(20)
-                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
-                        .setBorder(new SolidBorder(VerdePastel, 1));
-                // Celda 4
-                Cell celda4 = new Cell().add(new Paragraph(Double.toString(charge.getCost()))
-                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
-                        .setHeight(20)
-                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
-                        .setBorder(new SolidBorder(VerdePastel, 1));
-                // Celda 5
-                Cell celda5 = new Cell().add(new Paragraph(charge.getDate().format(formatter))
-                        .setTextAlignment(com.itextpdf.layout.property.TextAlignment.CENTER))
-                        .setHeight(20)
-                        .setVerticalAlignment(com.itextpdf.layout.property.VerticalAlignment.MIDDLE)
-                        .setBorder(new SolidBorder(VerdePastel, 1));
-                // Agregar las celdas a la tabla
+                // Añadir encabezados de columnas
+                PdfPCell header;
+
+                header = new PdfPCell(new Phrase("Categoría", headerFont));
+                header.setHorizontalAlignment(Element.ALIGN_CENTER);
+                header.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                header.setBackgroundColor(colorFondo);
+                table.addCell(header);
+
+                header = new PdfPCell(new Phrase("Nombre", headerFont));
+                header.setHorizontalAlignment(Element.ALIGN_CENTER);
+                header.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                header.setBackgroundColor(colorFondo);
+                table.addCell(header);
+
+                header = new PdfPCell(new Phrase("Fecha", headerFont));
+                header.setHorizontalAlignment(Element.ALIGN_CENTER);
+                header.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                header.setBackgroundColor(colorFondo);
+                table.addCell(header);
+
+                header = new PdfPCell(new Phrase("Unidades", headerFont));
+                header.setHorizontalAlignment(Element.ALIGN_CENTER);
+                header.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                header.setBackgroundColor(colorFondo);
+                table.addCell(header);
+
+                header = new PdfPCell(new Phrase("Precio", headerFont));
+                header.setHorizontalAlignment(Element.ALIGN_CENTER);
+                header.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                header.setBackgroundColor(colorFondo);
+                table.addCell(header);
+
+                header = new PdfPCell(new Phrase("Descripción", headerFont));
+                header.setHorizontalAlignment(Element.ALIGN_CENTER);
+                header.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                header.setBackgroundColor(colorFondo);
+                table.addCell(header);
+
+                header = new PdfPCell(new Phrase("Ticket", headerFont));
+                header.setHorizontalAlignment(Element.ALIGN_CENTER);
+                header.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                header.setBackgroundColor(colorFondo);
+                table.addCell(header);
+                
+                //declaraciones que necesitamos posteriormente
+                DateTimeFormatter formatoDia = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                Font fuente = FontFactory.getFont("Arial", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 12, Font.NORMAL, BaseColor.BLACK);
+
+
+                // Añadir datos de las filas
+                listaGastos = FXCollections.observableList(Acount.getInstance().getUserCharges());
+                for (int i = 0; i < listaGastos.size(); i++) {
+                    Charge charge = listaGastos.get(i);
+                    Image imagenCelda = charge.getImageScan();
+
+                    // Añadir los datos a las celdas de la tabla
+                PdfPCell celda1 = new PdfPCell();
+                celda1.setFixedHeight(30);
+                celda1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                celda1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                celda1.setBorderColor(colorVerde);
+                celda1.setPhrase(new Phrase(charge.getCategory().getName(), fuente));
+                
+                PdfPCell celda2 = new PdfPCell();
+                celda2.setFixedHeight(30);
+                celda2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                celda2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                celda2.setBorderColor(colorVerde);
+                celda2.setPhrase(new Phrase(charge.getName(), fuente));
+                
+                PdfPCell celda3 = new PdfPCell();
+                celda3.setFixedHeight(30);
+                celda3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                celda3.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                celda3.setBorderColor(colorVerde);
+                celda3.setPhrase(new Phrase(charge.getDate().format(formatoDia), fuente));
+                
+                PdfPCell celda4 = new PdfPCell();
+                celda4.setFixedHeight(30);
+                celda4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                celda4.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                celda4.setBorderColor(colorVerde);
+                celda4.setPhrase(new Phrase(String.valueOf(charge.getUnits()), fuente));
+                
+                PdfPCell celda5 = new PdfPCell();
+                celda5.setFixedHeight(30);
+                celda5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                celda5.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                celda5.setBorderColor(colorVerde);
+                celda5.setPhrase(new Phrase(charge.getDate().format(formatoDia), fuente));
+                
+                PdfPCell celda6 = new PdfPCell();
+                celda6.setFixedHeight(30);
+                celda6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                celda6.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                celda6.setBorderColor(colorVerde);
+                celda6.setPhrase(new Phrase(charge.getDescription(), fuente));
+                
+                PdfPCell celda7 = new PdfPCell();
+                celda7.setFixedHeight(30);
+                celda7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                celda7.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                celda7.setBorderColor(colorVerde);
+                if (imagenCelda != null) {
+                    try {
+                        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imagenCelda, null);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        ImageIO.write(bufferedImage, "png", baos);
+                        baos.flush();
+                        com.itextpdf.text.Image img = com.itextpdf.text.Image.getInstance(baos.toByteArray());
+                        img.scaleToFit(20, 20); // Ajusta el tamaño de la imagen
+                        celda7.addElement(img);
+                        baos.close();
+                    } catch (IOException e) {
+                        celda7.setPhrase(new Phrase("Imagen no disponible", fuente));
+                    }
+                } else {
+                    celda7.setPhrase(new Phrase("No hay imagen", fuente));
+                }
+
+                
+                
                 table.addCell(celda1);
                 table.addCell(celda2);
                 table.addCell(celda3);
                 table.addCell(celda4);
                 table.addCell(celda5);
+                table.addCell(celda6);
+                table.addCell(celda7);
+                        
+                }
 
+                document.add(table);
+                document.close();
+
+                // Mostrar un mensaje de éxito
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("PDF guardado");
+                alert.setHeaderText(null);
+                alert.setContentText("El PDF se ha guardado correctamente.");
+                alert.showAndWait();
+
+            } catch (IOException | DocumentException e) {
+                // Manejar la excepción en caso de error
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error al guardar PDF");
+                alert.setHeaderText(null);
+                alert.setContentText("No se pudo guardar el PDF: " + e.getMessage());
+                alert.showAndWait();
             }
-
-            document.add(table);
-            document.close();
-            } catch (FileNotFoundException e) {
-            // Manejar la excepción FileNotFoundException
-                e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error al guardar PDF");
-                alert.setHeaderText(null);
-                alert.setContentText("No se pudo guardar el PDF: " + e.getMessage());
-                alert.showAndWait();
-            } catch (IOException e) {
-            // Manejar la excepción IOException
-                e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error al guardar PDF");
-                alert.setHeaderText(null);
-                alert.setContentText("No se pudo guardar el PDF: " + e.getMessage());
-                alert.showAndWait();
-            } catch (AcountDAOException e) {
-            // Manejar la excepción AcountDAOException
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error al obtener los datos");
-                alert.setHeaderText(null);
-                alert.setContentText("No se pudieron obtener los datos: " + e.getMessage());
-                alert.showAndWait();
         }
     }
 }
@@ -611,8 +708,8 @@ public class FXMLDocumentController implements Initializable {
                 setGraphic(null);
             }
             }
-    }   
-   }
+    }
+
 }
 
     
