@@ -11,18 +11,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.PerfilUsuarioController">
+<BorderPane fx:id="borderpane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.PerfilUsuarioController">
    <center>
-      <VBox fx:id="vbox" prefHeight="450.0" prefWidth="700.0">
+      <VBox fx:id="vbox" prefHeight="450.0" prefWidth="700.0" BorderPane.alignment="TOP_LEFT">
          <children>
             <HBox>
                <children>
                   <VBox>
                      <children>
                         <Label fx:id="fotolabel" contentDisplay="CENTER" prefWidth="50.0" text="Foto:">
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </Label>
                         <HBox>
                            <children>
@@ -34,17 +34,23 @@
                            </children>
                         </HBox>
                      </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </VBox>
                </children>
                <padding>
                   <Insets left="30.0" top="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
             <HBox>
                <children>
                   <VBox>
                      <children>
-                        <Label fx:id="nom" text="Nombre:" />
+                        <Label fx:id="nickname" text="Nickname:" />
                         <TextField fx:id="nombreText" maxWidth="180.0" minWidth="-Infinity" onKeyTyped="#escribirNombre" prefWidth="150.0" />
                      </children>
                   </VBox>
@@ -90,7 +96,7 @@
                <children>
                   <VBox>
                      <children>
-                        <Label fx:id="nickname" text="Nickname:" />
+                        <Label fx:id="nom" text="Nombre:" />
                         <TextField fx:id="textNick" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="150.0" />
                      </children>
                   </VBox>
@@ -121,10 +127,13 @@
                </padding>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets left="25.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
    <bottom>
-      <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER_RIGHT">
+      <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
             <Button fx:id="guardar" alignment="CENTER" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#pulsarGuardar" prefHeight="30.0" prefWidth="80.0" text="Guardar">
                <HBox.margin>
@@ -138,22 +147,25 @@
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets bottom="40.0" left="20.0" right="40.0" top="20.0" />
+            <Insets bottom="40.0" left="20.0" right="50.0" top="20.0" />
          </BorderPane.margin>
       </HBox>
    </bottom>
    <top>
-      <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
+      <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Label fx:id="titulo" alignment="TOP_CENTER" text="Mi perfil">
+            <Label fx:id="titulo" alignment="CENTER" text="Mi perfil">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font size="24.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
             </Label>
          </children>
-         <padding>
-            <Insets bottom="10.0" left="30.0" right="20.0" />
-         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </HBox>
    </top>
 </BorderPane>

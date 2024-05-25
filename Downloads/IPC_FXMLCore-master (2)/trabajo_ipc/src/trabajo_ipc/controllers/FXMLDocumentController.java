@@ -216,6 +216,8 @@ public class FXMLDocumentController implements Initializable {
         border_pane.setCenter(prueba);
         boton_gastos.setDisable(true);
         boton_resumenGastos.setDisable(false);
+        comparar_boton.setDisable(false);
+
         
     }
 
@@ -227,6 +229,8 @@ public class FXMLDocumentController implements Initializable {
         border_pane.setCenter(grafico);
         boton_resumenGastos.setDisable(true);
         boton_gastos.setDisable(false);
+        comparar_boton.setDisable(false);
+
         
 
     }
@@ -306,6 +310,11 @@ public class FXMLDocumentController implements Initializable {
        FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/Comparador.fxml"));
        Parent root = cargarRegistro.load();
        border_pane.setCenter(root);
+       
+       comparar_boton.setDisable(true);
+       botonCrear.setDisable(false);
+       boton_resumenGastos.setDisable(false);
+       boton_gastos.setDisable(false);
       
     }
 

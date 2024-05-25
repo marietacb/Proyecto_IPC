@@ -1,7 +1,7 @@
 
 /*titulo en negrita*/
 #titulo{
-    -fx-font-family: "montserrat";
+    -fx-font-family: sans-serif;
     -fx-font-size: 250%;
     -fx-font-weight: bold;
     -fx-text-fill: green; 
@@ -38,7 +38,7 @@
 /*colores botones guardar y cancelar*/
 #guardar{
     -fx-font-family: sans-serif;
-    -fx-background-color: white;
+    -fx-background-color: #ccffcc;
     -fx-text-fill: black;
     -fx-border-color: black;
     -fx-border-radius: 8;
