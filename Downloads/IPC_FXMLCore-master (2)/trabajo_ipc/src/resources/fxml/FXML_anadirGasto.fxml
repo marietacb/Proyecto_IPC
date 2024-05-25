@@ -103,7 +103,7 @@
                   <Insets bottom="5.0" left="50.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <SplitMenuButton fx:id="categorias_boton" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" prefHeight="25.0" prefWidth="160.0" text="Seleccionar Categoria">
+            <SplitMenuButton fx:id="categorias_boton" maxHeight="25.0" maxWidth="170.0" minHeight="25.0" minWidth="170.0" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" prefHeight="25.0" prefWidth="170.0" style="-fx-font-family: sans-serif; -fx-background-color: green;" text="Seleccionar Categoria">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
