@@ -8,7 +8,6 @@
     -fx-background-radius: 60; /* Hace que el fondo sea redondo */
     -fx-alignment: center;      /* Centra el contenido del botón */
     -fx-background-color: white;
-
 }
 
 #bAjustes{
@@ -29,54 +28,41 @@
 
 #toolbar{
     -fx-background-color: #ccffcc;
-
 }
 
-#bordeSuperior{
-    -fx-background-color: #ccffcc;
-}
 #nombre{
-    -fx-background-color: #ffffff;
     -fx-border-color: green;
     -fx-font-family: sans-serif;
 }
 #categoria{
-    -fx-background-color: #ffffff;
     -fx-border-color: green;
     -fx-font-family: sans-serif;
 
 
 }
 #fecha{
-    -fx-background-color: #ffffff;
     -fx-border-color: green;
     -fx-font-family: sans-serif;
 
 }
 #unidades{
-    -fx-background-color: #ffffff;
     -fx-border-color: green;
     -fx-font-family: sans-serif;
 
 }
 #precio{
-    -fx-background-color: #ffffff;
     -fx-border-color: green;
         -fx-font-family: sans-serif;
 
 }
 #descripcion{
-    -fx-background-color: #ffffff;
     -fx-border-color: green;
         -fx-font-family: sans-serif;
 
 }
 #tiquet{
-    
-    -fx-background-color: #ffffff;
     -fx-border-color: green;
     -fx-font-family: sans-serif;
-
 }
 
 #splitpane{

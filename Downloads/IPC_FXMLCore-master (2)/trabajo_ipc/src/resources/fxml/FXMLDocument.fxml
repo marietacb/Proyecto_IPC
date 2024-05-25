@@ -89,7 +89,7 @@
             </Label>
             <HBox fx:id="prueba" prefHeight="700.0" prefWidth="700.0">
                <children>
-                  <TableView fx:id="tableView" prefHeight="400.0" prefWidth="525.0">
+                  <TableView fx:id="tableView" maxHeight="450.0" prefHeight="200.0" prefWidth="525.0">
                     <columns>
                       <TableColumn fx:id="categoria" prefWidth="84.79998624324799" text="Categoria" />
                       <TableColumn fx:id="nombre" prefWidth="80.00000762939453" text="Nombre" />
