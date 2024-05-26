@@ -63,3 +63,20 @@
     -fx-background-color: white;
     -fx-font-family: sans-serif;
 }
+.split-menu-button{
+    -fx-border-color: lightgray;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+}
+.split-menu-button .label {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+.context-menu .menu-item {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+.context-menu .menu-item:hover {
+    -fx-background-color: #ccffcc;
+    -fx-text-fill: black;
+}

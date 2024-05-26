@@ -17,14 +17,7 @@
     -fx-alignment: center;      /* Centra el contenido del botón */
     -fx-background-color: white;
 }
-#bSalir{
-    -fx-background-color: white;
-    -fx-text-fill: black;
-    -fx-border-color: black;
-    -fx-border-radius: 10;
-    -fx-background-radius: 30%;
-    -fx-font-family: sans-serif;
-}
+
 
 #toolbar{
     -fx-background-color: #ccffcc;
@@ -69,7 +62,7 @@
     -fx-background-color: black;
 }
 
-#botonCrear{
+.menu-button{
     -fx-font-family: sans-serif;
     -fx-background-color: white;
     -fx-text-fill: black;
@@ -116,4 +109,15 @@
     -fx-border-radius: 10;
     -fx-background-radius: 20%;
     -fx-font-family: sans-serif;
+}
+.context-menu .menu-item {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+.context-menu .menu-item:hover {
+    -fx-background-color: #ccffcc;
+    -fx-text-fill: black;
+}
+.menu-button .label {
+    -fx-text-fill: black;          /* Asegurar que el texto sea negro */
 }
