@@ -148,6 +148,9 @@ public class FXML_inicioController implements Initializable {
        Stage stage = new Stage();
        Stage stageinicial = (Stage) registrarseLink.getScene().getWindow();
        stage.setScene(new Scene(root));
+       Stage estestage = new Stage();
+       Stage stageacctual = (Stage) botonSalir.getScene().getWindow();
+       stageacctual.close();
        stage.show();
 
     }

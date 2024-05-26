@@ -2,6 +2,18 @@
  * Empty Stylesheet file.
  */
 
+#cont2{
+   -fx-font-family: sans-serif; 
+   -fx-text-fill: black;
+   -fx-font-weight: bold;  
+}
+
+#scroll{
+    -fx-background-color: white;
+    -fx-border-color:#ccffcc;
+    
+    
+}
 #titulo{
     -fx-font-family: sans-serif;
     -fx-font-size: 250%;
