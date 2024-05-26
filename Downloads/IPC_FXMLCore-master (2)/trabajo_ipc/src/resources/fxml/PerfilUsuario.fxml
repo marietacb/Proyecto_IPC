@@ -16,7 +16,7 @@
    <center>
       <ScrollPane BorderPane.alignment="TOP_LEFT">
          <BorderPane.margin>
-            <Insets left="25.0" />
+            <Insets />
          </BorderPane.margin>
          <content>
             <VBox fx:id="vbox" prefHeight="450.0" prefWidth="700.0">
@@ -46,7 +46,7 @@
                         </VBox>
                      </children>
                      <padding>
-                        <Insets left="30.0" top="10.0" />
+                        <Insets left="40.0" top="10.0" />
                      </padding>
                      <VBox.margin>
                         <Insets />
@@ -70,7 +70,7 @@
                         </Label>
                      </children>
                      <padding>
-                        <Insets left="30.0" top="20.0" />
+                        <Insets left="40.0" top="20.0" />
                      </padding>
                   </HBox>
                   <HBox>
@@ -95,7 +95,7 @@
                         </Label>
                      </children>
                      <padding>
-                        <Insets left="30.0" top="20.0" />
+                        <Insets left="40.0" top="20.0" />
                      </padding>
                   </HBox>
                   <HBox>
@@ -108,7 +108,7 @@
                         </VBox>
                      </children>
                      <padding>
-                        <Insets left="30.0" top="20.0" />
+                        <Insets left="40.0" top="20.0" />
                      </padding>
                   </HBox>
                   <HBox>
@@ -129,7 +129,7 @@
                         </Label>
                      </children>
                      <padding>
-                        <Insets left="30.0" top="20.0" />
+                        <Insets left="40.0" top="20.0" />
                      </padding>
                   </HBox>
                </children>
@@ -138,39 +138,45 @@
       </ScrollPane>
    </center>
    <bottom>
-      <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER_RIGHT">
+      <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <Button fx:id="guardar" alignment="CENTER" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#pulsarGuardar" prefHeight="30.0" prefWidth="80.0" text="Guardar">
+            <Button fx:id="guardar" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pulsarGuardar" prefHeight="30.0" prefWidth="90.0" text="Guardar">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="cancelar" alignment="CENTER" contentDisplay="TOP" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#pulsarCancelar" prefHeight="30.0" prefWidth="80.0" text="Cancelar">
+            <Button fx:id="cancelar" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pulsarCancelar" prefHeight="30.0" prefWidth="90.0" text="Cancelar">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="20.0" />
                </HBox.margin>
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets bottom="40.0" left="20.0" right="50.0" top="20.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </BorderPane.margin>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
       </HBox>
    </bottom>
    <top>
-      <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
+      <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Label fx:id="titulo" alignment="CENTER" text="Mi perfil">
+            <Label fx:id="titulo" text="Mi perfil">
                <font>
                   <Font size="24.0" />
                </font>
                <HBox.margin>
-                  <Insets left="20.0" top="20.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
          </children>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="30.0" right="20.0" />
+         </padding>
       </HBox>
    </top>
 </BorderPane>
