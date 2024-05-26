@@ -172,6 +172,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button imprimir_boton;
     private Stage EscenarioPrincipal;
+    @FXML
+    private MenuItem mPerfil;
     
     /**
      * Initializes the controller class.
@@ -215,8 +217,8 @@ public class FXMLDocumentController implements Initializable {
         }
         catch(Exception e){}
         
-        //inicializar gridpane
-        
+                //inicializar gridpane
+
     }
 
     private void llenarGraficoConGastosDelMes() throws AcountDAOException, IOException {
@@ -746,6 +748,28 @@ public class FXMLDocumentController implements Initializable {
                 alert.showAndWait();
             }
         }
+    }
+
+    @FXML
+    private void modificarPerfil(ActionEvent event) throws IOException {
+        // Cargar el archivo FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_registro.fxml"));
+        Parent root = loader.load();
+        
+        // Obtener el controlador asociado
+        FXML_registroController controlerRegistro = loader.getController();
+        controlerRegistro.editRegister();
+        Stage newStage = new Stage();
+        
+        // Crear una nueva ventana
+        
+        newStage.setTitle("Modificar Gasto");
+        newStage.setScene(new Scene(root));
+        controlerRegistro.setStage(newStage);
+        Stage stageinicial = (Stage) bAyuda.getScene().getWindow();
+        newStage.show();
+        stageinicial.close();
+        
     }
 }
     
