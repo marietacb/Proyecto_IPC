@@ -3,14 +3,14 @@
  */
 
 #titulo{
-    -fx-font-family: "montserrat";
+    -fx-font-family: sans-serif;
     -fx-font-size: 250%;
     -fx-font-weight: bold;
     -fx-text-fill: green; 
 }
 #button_login{
     -fx-font-family: sans-serif;
-    -fx-background-color: white;
+    -fx-background-color: #ccffcc;
     -fx-text-fill: black;
     -fx-border-color: black;
     -fx-border-radius: 8;
@@ -23,4 +23,14 @@
     -fx-border-color: black;
     -fx-border-radius: 8;
     -fx-background-radius: 30%;
+}
+
+.label{
+   -fx-font-family: sans-serif; 
+   -fx-text-fill: black;
+   -fx-font-weight: bold;
+   
+}
+.hyperlink{
+   -fx-font-family: sans-serif; 
 }

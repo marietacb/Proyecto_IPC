@@ -135,7 +135,7 @@
                      <children>
                         <Text fx:id="ti" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiquet o factura">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="25.0" top="75.0" />
+                              <Insets bottom="5.0" left="25.0" top="30.0" />
                            </VBox.margin>
                         </Text>
                         <VBox fx:id="vboxFactura" alignment="CENTER" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0">
