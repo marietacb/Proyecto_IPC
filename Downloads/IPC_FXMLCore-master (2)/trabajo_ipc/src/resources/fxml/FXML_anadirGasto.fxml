@@ -24,7 +24,7 @@
                <children>
                   <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="350.0">
                      <children>
-                        <Text fx:id="nom" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                        <Text fx:id="nom" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre*">
                            <VBox.margin>
                               <Insets bottom="5.0" left="50.0" top="25.0" />
                            </VBox.margin>
@@ -39,7 +39,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </Label>
-                        <Text fx:id="fec" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+                        <Text fx:id="fec" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha*">
                            <VBox.margin>
                               <Insets bottom="5.0" left="50.0" top="10.0" />
                            </VBox.margin>
@@ -54,7 +54,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </Label>
-                        <Text fx:id="un" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades">
+                        <Text fx:id="un" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades*">
                            <VBox.margin>
                               <Insets bottom="5.0" left="50.0" top="10.0" />
                            </VBox.margin>
@@ -69,7 +69,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </Label>
-                        <Text fx:id="pre" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio">
+                        <Text fx:id="pre" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio*">
                            <VBox.margin>
                               <Insets bottom="5.0" left="50.0" top="10.0" />
                            </VBox.margin>
@@ -96,7 +96,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </Label>
-                        <Text fx:id="ca" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría">
+                        <Text fx:id="ca" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría*">
                            <VBox.margin>
                               <Insets bottom="5.0" left="50.0" top="10.0" />
                            </VBox.margin>
@@ -111,7 +111,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </Label>
-                        <Text fx:id="des" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
+                        <Text fx:id="des" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción*">
                            <VBox.margin>
                               <Insets bottom="5.0" left="50.0" top="10.0" />
                            </VBox.margin>

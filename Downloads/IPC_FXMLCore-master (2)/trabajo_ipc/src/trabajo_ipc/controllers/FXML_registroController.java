@@ -93,7 +93,7 @@ public class FXML_registroController implements Initializable {
     @FXML
     private Label correoLabel;
     @FXML
-    private Label contraseñaLabel;
+    private Label contraLabel;
 
     
 
