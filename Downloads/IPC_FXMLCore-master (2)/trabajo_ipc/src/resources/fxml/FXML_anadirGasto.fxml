@@ -16,9 +16,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderpane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_anadirGastoController">
+<BorderPane fx:id="borderpane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_anadirGastoController">
    <center>
-      <ScrollPane>
+      <ScrollPane fx:id="scrollpane">
          <content>
             <HBox fx:id="pantallaAñadirGasto" minHeight="650.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" stylesheets="@Source Packages/resources.css/anadir_gastofxml.css">
                <children>
@@ -101,7 +101,7 @@
                               <Insets bottom="5.0" left="50.0" top="10.0" />
                            </VBox.margin>
                         </Text>
-                        <SplitMenuButton fx:id="categorias_boton" maxHeight="25.0" maxWidth="170.0" minHeight="25.0" minWidth="170.0" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" prefHeight="25.0" prefWidth="170.0" style="-fx-font-family: sans-serif; -fx-background-color: green;" text="Seleccionar Categoria">
+                        <SplitMenuButton fx:id="categorias_boton" maxHeight="25.0" maxWidth="170.0" minHeight="25.0" minWidth="170.0" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" prefHeight="25.0" prefWidth="170.0" text="Seleccionar Categoria" textFill="#8d8d8d">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
@@ -135,7 +135,7 @@
                      <children>
                         <Text fx:id="ti" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiquet o factura">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="25.0" top="75.0" />
+                              <Insets bottom="5.0" left="25.0" top="30.0" />
                            </VBox.margin>
                         </Text>
                         <VBox fx:id="vboxFactura" alignment="CENTER" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0">
@@ -163,14 +163,14 @@
       </ScrollPane>
    </center>
    <bottom>
-      <HBox alignment="BOTTOM_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="300.0" BorderPane.alignment="BOTTOM_RIGHT">
+      <HBox alignment="BOTTOM_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="300.0" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
-            <Button fx:id="boton_aceptar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pulsarAceptar" prefHeight="30.0" prefWidth="90.0" text="Aceptar">
+            <Button fx:id="boton_aceptar" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pulsarAceptar" prefHeight="30.0" prefWidth="90.0" text="_Aceptar">
                <HBox.margin>
                   <Insets bottom="30.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="boton_Cancelar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#pulsarCancelar" prefHeight="30.0" prefWidth="90.0" text="Cancelar">
+            <Button fx:id="boton_Cancelar" cancelButton="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#pulsarCancelar" prefHeight="30.0" prefWidth="90.0" text="_Cancelar">
                <HBox.margin>
                   <Insets bottom="30.0" left="20.0" right="40.0" />
                </HBox.margin>

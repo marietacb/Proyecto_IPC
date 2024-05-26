@@ -71,11 +71,11 @@
             <Region prefHeight="200.0" prefWidth="200.0" />
             <HBox alignment="CENTER" fillHeight="false" maxWidth="300.0" minWidth="300.0" prefHeight="25.0" prefWidth="300.0">
                <children>
-                  <Button fx:id="botonAceptar" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onMouseClicked="#aceptar" prefHeight="30.0" prefWidth="90.0" text="Aceptar" HBox.hgrow="NEVER">
+                  <Button fx:id="botonAceptar" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" onMouseClicked="#aceptar" prefHeight="30.0" prefWidth="90.0" text="_Aceptar" HBox.hgrow="NEVER">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="botonSalir" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onMouseClicked="#salir" prefHeight="30.0" prefWidth="90.0" text="Salir" HBox.hgrow="NEVER">
+                  <Button fx:id="botonSalir" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" onMouseClicked="#salir" prefHeight="30.0" prefWidth="90.0" text="_Salir" HBox.hgrow="NEVER">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
