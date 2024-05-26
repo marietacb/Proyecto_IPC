@@ -70,7 +70,7 @@
                         </VBox>
                      </children>
                      <padding>
-                        <Insets left="30.0" right="20.0" top="10.0" />
+                        <Insets left="40.0" right="20.0" top="10.0" />
                      </padding>
                   </HBox>
                   <HBox prefWidth="200.0">
@@ -101,7 +101,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <padding>
-                        <Insets left="30.0" right="20.0" top="10.0" />
+                        <Insets left="40.0" right="20.0" top="10.0" />
                      </padding>
                   </HBox>
                   <HBox prefWidth="200.0">
@@ -129,7 +129,7 @@
                         </Label>
                      </children>
                      <padding>
-                        <Insets left="30.0" right="20.0" top="10.0" />
+                        <Insets left="40.0" right="20.0" top="10.0" />
                      </padding>
                   </HBox>
                   <HBox prefWidth="200.0">
@@ -157,7 +157,7 @@
                         </Label>
                      </children>
                      <padding>
-                        <Insets left="30.0" right="20.0" top="10.0" />
+                        <Insets left="40.0" right="20.0" top="10.0" />
                      </padding>
                   </HBox>
                   <HBox prefWidth="200.0">
@@ -185,7 +185,7 @@
                         </Label>
                      </children>
                      <padding>
-                        <Insets left="30.0" right="20.0" top="10.0" />
+                        <Insets left="40.0" right="20.0" top="10.0" />
                      </padding>
                   </HBox>
                   <HBox prefWidth="200.0">
@@ -209,7 +209,7 @@
                         </Label>
                      </children>
                      <padding>
-                        <Insets left="30.0" right="20.0" top="10.0" />
+                        <Insets left="40.0" right="20.0" top="10.0" />
                      </padding>
                   </HBox>
                   <Hyperlink fx:id="iniciar_link" alignment="TOP_CENTER" contentDisplay="TOP" onMouseClicked="#iniciar_sesion" text="¿Ya estas registrado? Inicia sesión" textFill="#19ae1e">

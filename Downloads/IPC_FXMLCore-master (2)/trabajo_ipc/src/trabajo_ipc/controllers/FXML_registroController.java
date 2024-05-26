@@ -72,9 +72,9 @@ public class FXML_registroController implements Initializable {
     @FXML
     private Hyperlink iniciar_link;
     @FXML
-    private Text Registro;
-    @FXML
     private ImageView avatarid;
+    @FXML
+    private Label titulo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
