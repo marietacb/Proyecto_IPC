@@ -779,7 +779,7 @@ public class FXMLDocumentController implements Initializable {
         // Crear el contenido expandible con el mensaje de ayuda
         GridPane helpContent = new GridPane();
         Label helpLabel = new Label("Ayuda:");
-        TextArea helpTextArea = new TextArea("Para visualizar todos los gastos realizados debe hacer click en el botón mis gastos. \nPara imprimir todos sus gastos, presione la impresora al lado de la tabla. \nPara más información, acuda al correo: anaisgoma@gmail.com");
+        TextArea helpTextArea = new TextArea("Para visualizar todos los gastos realizados debe hacer click en el botón mis gastos. \nPara imprimir todos sus gastos, presione la impresora al lado de la tabla. \nPara más información, acuda al correo: ipctrabajo0@gmail.com");
         helpTextArea.setEditable(false);
         helpTextArea.setWrapText(true);
         helpTextArea.setMaxWidth(Double.MAX_VALUE);

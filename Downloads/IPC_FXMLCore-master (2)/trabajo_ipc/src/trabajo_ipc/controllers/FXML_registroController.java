@@ -94,6 +94,12 @@ public class FXML_registroController implements Initializable {
     private Label correoLabel;
     @FXML
     private Label contraLabel;
+    @FXML
+    private Label errorContraseña2;
+    @FXML
+    private PasswordField field_contraseña2;
+    @FXML
+    private Label contraseña_incorrecto2;
 
     
 
@@ -179,6 +185,7 @@ public class FXML_registroController implements Initializable {
         String nombreUsuario = field_nombreusuario.getText();
         String correo = field_correo.getText();
         String contraseña = field_contraseña.getText();
+        String contraseña2 = field_contraseña2.getText();
         Image avatar = avatarid.getImage();
         LocalDate fecha = LocalDate.now();
 
@@ -250,6 +257,14 @@ public class FXML_registroController implements Initializable {
             contraseña_incorrecto.setVisible(true);
             valid = false;
         }
+        
+        if (!contraseña2.equals(contraseña)) {
+            contraseña_incorrecto2.setText("Las contraseñas no coinciden");
+            contraseña_incorrecto2.setVisible(true);
+            valid = false;
+        } else {
+            contraseña_incorrecto2.setVisible(false);
+        }
 
         if (valid) {
             try {
@@ -316,9 +331,20 @@ public class FXML_registroController implements Initializable {
     }
       
     @FXML
-    private void pulsar_cancelar(ActionEvent event) {
-        Stage stage = (Stage) button_cancel.getScene().getWindow();
+    private void pulsar_cancelar(ActionEvent event) throws IOException {
+        if (!edit) {Stage stage = (Stage) button_cancel.getScene().getWindow();
         stage.close();
+        }else { 
+        FXMLLoader cargarRegistro = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+        Parent root = cargarRegistro.load();
+
+        Stage stage = new Stage();
+        Stage stageinicial = (Stage) button_cancel.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+        stageinicial.close();
+        
+        }
     }
 
     @FXML
