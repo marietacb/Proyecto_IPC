@@ -41,5 +41,6 @@
 
 .bar-chart{
     -fx-background-color: #ccffcc;
+    -fx-font-family: sans-serif; 
 
 }
