@@ -27,10 +27,39 @@
 
 .label{
    -fx-font-family: sans-serif; 
-   -fx-text-fill: black;
-   -fx-font-weight: bold;
-   
+   -fx-text-fill: red;
+   -fx-font-weight: regular;
 }
 .hyperlink{
    -fx-font-family: sans-serif; 
+}
+#fotoLabel{
+    -fx-font-family: sans-serif; 
+   -fx-text-fill: black;
+   -fx-font-weight: bold;
+}
+#nombreLabel{
+     -fx-font-family: sans-serif; 
+   -fx-text-fill: black;
+   -fx-font-weight: bold;
+}
+#apellidosLabel{
+     -fx-font-family: sans-serif; 
+   -fx-text-fill: black;
+   -fx-font-weight: bold;
+}
+#nicknameLabel{
+     -fx-font-family: sans-serif; 
+   -fx-text-fill: black;
+   -fx-font-weight: bold;
+}
+#correoLabel{
+     -fx-font-family: sans-serif; 
+   -fx-text-fill: black;
+   -fx-font-weight: bold;
+}
+#contraLabel{
+    -fx-font-family: sans-serif; 
+   -fx-text-fill: black;
+   -fx-font-weight: bold;
 }
