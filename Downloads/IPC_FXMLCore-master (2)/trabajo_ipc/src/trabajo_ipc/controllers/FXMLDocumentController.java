@@ -522,8 +522,9 @@ public class FXMLDocumentController implements Initializable {
         
         // Obtener el controlador asociado
         FXML_anadirGastoController controlerGasto = loader.getController();
-        controlerGasto.editGasto(tableView.getSelectionModel().getSelectedIndex());
         controlerGasto.editCategoria(cat);
+        controlerGasto.editGasto(tableView.getSelectionModel().getSelectedIndex());
+        controlerGasto.setMainController(this);
         Stage newStage = new Stage();
         
         // Crear una nueva ventana

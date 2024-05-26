@@ -127,7 +127,6 @@ public class FXML_anadirGastoController implements Initializable {
     private SplitMenuButton categorias_boton;
     
     private List<Category> categorias;
-    private ArrayList<Category> categorias2 = new ArrayList<>();
 
     private List<Charge> cargos;
     private ObservableList<Charge> cargosO;    //lista categorias
@@ -161,6 +160,7 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private ScrollPane scrollpane;
     private FXMLDocumentController mainController;
+    private Category categoria2;
 
 
     // Método para recibir la instancia actual de FXMLDocumentController
@@ -189,22 +189,9 @@ public class FXML_anadirGastoController implements Initializable {
                  };
              });
              
-             //inicializar el selector de categoría
-             categorias = Acount.getInstance().getUserCategories();
-             categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
-             // Agregamos nuevas categorías como elementos del menú recrriendo la lista
-             for (int i = 0; i < categorias.size(); i++) {
-                 Category categoria = categorias.get(i);
-                 MenuItem menuItem = new MenuItem(categoria.getName());
-                 categorias2.add(categoria);
+            loadCategories();
                  
-                 menuItem.setOnAction(evento -> {
-                     categorias_boton.setText(categoria.getName());
-                     seleccionado = categorias.indexOf(categoria);
-                 });
-                 
-                 categorias_boton.getItems().add(menuItem);
-             }} catch (AcountDAOException ex) {
+             } catch (AcountDAOException ex) {
              Logger.getLogger(FXML_anadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
          } catch (IOException ex) {
              Logger.getLogger(FXML_anadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
@@ -323,7 +310,7 @@ public class FXML_anadirGastoController implements Initializable {
            Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,cat); 
         }
         else {
-            
+ 
                 charge.setName(nombre_gasto.getText());
                 charge.setDescription(descripcion_gasto.getText());
                 charge.setCost(Double.parseDouble(precio_gasto.getText()));
@@ -340,6 +327,19 @@ public class FXML_anadirGastoController implements Initializable {
      
         Stage stage = (Stage) boton_aceptar.getScene().getWindow();
         stage.close();
+    }
+    
+    private void loadCategories() throws AcountDAOException, IOException {
+        categorias = Acount.getInstance().getUserCategories();
+        categorias_boton.getItems().clear();    // Limpiar las categorías que pudiera haber cargadas
+        for (Category categoria : categorias) {
+            MenuItem menuItem = new MenuItem(categoria.getName());
+            menuItem.setOnAction(event -> {
+                categorias_boton.setText(categoria.getName());
+                seleccionado = categorias.indexOf(categoria);
+            });
+            categorias_boton.getItems().add(menuItem);
+        }
     }
 
     @FXML   //seleccionar foto gasto desde archivos, HECHO
@@ -361,12 +361,12 @@ public class FXML_anadirGastoController implements Initializable {
 
     @FXML
     private void seleccionar_categoria(MouseEvent event) throws AcountDAOException, IOException {
-       categorias = Acount.getInstance().getUserCategories();
-        categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
+        categorias = Acount.getInstance().getUserCategories();
+            categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
             // Agregamos nuevas categorías como elementos del menú recrriendo la lista
-        for (int i = 0; i < categorias.size(); i++) {
-            Category categoria = categorias.get(i);
-            MenuItem menuItem = new MenuItem(categoria.getName());
+             for (int i = 0; i < categorias.size()-1; i++) {
+                Category categoria = categorias.get(i);
+                MenuItem menuItem = new MenuItem(categoria.getName());
 
             menuItem.setOnAction(evento -> {
                 categorias_boton.setText(categoria.getName());  // Opcional
@@ -374,7 +374,8 @@ public class FXML_anadirGastoController implements Initializable {
             });
             
             categorias_boton.getItems().add(menuItem);
-        } 
+        }
+
     }
 
     @FXML
@@ -414,34 +415,27 @@ public class FXML_anadirGastoController implements Initializable {
 
     }
 
-    @FXML
-    private void seleccionar_categoria1(ContextMenuEvent event) throws AcountDAOException, IOException {
-
-    }
     
     public void editGasto(Integer indice) throws AcountDAOException, IOException{
         editGasto = true;
         cargos = Acount.getInstance().getUserCharges();
         cargosO = FXCollections.observableList(cargos);
         charge = cargosO.get(indice);
-        
+
         nombre_gasto.setText(charge.getName());
         unidades_gasto.setText(String.valueOf(charge.getUnits()));
         precio_gasto.setText(String.valueOf(charge.getCost()));
         descripcion_gasto.setText(charge.getDescription());
         tiquet_gasto.setImage(charge.getImageScan());
         elegir_fecha.setValue(charge.getDate());
-        scanner = charge.getImageScan();
-        tiquet_gasto.setImage(scanner);
+        categorias_boton.setText(charge.getCategory().getName());
+        seleccionado = categorias.indexOf(charge.getCategory());
         titulo.setText("Modificar gasto");
 
         
     }
      public void editCategoria(Category cat) throws AcountDAOException, IOException{
-        if(editGasto && categorias != null){ 
-            categorias_boton.setText(cat.getName()); 
-            seleccionado = categorias2.indexOf(cat);
-        }
+        categoria2 = cat;
      }
     public void setStage(Stage sta) {
         stage = sta;
