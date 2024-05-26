@@ -99,8 +99,6 @@ public class FXML_registroController implements Initializable {
             iniciar_link.setVisible(false);
             button_login.setText("Actualizar");
             titulo.setText("Modificar perfil");
-            button_login.setDisable(false);
-            button_cancel.setDisable(false);
         } catch (Exception e) {
             register = false;
             
