@@ -5,7 +5,6 @@
     -fx-font-weight: bold;
     -fx-fill: green; /*verde militar*/
 }
-
 /*botones aceptar y cancelar diseño*/
 #boton_aceptar{
     -fx-background-color: #ccffcc;

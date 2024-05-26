@@ -34,7 +34,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label fx:id="error_nombre" text="Introduzca un nombre" textFill="#ef0404" visible="false">
+                        <Label fx:id="error_nombre" style="-fx-font-family: sans-serif;" text="Introduzca un nombre" textFill="#ef0404" visible="false">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
@@ -49,7 +49,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </DatePicker>
-                        <Label fx:id="error_fecha" text="No se ha introducido ninguna fecha" textFill="#ef0404" visible="false">
+                        <Label fx:id="error_fecha" style="-fx-font-family: sans-serif;" text="No se ha introducido ninguna fecha" textFill="#ef0404" visible="false">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
@@ -64,7 +64,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label fx:id="error_unidades" textFill="#ef0404" visible="false">
+                        <Label fx:id="error_unidades" style="-fx-font-family: sans-serif;" textFill="#ef0404" visible="false">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
@@ -91,7 +91,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <Label fx:id="error_precio" text="El formato de precio es incorrecto" textFill="#ef0404" visible="false">
+                        <Label fx:id="error_precio" style="-fx-font-family: sans-serif;" text="El formato de precio es incorrecto" textFill="#ef0404" visible="false">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
@@ -106,7 +106,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </SplitMenuButton>
-                        <Label fx:id="error_categoria" text="Seleccione una categoría" textFill="#ef0404" visible="false">
+                        <Label fx:id="error_categoria" style="-fx-font-family: sans-serif;" text="Seleccione una categoría" textFill="#ef0404" visible="false">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
@@ -121,7 +121,7 @@
                               <Insets left="50.0" />
                            </VBox.margin>
                         </TextArea>
-                        <Label fx:id="error_descripcion" text="Introduzca una breve descripción" textFill="#ef0404" visible="false">
+                        <Label fx:id="error_descripcion" style="-fx-font-family: sans-serif;" text="Introduzca una breve descripción" textFill="#ef0404" visible="false">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
