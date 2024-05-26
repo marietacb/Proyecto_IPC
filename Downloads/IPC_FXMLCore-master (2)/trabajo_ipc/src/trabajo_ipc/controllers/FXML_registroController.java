@@ -82,6 +82,18 @@ public class FXML_registroController implements Initializable {
     private boolean register;
     
     private Utils utils = new Utils();
+    @FXML
+    private Label fotoLabel;
+    @FXML
+    private Label nombreLabel;
+    @FXML
+    private Label apellidosLabel;
+    @FXML
+    private Label nicknameLabel;
+    @FXML
+    private Label correoLabel;
+    @FXML
+    private Label contraseñaLabel;
 
     
 

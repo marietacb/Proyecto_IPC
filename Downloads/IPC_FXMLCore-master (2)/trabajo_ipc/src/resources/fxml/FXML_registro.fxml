@@ -57,7 +57,7 @@
                      <children>
                         <VBox prefWidth="100.0" spacing="3.0">
                            <children>
-                              <Label text="Foto de perfil: (Opcional)">
+                              <Label fx:id="fotoLabel" text="Foto de perfil: (Opcional)">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
@@ -86,7 +86,7 @@
                      <children>
                         <VBox prefWidth="100.0" spacing="3.0">
                            <children>
-                              <Label text="Nombre:*" />
+                              <Label fx:id="nombreLabel" text="Nombre:*" />
                               <TextField fx:id="field_nombre" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="150.0" promptText="Introduzca su nombre">
                                  <VBox.margin>
                                     <Insets />
@@ -117,7 +117,7 @@
                      <children>
                         <VBox prefWidth="100.0" spacing="3.0">
                            <children>
-                              <Label text="Apellidos:*">
+                              <Label fx:id="apellidosLabel" text="Apellidos:*">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
@@ -149,7 +149,7 @@
                      <children>
                         <VBox prefWidth="100.0" spacing="3.0">
                            <children>
-                              <Label text="Nickname:*">
+                              <Label fx:id="nicknameLabel" text="Nickname:*">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
@@ -181,7 +181,7 @@
                      <children>
                         <VBox prefWidth="100.0" spacing="3.0">
                            <children>
-                              <Label text="Correo Electrónico:*">
+                              <Label fx:id="correoLabel" text="Correo Electrónico:*">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
@@ -213,7 +213,7 @@
                      <children>
                         <VBox prefWidth="100.0" spacing="3.0">
                            <children>
-                              <Label text="Contraseña:*">
+                              <Label fx:id="contraLabel" text="Contraseña:*">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>

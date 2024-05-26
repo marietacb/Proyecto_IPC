@@ -46,8 +46,8 @@
             </Button>
             <MenuButton fx:id="bSalir" maxHeight="30.0" maxWidth="60.0" minHeight="30.0" minWidth="60.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0">
               <items>
-                  <MenuItem fx:id="miPerfil" mnemonicParsing="false" onAction="#pulsarMiperfil" text="ver mi Perfil" />
-                  <MenuItem fx:id="mPerfil" mnemonicParsing="false" onAction="#modificarPerfil" text="modificar Perfil" />
+                  <MenuItem fx:id="miPerfil" mnemonicParsing="false" onAction="#pulsarMiperfil" text="Ver mi Perfil" />
+                  <MenuItem fx:id="mPerfil" mnemonicParsing="false" onAction="#modificarPerfil" text="Modificar Perfil" />
                 <MenuItem fx:id="cPerfil" mnemonicParsing="false" onAction="#cambiarperfil" text="Cambiar sesión" />
                 <MenuItem fx:id="boton_salir" mnemonicParsing="false" onAction="#sailr" text="Salir" />
               </items>
