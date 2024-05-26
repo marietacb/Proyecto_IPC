@@ -71,7 +71,7 @@
               </items>
             </MenuButton>
             <SplitPane orientation="VERTICAL" prefHeight="5.0" prefWidth="50.0" translateY="180.0" />
-          <Button fx:id="boton_resumenGastos" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" onMouseClicked="#resumen_anual" prefHeight="30.0" text="Resumen anual" translateX="10.0" translateY="200.0" />
+          <Button fx:id="boton_resumenGastos" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" onMouseClicked="#resumen_anual" prefHeight="30.0" text="Resumen mensual" translateX="10.0" translateY="200.0" />
             <Button fx:id="boton_gastos" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" onMouseClicked="#pulsarGastos" prefHeight="30.0" text="Mis gastos" translateX="10.0" translateY="205.0" />
             <Button fx:id="comparar_boton" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" onAction="#comparar" prefHeight="30.0" text="Comparar gastos" translateX="10.0" translateY="210.0" />
         </items>

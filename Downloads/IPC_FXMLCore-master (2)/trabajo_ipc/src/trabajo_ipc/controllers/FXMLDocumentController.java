@@ -321,7 +321,7 @@ public class FXMLDocumentController implements Initializable {
         FXML_anadirGastoController añadirGastoController = loader.getController();
 
         // Pasar la instancia actual de FXMLDocumentController a AñadirGastoController
-            añadirGastoController.setFXMLDocumentController(this);
+            añadirGastoController.setMainController(this);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

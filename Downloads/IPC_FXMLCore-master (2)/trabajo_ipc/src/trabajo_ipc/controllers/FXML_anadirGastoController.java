@@ -155,18 +155,18 @@ public class FXML_anadirGastoController implements Initializable {
     private Stage stage;
     private Charge charge;
         
-    private FXMLDocumentController fxmlDocumentController;
     private Image scanner;
     @FXML
     private BorderPane borderpane;
     @FXML
     private ScrollPane scrollpane;
+    private FXMLDocumentController mainController;
 
 
     // Método para recibir la instancia actual de FXMLDocumentController
-        public void setFXMLDocumentController(FXMLDocumentController fxmlDocumentController) {
-                this.fxmlDocumentController = fxmlDocumentController;
-        }
+        public void setMainController(FXMLDocumentController mainController) {
+        this.mainController = mainController;
+    }
     
     /**
      * Initializes the controller class.
@@ -210,13 +210,7 @@ public class FXML_anadirGastoController implements Initializable {
              Logger.getLogger(FXML_anadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
-        //FXMLDocumentController = loader.getController();
-        
-    //public void setTablaController(FXMLDocumentController tablaController){
-    //    this.tablaController = tablaController;
-    
-    //}
+
     
    
     @FXML
@@ -341,16 +335,8 @@ public class FXML_anadirGastoController implements Initializable {
         }
         //actualizar tabla
         // Cargar el archivo FXML
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
-        Parent root = loader.load();
-        
-        // Obtener el controlador asociado
-        fxmlDocumentController = loader.getController();
-        fxmlDocumentController.actualizarGastos();
-         
-        //volvemos a la pantalla principal LA DE LA TABLA
-        FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
-        Parent raiz = cargarRegistro.load();
+           // Actualizar la tabla de gastos en FXMLDocumentController
+        mainController.actualizarGastos();
      
         Stage stage = (Stage) boton_aceptar.getScene().getWindow();
         stage.close();
