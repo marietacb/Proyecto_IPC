@@ -66,12 +66,12 @@
    <bottom>
       <HBox alignment="BOTTOM_RIGHT" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="300.0" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
-            <Button fx:id="boton_aceptar" mnemonicParsing="false" onMouseClicked="#aceptar" prefHeight="30.0" prefWidth="90.0" text="Aceptar">
+            <Button fx:id="boton_aceptar" defaultButton="true" onMouseClicked="#aceptar" prefHeight="30.0" prefWidth="90.0" text="_Aceptar">
                <HBox.margin>
                   <Insets bottom="30.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="boton_cancelar" mnemonicParsing="false" onMouseClicked="#cancelar" prefHeight="30.0" prefWidth="90.0" text="Cancelar">
+            <Button fx:id="boton_cancelar" cancelButton="true" onMouseClicked="#cancelar" prefHeight="30.0" prefWidth="90.0" text="_Cancelar">
                <HBox.margin>
                   <Insets bottom="30.0" left="20.0" right="40.0" />
                </HBox.margin>
