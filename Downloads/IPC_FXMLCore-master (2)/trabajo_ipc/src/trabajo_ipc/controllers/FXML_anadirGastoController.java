@@ -132,7 +132,7 @@ public class FXML_anadirGastoController implements Initializable {
     private List<Charge> cargos;
     private ObservableList<Charge> cargosO;    //lista categorias
     
-    int seleccionado;
+    Integer seleccionado;
     @FXML
     private Text nom;
     @FXML
@@ -229,7 +229,8 @@ public class FXML_anadirGastoController implements Initializable {
         //ERRORES MOSTRADOS
         
         //ERROR FECHA
-        if(elegir_fecha.getDayCellFactory() == null){   //no se ha seleccionado fecha
+        LocalDate selectedDate = elegir_fecha.getValue();
+        if(selectedDate == null){   //no se ha seleccionado fecha
             error_fecha.visibleProperty().set(true);
         }
         else{error_fecha.visibleProperty().set(false);}
@@ -306,8 +307,11 @@ public class FXML_anadirGastoController implements Initializable {
                 error_unidades.visibleProperty().set(true);
             }
         }
-        
-        if(!error_nombre.isVisible() ){
+                
+        //ERROR CATEGORIA
+        if(seleccionado == null) {
+          error_categoria.setVisible(true);  
+        }
         
         //CARGAR TABLA CON GASTOS
             
@@ -348,8 +352,6 @@ public class FXML_anadirGastoController implements Initializable {
      
            Stage stage = (Stage) boton_aceptar.getScene().getWindow();
            stage.close();
-            
-        }
     }
 
     @FXML   //seleccionar foto gasto desde archivos, HECHO
