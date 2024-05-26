@@ -106,7 +106,7 @@ public class FXML_anadirGastoController implements Initializable {
     private Label error_nombre;     //texto de error en el nombre
     
     
-    private FXMLDocumentController tablaController; //tabla vinculada a la pantalla principal
+    //private FXMLDocumentController tablaController; //tabla vinculada a la pantalla principal
     @FXML
     private Label error_descripcion;
     @FXML
@@ -164,9 +164,9 @@ public class FXML_anadirGastoController implements Initializable {
 
 
     // Método para recibir la instancia actual de FXMLDocumentController
-    public void setFXMLDocumentController(FXMLDocumentController fxmlDocumentController) {
-        this.fxmlDocumentController = fxmlDocumentController;
-    }
+        public void setFXMLDocumentController(FXMLDocumentController fxmlDocumentController) {
+                this.fxmlDocumentController = fxmlDocumentController;
+        }
     
     /**
      * Initializes the controller class.
@@ -210,11 +210,13 @@ public class FXML_anadirGastoController implements Initializable {
              Logger.getLogger(FXML_anadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+        //FXMLDocumentController = loader.getController();
+        
+    //public void setTablaController(FXMLDocumentController tablaController){
+    //    this.tablaController = tablaController;
     
-    public void setTablaController(FXMLDocumentController tablaController){
-        this.tablaController = tablaController;
-    
-    }
+    //}
     
    
     @FXML
@@ -337,21 +339,21 @@ public class FXML_anadirGastoController implements Initializable {
                 charge.setImageScan(tiquet_gasto.getImage());
 
         }
-           //actualizar tabla
-           // Cargar el archivo FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
-            Parent root = loader.load();
+        //actualizar tabla
+        // Cargar el archivo FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+        Parent root = loader.load();
         
         // Obtener el controlador asociado
-           fxmlDocumentController = loader.getController();
-           fxmlDocumentController.actualizarGastos();
-           
-           //volvemos a la pantalla principal LA DE LA TABLA
-           FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
-           Parent raiz = cargarRegistro.load();
+        fxmlDocumentController = loader.getController();
+        fxmlDocumentController.actualizarGastos();
+         
+        //volvemos a la pantalla principal LA DE LA TABLA
+        FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+        Parent raiz = cargarRegistro.load();
      
-           Stage stage = (Stage) boton_aceptar.getScene().getWindow();
-           stage.close();
+        Stage stage = (Stage) boton_aceptar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML   //seleccionar foto gasto desde archivos, HECHO
@@ -373,7 +375,7 @@ public class FXML_anadirGastoController implements Initializable {
 
     @FXML
     private void seleccionar_categoria(MouseEvent event) throws AcountDAOException, IOException {
-       /* categorias = Acount.getInstance().getUserCategories();
+       categorias = Acount.getInstance().getUserCategories();
         categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
             // Agregamos nuevas categorías como elementos del menú recrriendo la lista
         for (int i = 0; i < categorias.size(); i++) {
@@ -386,7 +388,7 @@ public class FXML_anadirGastoController implements Initializable {
             });
             
             categorias_boton.getItems().add(menuItem);
-        } */
+        } 
     }
 
     @FXML
