@@ -54,12 +54,10 @@ public class FXML_registroController implements Initializable {
     private TextField field_correo;
     @FXML
     private PasswordField field_contraseña;
-
     @FXML
     private Button button_login;
     @FXML
     private Button button_cancel;
-
     @FXML
     private Label nombre_incorrecto;
     @FXML
@@ -76,8 +74,14 @@ public class FXML_registroController implements Initializable {
     private ImageView avatarid;
     @FXML
     private Label titulo;
+    
     private Boolean edit = false;
+    
     private Stage stage;
+    
+    private boolean register;
+    
+    private Utils utils = new Utils();
 
     
 
@@ -89,18 +93,18 @@ public class FXML_registroController implements Initializable {
         validPassword = new SimpleBooleanProperty(false);
         validEmail = new SimpleBooleanProperty(false);
         
-        if(edit){
-        
-        field_nombreusuario.setEditable(false);
-        
-        }
-
-        field_correo.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) { // focusLost
-                checkEditEmail();
-            }
-        });
-        field_nombreusuario.textProperty().addListener((observable, oldValue, newValue) -> {
+        register = true;
+        try {
+            Acount.getInstance().getLoggedUser().getName();
+            iniciar_link.setVisible(false);
+            button_login.setText("Actualizar");
+            titulo.setText("Modificar perfil");
+            button_login.setDisable(false);
+            button_cancel.setDisable(false);
+        } catch (Exception e) {
+            register = false;
+            
+            field_nombreusuario.textProperty().addListener((observable, oldValue, newValue) -> {
                 new Thread(() -> {
                     boolean exists;
                     try {
@@ -115,7 +119,7 @@ public class FXML_registroController implements Initializable {
                     } catch (AcountDAOException | IOException ex) {}
                    }).start(); 
             });     
-
+        }       
     }
 
     private static Boolean checkEmail(String email) {
@@ -158,8 +162,8 @@ public class FXML_registroController implements Initializable {
         return texto.contains(" ");
     }
 
-        @FXML
-    private void pulsar_registrarse(ActionEvent event) throws IOException {
+    @FXML
+    private void pulsar_registrarse(ActionEvent event) throws IOException, AcountDAOException {
         String nombre = field_nombre.getText();
         String apellidos = field_apellidos.getText();
         String nombreUsuario = field_nombreusuario.getText();
@@ -169,21 +173,15 @@ public class FXML_registroController implements Initializable {
         LocalDate fecha = LocalDate.now();
 
         boolean valid = true;
-
-        if (containsSpaces(nombreUsuario)) {
-            nombreusuario_incorrecto.setText("El nombre de usuario no puede contener espacios.");
-            nombreusuario_incorrecto.setVisible(true);
-            valid = false;
-        }
-        if (containsSpaces(correo)) {
-            correo_incorrecto.setText("El correo no puede contener espacios.");
-            correo_incorrecto.setVisible(true);
-            valid = false;
-        }
-        if (containsSpaces(contraseña)) {
-            contraseña_incorrecto.setText("La contraseña no puede contener espacios.");
-            contraseña_incorrecto.setVisible(true);
-            valid = false;
+        
+        try {
+            Acount.getInstance().getLoggedUser().getName();
+        } catch (Exception ex) {
+            if (Acount.getInstance().existsLogin(nombreUsuario)) {
+                nombreusuario_incorrecto.setText("El nombre de usuario ya esta en uso.");
+                nombreusuario_incorrecto.setVisible(true);
+                valid = false;
+            }
         }
 
         if (nombre.isBlank()) {
@@ -210,7 +208,7 @@ public class FXML_registroController implements Initializable {
             nombreusuario_incorrecto.setVisible(false);
         }
 
-        if (correo.isBlank() || !checkEmail(correo)) {
+        if (correo.isBlank()) {
             correo_incorrecto.setText("Correo no puede estar en blanco.");
             correo_incorrecto.setVisible(true);
             valid = false;
@@ -225,12 +223,42 @@ public class FXML_registroController implements Initializable {
         } else {
             contraseña_incorrecto.setVisible(false);
         }
+        
+        if (containsSpaces(nombreUsuario)) {
+            nombreusuario_incorrecto.setText("El nombre de usuario contiene espacios.");
+            nombreusuario_incorrecto.setVisible(true);
+            valid = false;
+        }
+        
+        if (!checkEmail(correo)) {
+            correo_incorrecto.setText("El correo no es correcto.");
+            correo_incorrecto.setVisible(true);
+            valid = false;
+        }
+        if (containsSpaces(contraseña)) {
+            contraseña_incorrecto.setText("La contraseña no puede contener espacios.");
+            contraseña_incorrecto.setVisible(true);
+            valid = false;
+        }
 
         if (valid) {
             try {
                 if(!edit){
+                    
+                    String emailMessage;
+                    String tituloEmail;
+                    
+                    if(register){
+                        emailMessage = "Su usuario " + nombreUsuario + " ha actualizado su información del perfil, si no ha sido usted, por favor, contáctenos al numero +34 111 222 333";
+                        tituloEmail = "Mi dinerillo: Actualización de usuario";
+                    } else {
+                        emailMessage = "El usuario " + nombreUsuario + " se ha registrado con éxito en 'Mi dinerillo', muchas gracias por confiar en nuestra aplicación.";
+                        tituloEmail = "Mi dinerillo: Registro de usuario";
+                    }
+                    
                     Acount.getInstance().registerUser(nombre, apellidos, correo, nombreUsuario, contraseña, avatar, fecha);
-                    System.out.println("Usuario registrado con éxito");
+                    
+                    utils.sendEmail(field_correo.getText(), field_nombre.getText(), tituloEmail, emailMessage);
                     
                     FXMLLoader cargarRegistro = new FXMLLoader(getClass().getResource("/resources/fxml/inicio.fxml"));
                     Parent root = cargarRegistro.load();
@@ -259,7 +287,6 @@ public class FXML_registroController implements Initializable {
                 
                 }
                     // Navegar a la siguiente escena
-                    
 
             } catch (AcountDAOException e) {
                 if (e.getMessage().contains("UNIQUE constraint failed: user.nickName")) {
@@ -277,8 +304,7 @@ public class FXML_registroController implements Initializable {
         }
         
     }
-
-
+      
     @FXML
     private void pulsar_cancelar(ActionEvent event) {
         Stage stage = (Stage) button_cancel.getScene().getWindow();
@@ -317,6 +343,7 @@ public class FXML_registroController implements Initializable {
 
         }
     }
+    
     public void editRegister(){
         try{
             field_nombre.setText(Acount.getInstance().getLoggedUser().getName());

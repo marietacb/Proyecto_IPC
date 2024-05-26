@@ -57,7 +57,6 @@ public class FXML_inicioController implements Initializable {
     private VBox miVbox;
     @FXML
     private TextField nickField;
-  
     @FXML
     private Button botonAceptar;
     @FXML
@@ -66,15 +65,12 @@ public class FXML_inicioController implements Initializable {
     private Label nick;
     @FXML
     private Menu ayuda;
-    private Hyperlink registrarse;
     @FXML
     private Button botonSalir;
     @FXML
-    private Hyperlink hiperlink;
-    @FXML
     private Label cont;
     @FXML
-    private Hyperlink hiperlink1;
+    private Hyperlink registrarseLink;
 
     /**
      * Initializes the controller class.
@@ -144,19 +140,15 @@ public class FXML_inicioController implements Initializable {
         }
     }
 
-
-
-
     @FXML
     private void registrarse(MouseEvent event) throws IOException {
        FXMLLoader cargarRegistro = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_registro.fxml"));
        Parent root = cargarRegistro.load();
        
        Stage stage = new Stage();
-       Stage stageinicial = (Stage) hiperlink.getScene().getWindow();
+       Stage stageinicial = (Stage) registrarseLink.getScene().getWindow();
        stage.setScene(new Scene(root));
        stage.show();
-       stageinicial.close();
 
     }
 
@@ -166,25 +158,4 @@ public class FXML_inicioController implements Initializable {
        Stage stageinicial = (Stage) botonSalir.getScene().getWindow();
        stageinicial.close();
     }
-
-    
-    @FXML
-    private void recuperarContraseña(ActionEvent event) throws AcountDAOException, IOException {   
-        String nuevaContraseña = generateRandomString(10);  //generamos nuevaContraseña aleatoria
-        Acount.getInstance().getLoggedUser().setPassword(nuevaContraseña);
-    }
-
-     public static String generateRandomString(int length) {    //metodo que genera un string aleatorio
-        Random random = new Random();
-        StringBuilder sb = new StringBuilder(length);
-
-        for (int i = 0; i < length; i++) {
-            int digit = random.nextInt(10); // Genera un número aleatorio entre 0 y 9
-            sb.append(digit);
-        }
-
-        return sb.toString();
-    }
-    
-    
 }

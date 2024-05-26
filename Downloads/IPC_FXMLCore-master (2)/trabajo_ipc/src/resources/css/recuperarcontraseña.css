@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.label{
+    -fx-font-family: sans-serif;
+    -fx-font-width: bold;
+}
+.button{
+    -fx-background-color: #ccffcc;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
+}

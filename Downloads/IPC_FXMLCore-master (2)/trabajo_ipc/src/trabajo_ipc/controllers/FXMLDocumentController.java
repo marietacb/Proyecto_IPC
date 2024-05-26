@@ -762,8 +762,7 @@ public class FXMLDocumentController implements Initializable {
         Stage newStage = new Stage();
         
         // Crear una nueva ventana
-        
-        newStage.setTitle("Modificar Gasto");
+        newStage.setTitle("Modificar Perfil");
         newStage.setScene(new Scene(root));
         controlerRegistro.setStage(newStage);
         Stage stageinicial = (Stage) bAyuda.getScene().getWindow();

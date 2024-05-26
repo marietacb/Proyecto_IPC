@@ -92,17 +92,12 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <Hyperlink fx:id="hiperlink1" onAction="#recuperarContraseña" onMouseClicked="#registrarse" text="¿Se te ha olvidado la contraseña? Recupérala" textFill="#ed1717">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Hyperlink>
             <SplitPane prefHeight="5.0" prefWidth="600.0">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </SplitPane>
-            <Hyperlink fx:id="hiperlink" onMouseClicked="#registrarse" text="¿No tienes cuenta? Regístrate" textFill="#0d8f12">
+            <Hyperlink fx:id="registrarseLink" onMouseClicked="#registrarse" text="¿No tienes cuenta? Regístrate" textFill="#0d8f12">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
