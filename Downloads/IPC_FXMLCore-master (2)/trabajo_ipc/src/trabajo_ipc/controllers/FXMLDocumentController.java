@@ -332,21 +332,19 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void añadircategoria(ActionEvent event) throws IOException { //abre la ventana de añadir categoria
-        // Cargar el archivo FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_añadirCategoria.fxml"));
         Parent root = loader.load();
-        
-        // Crear una nueva ventana
+
+        // Obtener el controlador de añadir/editar categoría
+        FXML_añadirCategoriaController controller = loader.getController();
+        controller.setMainController(this); // Pasar referencia del controlador principal
+
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        
-        // Configurar la ventana como modal
-        stage.initModality(Modality.APPLICATION_MODAL);
-        
-        // Mostrar la ventana y esperar a que se cierre
-        stage.show();
-        
+        controller.setStage(stage); // Configurar el stage en el controlador de añadir/editar categoría
 
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
     
     public void addCharge(Charge g){
@@ -492,6 +490,7 @@ public class FXMLDocumentController implements Initializable {
         // Obtener el controlador asociado
         FXML_añadirCategoriaController controlerCategoria = loader.getController();
         controlerCategoria.editCategoria(tableView.getSelectionModel().getSelectedItem().getCategory());
+        controlerCategoria.setMainController(this);
         Stage newStage = new Stage();
         
         // Crear una nueva ventana

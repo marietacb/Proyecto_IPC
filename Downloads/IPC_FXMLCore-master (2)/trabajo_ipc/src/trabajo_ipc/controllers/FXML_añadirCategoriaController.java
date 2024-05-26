@@ -75,7 +75,7 @@ public class FXML_añadirCategoriaController implements Initializable {
     private Category miCategoria;
     @FXML
     private BorderPane borderpane;
-
+    private FXMLDocumentController mainController;
     /**
      * Initializes the controller class.
      */
@@ -84,7 +84,10 @@ public class FXML_añadirCategoriaController implements Initializable {
         // TODO
         String css = this.getClass().getResource("/resources/css/fxml_añadircategoria.css").toExternalForm();
         borderpane.getStylesheets().add(css);
-    }    
+    } 
+    public void setMainController(FXMLDocumentController mainController) {
+        this.mainController = mainController;
+    }
 
     @FXML
     private void aceptar(MouseEvent event) throws AcountDAOException, IOException {
@@ -110,8 +113,12 @@ public class FXML_añadirCategoriaController implements Initializable {
             alert.setContentText("La categoría " + nombre + " ha sido editada con éxito");
         
         }
-        Stage stage = (Stage) boton_cancelar.getScene().getWindow();
-        stage.close();
+           // Actualizar la tabla de gastos en FXMLDocumentController
+            mainController.actualizarGastos();
+
+            // Cerrar la ventana actual
+            Stage stage = (Stage) boton_cancelar.getScene().getWindow();
+            stage.close();
         }
     }
 
