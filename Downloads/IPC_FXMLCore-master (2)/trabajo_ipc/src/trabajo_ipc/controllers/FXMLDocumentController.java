@@ -4,6 +4,7 @@
  */
 package trabajo_ipc.controllers;
 
+/*
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -17,6 +18,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+*/
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 
@@ -566,7 +568,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void imprimir(ActionEvent event) throws AcountDAOException {
-        EscenarioPrincipal = (Stage) boton_gastos.getScene().getWindow();
+      /*  EscenarioPrincipal = (Stage) boton_gastos.getScene().getWindow();
         // El usuario elige donde guardará el PDF
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar el PDF");
@@ -746,7 +748,7 @@ public class FXMLDocumentController implements Initializable {
                 alert.setContentText("No se pudo guardar el PDF: " + e.getMessage());
                 alert.showAndWait();
             }
-        }
+        }*/
     }
 }
     

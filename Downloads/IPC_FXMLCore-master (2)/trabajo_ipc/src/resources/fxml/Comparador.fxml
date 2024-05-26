@@ -29,12 +29,12 @@
                   <Insets bottom="10.0" top="50.0" />
                </VBox.margin>
                <children>
-                  <Label alignment="CENTER" text="Introduzca el mes y el año:">
+                  <Label fx:id="label1" alignment="CENTER" text="Introduzca el mes y el año:">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="boxmes1" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" prefHeight="25.0" prefWidth="100.0">
+                  <ComboBox fx:id="boxmes1" maxHeight="27.0" maxWidth="100.0" minHeight="27.0" minWidth="100.0" prefHeight="27.0" prefWidth="100.0">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -44,7 +44,7 @@
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="boton_año1" prefWidth="80.0" />
+                  <TextField fx:id="boton_año1" maxHeight="27.0" maxWidth="80.0" minHeight="27.0" prefHeight="27.0" prefWidth="80.0" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 15%;" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT">
@@ -52,12 +52,12 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <Label text="Introduzca mes y año a comparar:">
+                  <Label fx:id="label2" text="Introduzca mes y año a comparar:">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="boxmes2" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" prefHeight="25.0" prefWidth="100.0">
+                  <ComboBox fx:id="boxmes2" maxHeight="27.0" maxWidth="100.0" minHeight="27.0" minWidth="100.0" prefHeight="27.0" prefWidth="100.0">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -67,12 +67,12 @@
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="boton_año2" maxHeight="25.0" maxWidth="80.0" minHeight="25.0" minWidth="80.0" prefHeight="25.0" prefWidth="80.0" />
+                  <TextField fx:id="boton_año2" maxHeight="27.0" maxWidth="80.0" minHeight="27.0" minWidth="80.0" prefHeight="27.0" prefWidth="80.0" style="-fx-border-color: black; -fx-background-radius: 15%; -fx-border-radius: 8;" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="añadir_boton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#añadir_gasto" text="Comparar">
+                  <Button fx:id="añadir_boton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#añadir_gasto" prefHeight="30.0" prefWidth="80.0" text="Comparar">
                      <HBox.margin>
                         <Insets bottom="10.0" right="40.0" />
                      </HBox.margin>

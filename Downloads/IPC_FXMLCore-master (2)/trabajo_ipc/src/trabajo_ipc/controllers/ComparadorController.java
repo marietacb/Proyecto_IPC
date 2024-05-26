@@ -16,6 +16,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import model.Acount;
@@ -44,6 +45,10 @@ public class ComparadorController implements Initializable {
     private TextField boton_año1;
     @FXML
     private TextField boton_año2;
+    @FXML
+    private Label label1;
+    @FXML
+    private Label label2;
 
     /**
      * Initializes the controller class.
@@ -51,7 +56,7 @@ public class ComparadorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        String css = this.getClass().getResource("/resources/css/perfilusuario.css").toExternalForm();
+        String css = this.getClass().getResource("/resources/css/comparador.css").toExternalForm();
         fondocomparador.getStylesheets().add(css);
         
         boxmes1.valueProperty().addListener(new ChangeListener<String>() {

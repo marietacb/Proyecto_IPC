@@ -1,4 +1,45 @@
 /*
  * Empty Stylesheet file.
  */
+.button{
+    -fx-background-color: #ccffcc;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+    -fx-font-family: sans-serif;
+}
 
+.label{
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+.combo-box{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-font-family: sans-serif;   
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+    -fx-text-fill: black;
+}
+
+.text-field{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-font-family: sans-serif;   
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+    -fx-text-fill: black;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #ccffcc;
+    -fx-border-radius: 8;
+    -fx-background-radius: 30%;
+}
+
+.bar-chart{
+    -fx-background-color: #ccffcc;
+
+}
