@@ -98,21 +98,6 @@ public class PerfilUsuarioController implements Initializable {
         
         String css = this.getClass().getResource("/resources/css/perfilusuario.css").toExternalForm();
         borderpane.getStylesheets().add(css);
-    }    
-
-    @FXML
-    private void cambiarFoto(MouseEvent event) {
-        FileChooser ficheroSel = new FileChooser();    //seleccionador de archivos
-        ficheroSel.setTitle("Abrir imagen");   
-        ficheroSel.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("Imagenes", "*.png", "*.jpg")); //formate de imagen
-        
-        File seleccionado = ficheroSel.showOpenDialog( 
-        ((Node)event.getSource()).getScene().getWindow());
-        if (ficheroSel != null) {
-            Image imagen = new Image(seleccionado.toURI().toString());
-            fotoImage.setImage(imagen);
-        } 
     }
     
 
@@ -122,8 +107,6 @@ public class PerfilUsuarioController implements Initializable {
         apellidosText.setText(Acount.getInstance().getLoggedUser().getSurname());
         emailText.setText(Acount.getInstance().getLoggedUser().getEmail());
         fotoImage.setImage(Acount.getInstance().getLoggedUser().getImage());
-
-        cancelar.setDisable(true);
     }
 
 
