@@ -19,12 +19,12 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <Button fx:id="button_login" alignment="CENTER" contentDisplay="TOP" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pulsar_registrarse" prefHeight="30.0" prefWidth="90.0" text="Registrarse" HBox.hgrow="NEVER">
+            <Button fx:id="button_login" alignment="CENTER" contentDisplay="TOP" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pulsar_registrarse" prefHeight="30.0" prefWidth="90.0" text="_Registrarse" HBox.hgrow="NEVER">
                <opaqueInsets>
                   <Insets bottom="30.0" />
                </opaqueInsets>
             </Button>
-            <Button fx:id="button_cancel" alignment="CENTER" cancelButton="true" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pulsar_cancelar" prefHeight="30.0" prefWidth="90.0" text="Cancelar" HBox.hgrow="NEVER">
+            <Button fx:id="button_cancel" alignment="CENTER" cancelButton="true" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pulsar_cancelar" prefHeight="30.0" prefWidth="90.0" text="_Cancelar" HBox.hgrow="NEVER">
                <opaqueInsets>
                   <Insets bottom="30.0" />
                </opaqueInsets>
@@ -47,7 +47,7 @@
    <center>
       <ScrollPane BorderPane.alignment="CENTER">
          <content>
-            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="500.0">
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0">
                <children>
                   <HBox prefWidth="200.0">
                      <children>

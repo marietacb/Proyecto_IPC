@@ -165,12 +165,12 @@
    <bottom>
       <HBox alignment="BOTTOM_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="300.0" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
-            <Button fx:id="boton_aceptar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pulsarAceptar" prefHeight="30.0" prefWidth="90.0" text="Aceptar">
+            <Button fx:id="boton_aceptar" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pulsarAceptar" prefHeight="30.0" prefWidth="90.0" text="_Aceptar">
                <HBox.margin>
                   <Insets bottom="30.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="boton_Cancelar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#pulsarCancelar" prefHeight="30.0" prefWidth="90.0" text="Cancelar">
+            <Button fx:id="boton_Cancelar" cancelButton="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#pulsarCancelar" prefHeight="30.0" prefWidth="90.0" text="_Cancelar">
                <HBox.margin>
                   <Insets bottom="30.0" left="20.0" right="40.0" />
                </HBox.margin>
