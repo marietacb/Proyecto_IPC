@@ -125,6 +125,8 @@ public class FXML_anadirGastoController implements Initializable {
     private SplitMenuButton categorias_boton;
     
     private List<Category> categorias;
+    private ArrayList<Category> categorias2 = new ArrayList<>();
+
     private List<Charge> cargos;
     private ObservableList<Charge> cargosO;    //lista categorias
     
@@ -146,11 +148,14 @@ public class FXML_anadirGastoController implements Initializable {
     @FXML
     private Text titulo;
     
-    private Boolean editGasto;
+    private Boolean editGasto= false;
     
     private Stage stage;
+    private Charge charge;
         
     private FXMLDocumentController fxmlDocumentController;
+    private Image scanner;
+
 
     // Método para recibir la instancia actual de FXMLDocumentController
     public void setFXMLDocumentController(FXMLDocumentController fxmlDocumentController) {
@@ -162,21 +167,42 @@ public class FXML_anadirGastoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String css = this.getClass().getResource("/resources/css/anadir_gastofxml.css").toExternalForm();
-        pantallaAñadirGasto.getStylesheets().add(css);
-        
-        //configurar datepicker
-        elegir_fecha.setDayCellFactory((DatePicker picker) -> { 
-        return new DateCell() { 
-        @Override 
-            public void updateItem(LocalDate date, boolean empty) { 
-                super.updateItem(date, empty); 
-                LocalDate today = LocalDate.now(); 
-                setDisable(empty || date.compareTo(today) > 0 ); 
-            } 
-        }; 
-        }); 
-                
+         try {
+             String css = this.getClass().getResource("/resources/css/anadir_gastofxml.css").toExternalForm();
+             pantallaAñadirGasto.getStylesheets().add(css);
+             
+             //configurar datepicker
+             elegir_fecha.setDayCellFactory((DatePicker picker) -> {
+                 return new DateCell() {
+                     @Override
+                     public void updateItem(LocalDate date, boolean empty) {
+                         super.updateItem(date, empty);
+                         LocalDate today = LocalDate.now();
+                         setDisable(empty || date.compareTo(today) > 0 );
+                     }
+                 };
+             });
+             
+             //inicializar el selector de categoría
+             categorias = Acount.getInstance().getUserCategories();
+             categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
+             // Agregamos nuevas categorías como elementos del menú recrriendo la lista
+             for (int i = 0; i < categorias.size(); i++) {
+                 Category categoria = categorias.get(i);
+                 MenuItem menuItem = new MenuItem(categoria.getName());
+                 categorias2.add(categoria);
+                 
+                 menuItem.setOnAction(evento -> {
+                     categorias_boton.setText(categoria.getName());
+                     seleccionado = categorias.indexOf(categoria);
+                 });
+                 
+                 categorias_boton.getItems().add(menuItem);
+             }} catch (AcountDAOException ex) {
+             Logger.getLogger(FXML_anadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(FXML_anadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
     
     public void setTablaController(FXMLDocumentController tablaController){
@@ -278,7 +304,8 @@ public class FXML_anadirGastoController implements Initializable {
         if(!error_nombre.isVisible() ){
         
         //CARGAR TABLA CON GASTOS
-        
+            
+        if(!editGasto){
            String nombreGasto = nombre_gasto.getText();    //obtenemos nombre gasto añadido
            String descripcion = descripcion_gasto.getText();   //obtenemos descripcion gasto aññadido
            LocalDate fecha = elegir_fecha.getValue();  //obtenemos fecha añadida
@@ -288,13 +315,30 @@ public class FXML_anadirGastoController implements Initializable {
            Category cat = categorias.get(seleccionado);
      
            Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,cat); 
-           
+        }
+        else {
+            
+                charge.setName(nombre_gasto.getText());
+                charge.setDescription(descripcion_gasto.getText());
+                charge.setCost(Double.parseDouble(precio_gasto.getText()));
+                charge.setUnits(Integer.parseInt(unidades_gasto.getText()));
+                charge.setDate(elegir_fecha.getValue());
+                charge.setCategory(categorias.get(seleccionado));
+                charge.setImageScan(tiquet_gasto.getImage());
+
+        }
            //actualizar tabla
+           // Cargar el archivo FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+            Parent root = loader.load();
+        
+        // Obtener el controlador asociado
+           fxmlDocumentController = loader.getController();
            fxmlDocumentController.actualizarGastos();
            
            //volvemos a la pantalla principal LA DE LA TABLA
            FXMLLoader cargarRegistro= new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
-           Parent root = cargarRegistro.load();
+           Parent raiz = cargarRegistro.load();
      
            Stage stage = (Stage) boton_aceptar.getScene().getWindow();
            stage.close();
@@ -321,7 +365,7 @@ public class FXML_anadirGastoController implements Initializable {
 
     @FXML
     private void seleccionar_categoria(MouseEvent event) throws AcountDAOException, IOException {
-        categorias = Acount.getInstance().getUserCategories();
+       /* categorias = Acount.getInstance().getUserCategories();
         categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
             // Agregamos nuevas categorías como elementos del menú recrriendo la lista
         for (int i = 0; i < categorias.size(); i++) {
@@ -334,7 +378,7 @@ public class FXML_anadirGastoController implements Initializable {
             });
             
             categorias_boton.getItems().add(menuItem);
-        }
+        } */
     }
 
     @FXML
@@ -376,37 +420,34 @@ public class FXML_anadirGastoController implements Initializable {
 
     @FXML
     private void seleccionar_categoria1(ContextMenuEvent event) throws AcountDAOException, IOException {
-        categorias = Acount.getInstance().getUserCategories();
-        categorias_boton.getItems().clear();    //limpiamos las categorias que pudiera haber cargadas
-            // Agregamos nuevas categorías como elementos del menú recrriendo la lista
-        for (int i = 0; i < categorias.size()-1; i++) {
-            Category categoria = categorias.get(i);
-            MenuItem menuItem = new MenuItem(categoria.getName());
 
-            menuItem.setOnAction(evento -> {
-                categorias_boton.setText(categoria.getName());  // Opcional
-                seleccionado = categorias.indexOf(categoria);
-            });
-            
-            categorias_boton.getItems().add(menuItem);
-        }
     }
     
-    public void editGasto(Charge charge) throws AcountDAOException, IOException{
+    public void editGasto(Integer indice) throws AcountDAOException, IOException{
         editGasto = true;
         cargos = Acount.getInstance().getUserCharges();
         cargosO = FXCollections.observableList(cargos);
+        charge = cargosO.get(indice);
+        
+        nombre_gasto.setText(charge.getName());
+        unidades_gasto.setText(String.valueOf(charge.getUnits()));
+        precio_gasto.setText(String.valueOf(charge.getCost()));
+        descripcion_gasto.setText(charge.getDescription());
+        tiquet_gasto.setImage(charge.getImageScan());
+        elegir_fecha.setValue(charge.getDate());
+        scanner = charge.getImageScan();
+        tiquet_gasto.setImage(scanner);
 
-        String nombreGasto = nombre_gasto.getText();
-        String descripcion = descripcion_gasto.getText();   //obtenemos descripcion gasto aññadido
-        LocalDate fecha = elegir_fecha.getValue();  //obtenemos fecha añadida
-        int unidades = Integer.parseInt(unidades_gasto.getText());  //obtenemos unidades gasto añadido
-        double precio = Double.parseDouble(precio_gasto.getText()); //obtenemos precio gasto añadido
-        Image factura = tiquet_gasto.getImage();    //obtenemos imagen gasto añadido
-        Category cat = categorias.get(seleccionado);
-        Acount.getInstance().registerCharge(nombreGasto,descripcion,precio,unidades,factura,fecha,cat);  
         
     }
+     public void editCategoria(Category cat) throws AcountDAOException, IOException{
+     if(editGasto && categorias != null){
+                
+                categorias_boton.setText(cat.getName()); 
+                seleccionado = categorias2.indexOf(cat);
+     }
+     
+     }
     public void setStage(Stage sta) {
         stage = sta;
         stage.setResizable(false);

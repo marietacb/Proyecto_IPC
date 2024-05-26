@@ -75,6 +75,10 @@ import java.io.StringWriter;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -198,17 +202,9 @@ public class FXMLDocumentController implements Initializable {
         grafico = new PieChart();
         grafico.setVisible(true);
 
-        
-        //TODO: Inicializar el grafico aqui (ponerle informacion gastos)
-        PieChart.Data slice1 = new PieChart.Data("Categoría A", 30);
-        PieChart.Data slice2 = new PieChart.Data("Categoría B", 25);
-        PieChart.Data slice3 = new PieChart.Data("Categoría C", 45);
-
-        // Crear el gráfico de sectores y añadir los datos
-        grafico.getData().add(slice1);
-        grafico.getData().add(slice2);
-        grafico.getData().add(slice3);
-        grafico.setTitle("Gráfico de Sectores de Ejemplo"); 
+        try {
+            llenarGraficoConGastosDelMes();
+        } catch (AcountDAOException | IOException e) {}
         
         
         border_pane.setCenter(grafico);
@@ -221,7 +217,33 @@ public class FXMLDocumentController implements Initializable {
         
         //inicializar gridpane
         
-    }    
+    }
+
+    private void llenarGraficoConGastosDelMes() throws AcountDAOException, IOException {
+            Acount acount = Acount.getInstance();
+            List<Charge> userCharges = acount.getUserCharges();
+
+            LocalDate now = LocalDate.now();
+            Map<String, Double> categoriaGastos = new HashMap<>();
+
+        for (Charge charge : userCharges) {
+            if (charge.getDate().getMonth() == now.getMonth() && charge.getDate().getYear() == now.getYear()) {
+                String categoriaNombre = charge.getCategory().getName();
+                categoriaGastos.put(categoriaNombre, categoriaGastos.getOrDefault(categoriaNombre, 0.0) + charge.getCost());
+            }
+        }
+
+        for (Map.Entry<String, Double> entry : categoriaGastos.entrySet()) {
+                PieChart.Data slice = new PieChart.Data(entry.getKey() + " €" + String.format("%.2f", entry.getValue()), entry.getValue());
+                slice.pieValueProperty().setValue(entry.getValue());
+                grafico.getData().add(slice);
+        }
+
+        grafico.setTitle("Gastos del Mes Actual");
+
+         border_pane.setCenter(grafico);
+        }
+         
     
     public void actualizarGastos(){
         try {
@@ -462,19 +484,49 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void modificarCategoria(ActionEvent event) {
+    private void modificarCategoria(ActionEvent event) throws IOException, AcountDAOException {
+        if(tableView.getSelectionModel().getSelectedItem() != null)   {
+        // Cargar el archivo FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_añadirCategoria.fxml"));
+        Parent root = loader.load();
+        
+        // Obtener el controlador asociado
+        FXML_añadirCategoriaController controlerCategoria = loader.getController();
+        controlerCategoria.editCategoria(tableView.getSelectionModel().getSelectedItem().getCategory());
+        Stage newStage = new Stage();
+        
+        // Crear una nueva ventana
+        
+        newStage.setTitle("Modificar Categoría");
+        newStage.setScene(new Scene(root));
+        controlerCategoria.setStage(newStage);
+        newStage.show();
+        
+    }else {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.setTitle("Error modificar");
+          alert.setHeaderText(null);
+          alert.setContentText("Selecciona Primero un Gasto");
+          alert.showAndWait();
+    
+    
+    }
     }
 
     @FXML
     private void modificarGasto(ActionEvent event) throws IOException, AcountDAOException {
+        Charge gasto = tableView.getSelectionModel().getSelectedItem();
         
+        if(gasto != null)   { 
+        Category cat = gasto.getCategory();
         // Cargar el archivo FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
         Parent root = loader.load();
         
         // Obtener el controlador asociado
         FXML_anadirGastoController controlerGasto = loader.getController();
-        controlerGasto.editGasto(tableView.getSelectionModel().getSelectedItem());
+        controlerGasto.editGasto(tableView.getSelectionModel().getSelectedIndex());
+        controlerGasto.editCategoria(cat);
         Stage newStage = new Stage();
         
         // Crear una nueva ventana
@@ -483,6 +535,16 @@ public class FXMLDocumentController implements Initializable {
         newStage.setScene(new Scene(root));
         controlerGasto.setStage(newStage);
         newStage.show();
+        
+    }else {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.setTitle("Error modificar");
+          alert.setHeaderText(null);
+          alert.setContentText("Selecciona Primero un Gasto");
+          alert.showAndWait();
+    
+    
+    }
         
         
     }
@@ -710,6 +772,8 @@ public class FXMLDocumentController implements Initializable {
             }
             }
     }
+          
+       
 
 }
 

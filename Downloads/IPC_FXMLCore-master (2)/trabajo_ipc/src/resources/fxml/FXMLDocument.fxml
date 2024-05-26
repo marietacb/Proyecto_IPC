@@ -125,9 +125,12 @@
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </MenuButton>
-                        <Button fx:id="imprimir_boton" mnemonicParsing="false" onAction="#imprimir" prefHeight="50.0" prefWidth="81.0">
+                        <Button fx:id="imprimir_boton" mnemonicParsing="false" onAction="#imprimir" prefHeight="50.0" prefWidth="90.0">
                            <graphic>
-                              <ImageView fitHeight="42.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="42.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/impresora.png" />
+                                 </image></ImageView>
                            </graphic>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
