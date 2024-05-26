@@ -126,8 +126,7 @@ public class FXML_añadirCategoriaController implements Initializable {
         miCategoria = category;
         nombre_categoria.setText(miCategoria.getName());
         descripción_categoria.setText(miCategoria.getDescription());
-        ;
-
+        titulo.setText("Modificar categoría");
     }
     
     public void setStage(Stage sta) {

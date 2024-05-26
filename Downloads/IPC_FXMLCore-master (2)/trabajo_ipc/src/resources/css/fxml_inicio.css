@@ -42,6 +42,10 @@
     -fx-font-family: sans-serif;
 
 }
-#hiperlink{
+.hiperlink{
     -fx-font-family: sans-serif;
+}
+
+.split-pane{
+    -fx-background-color:  #99e89d;
 }

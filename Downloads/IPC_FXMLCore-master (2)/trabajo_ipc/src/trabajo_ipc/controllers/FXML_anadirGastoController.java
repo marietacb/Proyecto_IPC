@@ -39,6 +39,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
@@ -158,6 +159,8 @@ public class FXML_anadirGastoController implements Initializable {
     private Image scanner;
     @FXML
     private BorderPane borderpane;
+    @FXML
+    private ScrollPane scrollpane;
 
 
     // Método para recibir la instancia actual de FXMLDocumentController
@@ -359,8 +362,8 @@ public class FXML_anadirGastoController implements Initializable {
         File seleccionado = ficheroSel.showOpenDialog( 
         ((Node)event.getSource()).getScene().getWindow());
         if (ficheroSel != null) {
-            tiquet_gasto.setFitHeight(250); //adaptamos tamaño foto
-            tiquet_gasto.setFitWidth(250);  
+            tiquet_gasto.setFitHeight(50); //adaptamos tamaño foto
+            tiquet_gasto.setFitWidth(50);  
             Image imagen = new Image(seleccionado.toURI().toString());
             tiquet_gasto.setImage(imagen);
         } 
@@ -440,16 +443,15 @@ public class FXML_anadirGastoController implements Initializable {
         elegir_fecha.setValue(charge.getDate());
         scanner = charge.getImageScan();
         tiquet_gasto.setImage(scanner);
+        titulo.setText("Modificar gasto");
 
         
     }
      public void editCategoria(Category cat) throws AcountDAOException, IOException{
-     if(editGasto && categorias != null){
-                
-                categorias_boton.setText(cat.getName()); 
-                seleccionado = categorias2.indexOf(cat);
-     }
-     
+        if(editGasto && categorias != null){ 
+            categorias_boton.setText(cat.getName()); 
+            seleccionado = categorias2.indexOf(cat);
+        }
      }
     public void setStage(Stage sta) {
         stage = sta;

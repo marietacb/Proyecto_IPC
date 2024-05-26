@@ -34,6 +34,7 @@ import model.Acount;
 import model.AcountDAO;
 import model.AcountDAOException;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Menu;
@@ -72,6 +73,8 @@ public class FXML_inicioController implements Initializable {
     private Hyperlink hiperlink;
     @FXML
     private Label cont;
+    @FXML
+    private Hyperlink hiperlink1;
 
     /**
      * Initializes the controller class.
@@ -164,6 +167,24 @@ public class FXML_inicioController implements Initializable {
        stageinicial.close();
     }
 
+    
+    @FXML
+    private void recuperarContraseña(ActionEvent event) throws AcountDAOException, IOException {   
+        String nuevaContraseña = generateRandomString(10);  //generamos nuevaContraseña aleatoria
+        Acount.getInstance().getLoggedUser().setPassword(nuevaContraseña);
+    }
+
+     public static String generateRandomString(int length) {    //metodo que genera un string aleatorio
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(length);
+
+        for (int i = 0; i < length; i++) {
+            int digit = random.nextInt(10); // Genera un número aleatorio entre 0 y 9
+            sb.append(digit);
+        }
+
+        return sb.toString();
+    }
     
     
 }

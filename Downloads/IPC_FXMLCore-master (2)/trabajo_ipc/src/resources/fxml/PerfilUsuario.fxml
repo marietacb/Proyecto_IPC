@@ -57,7 +57,7 @@
                         <VBox>
                            <children>
                               <Label fx:id="nickname" text="Nickname:" />
-                              <TextField fx:id="nombreText" maxWidth="180.0" minWidth="-Infinity" onKeyTyped="#escribirNombre" prefWidth="150.0" />
+                              <TextField fx:id="textNick" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="150.0" />
                            </children>
                         </VBox>
                         <Label fx:id="errorNombre" textFill="RED">
@@ -68,6 +68,19 @@
                               <Insets left="10.0" top="23.0" />
                            </HBox.margin>
                         </Label>
+                     </children>
+                     <padding>
+                        <Insets left="40.0" top="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label fx:id="nom" text="Nombre:" />
+                              <TextField fx:id="nombreText" maxWidth="180.0" minWidth="-Infinity" onKeyTyped="#escribirNombre" prefWidth="150.0" />
+                           </children>
+                        </VBox>
                      </children>
                      <padding>
                         <Insets left="40.0" top="20.0" />
@@ -93,19 +106,6 @@
                               <Insets left="10.0" top="23.0" />
                            </HBox.margin>
                         </Label>
-                     </children>
-                     <padding>
-                        <Insets left="40.0" top="20.0" />
-                     </padding>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <VBox>
-                           <children>
-                              <Label fx:id="nom" text="Nombre:" />
-                              <TextField fx:id="textNick" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="150.0" />
-                           </children>
-                        </VBox>
                      </children>
                      <padding>
                         <Insets left="40.0" top="20.0" />

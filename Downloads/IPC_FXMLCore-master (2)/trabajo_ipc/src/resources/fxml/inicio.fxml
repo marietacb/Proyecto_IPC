@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -86,10 +87,27 @@
       </VBox>
    </center>
    <bottom>
-      <Hyperlink fx:id="hiperlink" onMouseClicked="#registrarse" text="¿No tienes cuenta? Regístrate" textFill="#19ae1e" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="100.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="40.0" />
+            <Insets />
          </BorderPane.margin>
-      </Hyperlink>
+         <children>
+            <Hyperlink fx:id="hiperlink1" onAction="#recuperarContraseña" onMouseClicked="#registrarse" text="¿Se te ha olvidado la contraseña? Recupérala" textFill="#ed1717">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Hyperlink>
+            <SplitPane prefHeight="5.0" prefWidth="600.0">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </SplitPane>
+            <Hyperlink fx:id="hiperlink" onMouseClicked="#registrarse" text="¿No tienes cuenta? Regístrate" textFill="#0d8f12">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Hyperlink>
+         </children>
+      </VBox>
    </bottom>
 </BorderPane>
