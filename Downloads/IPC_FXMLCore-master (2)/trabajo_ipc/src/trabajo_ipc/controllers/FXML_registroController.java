@@ -34,6 +34,7 @@ import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 
 public class FXML_registroController implements Initializable {
 
@@ -75,6 +76,10 @@ public class FXML_registroController implements Initializable {
     private ImageView avatarid;
     @FXML
     private Label titulo;
+    private Boolean edit = false;
+    private Stage stage;
+
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,6 +88,12 @@ public class FXML_registroController implements Initializable {
         validNickname = new SimpleBooleanProperty(false);
         validPassword = new SimpleBooleanProperty(false);
         validEmail = new SimpleBooleanProperty(false);
+        
+        if(edit){
+        
+        field_nombreusuario.setEditable(false);
+        
+        }
 
         field_correo.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // focusLost
@@ -217,10 +228,10 @@ public class FXML_registroController implements Initializable {
 
         if (valid) {
             try {
-                boolean isOK = Acount.getInstance().registerUser(nombre, apellidos, correo, nombreUsuario, contraseña, avatar, fecha);
-                if (isOK) {
-                    // Navegar a la siguiente escena
+                if(!edit){
+                    Acount.getInstance().registerUser(nombre, apellidos, correo, nombreUsuario, contraseña, avatar, fecha);
                     System.out.println("Usuario registrado con éxito");
+                    
                     FXMLLoader cargarRegistro = new FXMLLoader(getClass().getResource("/resources/fxml/inicio.fxml"));
                     Parent root = cargarRegistro.load();
 
@@ -231,14 +242,30 @@ public class FXML_registroController implements Initializable {
                     stageinicial.close();
                     
                 } else {
-                    System.err.println("NO SE HA GUARDADO BIEN");
+                    Acount.getInstance().getLoggedUser().setName(nombre);
+                    Acount.getInstance().getLoggedUser().setSurname(apellidos);
+                    Acount.getInstance().getLoggedUser().setEmail(correo);
+                    Acount.getInstance().getLoggedUser().setPassword(contraseña);
+                    Acount.getInstance().getLoggedUser().setImage(avatar);
+                    
+                    FXMLLoader cargarRegistro = new FXMLLoader(getClass().getResource("/resources/fxml/FXMLDocument.fxml"));
+                    Parent root = cargarRegistro.load();
+
+                    Stage stage = new Stage();
+                    Stage stageinicial = (Stage) button_cancel.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                    stageinicial.close();
+                
                 }
+                    // Navegar a la siguiente escena
+                    
+
             } catch (AcountDAOException e) {
                 if (e.getMessage().contains("UNIQUE constraint failed: user.nickName")) {
                     nombreusuario_incorrecto.setText("El nombre de usuario ya existe.");
                     nombreusuario_incorrecto.setVisible(true);
                 } else {
-                    e.printStackTrace();
                     // Mostrar un alerta genérica de error
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -289,5 +316,23 @@ public class FXML_registroController implements Initializable {
             avatarid.getStyleClass().add("blue-border"); // Aplica la clase CSS
 
         }
+    }
+    public void editRegister(){
+        try{
+            field_nombre.setText(Acount.getInstance().getLoggedUser().getName());
+            field_apellidos.setText(Acount.getInstance().getLoggedUser().getSurname());
+            field_correo.setText(Acount.getInstance().getLoggedUser().getEmail());
+            field_nombreusuario.setText(Acount.getInstance().getLoggedUser().getNickName());
+            avatarid.setImage(Acount.getInstance().getLoggedUser().getImage());
+            edit = true;
+            
+        }
+        catch(Exception e){}
+    }
+        
+    public void setStage(Stage sta) {
+        stage = sta;
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
     }
 }

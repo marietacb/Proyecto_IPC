@@ -55,8 +55,6 @@ public class PerfilUsuarioController implements Initializable {
     @FXML
     private Label nickname;
     @FXML
-    private Button guardar;
-    @FXML
     private Button cancelar;
     @FXML
     private Label errorNombre;
@@ -94,8 +92,6 @@ public class PerfilUsuarioController implements Initializable {
             textNick.setText(Acount.getInstance().getLoggedUser().getNickName());
             fotoImage.setImage(Acount.getInstance().getLoggedUser().getImage());
             
-            guardar.setDisable(true);
-            cancelar.setDisable(true);
             
         }
         catch(Exception e){}
@@ -117,61 +113,6 @@ public class PerfilUsuarioController implements Initializable {
             Image imagen = new Image(seleccionado.toURI().toString());
             fotoImage.setImage(imagen);
         } 
-        
-        //activamos botones para hacer cambios
-        guardar.setDisable(false);
-        cancelar.setDisable(false);
-    }
-    
-
-    @FXML
-    private void pulsarGuardar(ActionEvent event) throws Exception{  
-        
-        boolean error = true;
-        errorNombre.setVisible(false);
-        errorApellidos.setVisible(false);
-        errorEmail.setVisible(false);
-
-        //si el nombre introducido esta mal
-        if(!nombreText.getText().chars().noneMatch(Character::isDigit) || nombreText.getText().length()<1 || nombreText.getText().isEmpty()){
-            errorNombre.setText("El nombre no debe contener números y debe ser mínimo de 2 caracteres");
-            errorNombre.setVisible(true);
-            error = false;
-        }
-        //si el apellido esta mal
-        if(!apellidosText.getText().chars().noneMatch(Character::isDigit) || apellidosText.getText().length()<1 || apellidosText.getText().isEmpty()){
-            errorApellidos.setText("El apellido no debe contener números y debe ser mínimo de 2 caracteres");
-            errorApellidos.setVisible(true);
-            error = false;
-        }
-        if(!Acount.getInstance().getLoggedUser().checkEmail(emailText.getText())) {
-            errorEmail.setText("El correo no puede contener espacios.");
-            errorEmail.setVisible(true);
-            error = false;
-        }
-        
-        if(error == true){
-            //si no hay ningun error
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Diálogo de confirmación");
-            alert.setHeaderText("Modificar cambios");
-            alert.setContentText("¿Seguro que quieres continuar?");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK){
-                Acount.getInstance().getLoggedUser().setName(nombreText.getText());       
-                Acount.getInstance().getLoggedUser().setSurname(apellidosText.getText());
-                Acount.getInstance().getLoggedUser().setEmail(emailText.getText());
-            }
-            else{
-                nombreText.setText(Acount.getInstance().getLoggedUser().getName());
-                apellidosText.setText(Acount.getInstance().getLoggedUser().getSurname());
-                emailText.setText(Acount.getInstance().getLoggedUser().getEmail());
-            }
-
-            error=true; //al acabar que error se resetee a true
-            guardar.setDisable(true);
-            cancelar.setDisable(true);
-        }
     }
     
 
@@ -181,27 +122,10 @@ public class PerfilUsuarioController implements Initializable {
         apellidosText.setText(Acount.getInstance().getLoggedUser().getSurname());
         emailText.setText(Acount.getInstance().getLoggedUser().getEmail());
         fotoImage.setImage(Acount.getInstance().getLoggedUser().getImage());
-        
-        guardar.setDisable(true);
+
         cancelar.setDisable(true);
     }
 
-    @FXML
-    private void escribirNombre(KeyEvent event) {
-        guardar.setDisable(false);
-        cancelar.setDisable(false);
-    }
 
-    @FXML
-    private void escribirApellidos(KeyEvent event) {
-        guardar.setDisable(false);
-        cancelar.setDisable(false);
-    }
-
-    @FXML
-    private void escribirEmail(KeyEvent event) {
-        guardar.setDisable(false);
-        cancelar.setDisable(false);
-    }  
     
 }
