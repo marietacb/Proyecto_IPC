@@ -1,6 +1,13 @@
 /*
  * Empty Stylesheet file.
  */
+#impresora{
+    -fx-background-color: #33cc00;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 20%;    
+    
+}
 
 #bAyuda{
     -fx-padding: 10;            /* Espaciado interno */

@@ -20,26 +20,14 @@
    <top>
       <HBox fx:id="bordeSuperior" alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #99e89d;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bAyuda" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0">
+            <Button fx:id="bAyuda" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" onAction="#ayudar" prefHeight="30.0" prefWidth="40.0">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
                <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="boton_ayuda" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/2753.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="bAjustes" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0">
-               <HBox.margin>
-                  <Insets right="10.0" top="10.0" />
-               </HBox.margin>
-               <graphic>
-                  <ImageView fx:id="imagenAjustes" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/263100.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -126,7 +114,7 @@
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
                         </MenuButton>
-                        <Button fx:id="imprimir_boton" mnemonicParsing="false" onAction="#imprimir" prefHeight="50.0" prefWidth="90.0">
+                        <Button id="impresora" fx:id="imprimir_boton" mnemonicParsing="false" onAction="#imprimir" prefHeight="50.0" prefWidth="90.0">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

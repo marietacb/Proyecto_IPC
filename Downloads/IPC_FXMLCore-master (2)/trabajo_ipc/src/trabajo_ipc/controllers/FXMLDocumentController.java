@@ -132,11 +132,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button bAyuda;
     @FXML
-    private Button bAjustes;
-    @FXML
     private HBox bordeSuperior;
-    @FXML
-    private ImageView imagenAjustes;
     @FXML
     private ToolBar toolbar;
     @FXML
@@ -174,6 +170,8 @@ public class FXMLDocumentController implements Initializable {
     private Stage EscenarioPrincipal;
     @FXML
     private MenuItem mPerfil;
+    @FXML
+    private ImageView boton_ayuda;
     
     /**
      * Initializes the controller class.
@@ -775,7 +773,35 @@ public class FXMLDocumentController implements Initializable {
         stageinicial.close();
         
     }
-}
+
+    @FXML
+    private void ayudar(ActionEvent event) {
+        // Crear el contenido expandible con el mensaje de ayuda
+        GridPane helpContent = new GridPane();
+        Label helpLabel = new Label("Ayuda:");
+        TextArea helpTextArea = new TextArea("Para visualizar todos los gastos realizados debe hacer click en el botón mis gastos. \nPara imprimir todos sus gastos, presione la impresora al lado de la tabla. \nPara más información, acuda al correo: anaisgoma@gmail.com");
+        helpTextArea.setEditable(false);
+        helpTextArea.setWrapText(true);
+        helpTextArea.setMaxWidth(Double.MAX_VALUE);
+        helpTextArea.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setVgrow(helpTextArea, Priority.ALWAYS);
+        GridPane.setHgrow(helpTextArea, Priority.ALWAYS);
+        helpContent.add(helpLabel, 0, 0);
+        helpContent.add(helpTextArea, 0, 1);
+
+        // Crear el diálogo de información
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Ayuda");
+        alert.setHeaderText(null);
+        alert.setContentText("Para obtener ayuda, expanda esta sección.");
+
+        // Establecer el contenido expandible
+        alert.getDialogPane().setExpandableContent(helpContent);
+
+        // Mostrar el diálogo
+        alert.showAndWait();
+    }
+
     
     class ImagenTabCell extends TableCell<Charge, Image> {
             private ImageView view = new ImageView();
@@ -803,7 +829,7 @@ public class FXMLDocumentController implements Initializable {
           
        
 
+    }
 }
-
     
     
