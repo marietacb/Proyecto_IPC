@@ -121,3 +121,10 @@
 .menu-button .label {
     -fx-text-fill: black;          /* Asegurar que el texto sea negro */
 }
+
+.table-view .column-header {
+    -fx-background-color: #ccffcc;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
