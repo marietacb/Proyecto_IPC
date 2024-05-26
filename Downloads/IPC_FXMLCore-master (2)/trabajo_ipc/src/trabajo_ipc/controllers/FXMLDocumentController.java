@@ -200,13 +200,13 @@ public class FXMLDocumentController implements Initializable {
         
         tableView.setFixedCellSize(50); // Establece una altura fija para todas las celdas
         //border_pane.setCenter(tableView);
-        
-        grafico = new PieChart();
-        grafico.setVisible(true);
-
         try {
-            llenarGraficoConGastosDelMes();
-        } catch (AcountDAOException | IOException e) {}
+            iniciarGrafico();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         border_pane.setCenter(grafico);
@@ -221,7 +221,9 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
-    private void llenarGraficoConGastosDelMes() throws AcountDAOException, IOException {
+    private void iniciarGrafico() throws AcountDAOException, IOException {
+        grafico = new PieChart();
+        grafico.setVisible(true);   
             Acount acount = Acount.getInstance();
             List<Charge> userCharges = acount.getUserCharges();
 
@@ -256,6 +258,12 @@ public class FXMLDocumentController implements Initializable {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
         tableView.setItems(listaGastos);
+        
+         try {
+            iniciarGrafico();
+        } catch (AcountDAOException | IOException e) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
     
     //HECHO

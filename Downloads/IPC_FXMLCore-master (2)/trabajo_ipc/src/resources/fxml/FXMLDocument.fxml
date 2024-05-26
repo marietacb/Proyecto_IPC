@@ -18,7 +18,7 @@
 
 <BorderPane fx:id="border_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXMLDocumentController">
    <top>
-      <HBox fx:id="bordeSuperior" alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="bordeSuperior" alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #99e89d;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="bAyuda" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0">
                <HBox.margin>
