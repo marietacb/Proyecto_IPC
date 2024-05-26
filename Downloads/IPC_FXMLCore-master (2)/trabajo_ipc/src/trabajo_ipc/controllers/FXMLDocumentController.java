@@ -314,23 +314,20 @@ public class FXMLDocumentController implements Initializable {
         
         //boton añadir gasto abre ventana, cuando se añada el gasto, esta debe quedarse abierta
         else{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
-            Parent root = loader.load();
-            
-            // Obtener el controlador del archivo FXML cargado
-            FXML_anadirGastoController añadirGastoController = loader.getController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/FXML_anadirGasto.fxml"));
+        Parent root = loader.load();
 
-            // Pasar la instancia actual de FXMLDocumentController a AñadirGastoController
+        // Obtener el controlador del archivo FXML cargado
+        FXML_anadirGastoController añadirGastoController = loader.getController();
+
+        // Pasar la instancia actual de FXMLDocumentController a AñadirGastoController
             añadirGastoController.setFXMLDocumentController(this);
-        
+
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-        
-            stage.initModality(Modality.APPLICATION_MODAL); //añade modalidad del escenario
-            stage.show();    //espera a que se introduzac al información
+            stage.initModality(Modality.APPLICATION_MODAL); // Añade modalidad del escenario
+            stage.show(); // Espera a que se introduzca la información
         }
-        
-        
     }
 
     @FXML
