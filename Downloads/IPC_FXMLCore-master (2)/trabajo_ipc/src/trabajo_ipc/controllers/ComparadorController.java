@@ -86,11 +86,21 @@ public class ComparadorController implements Initializable {
     private void añadir_gasto(ActionEvent event) throws IOException {
         try {
             
-            int year1 = Integer.parseInt(boton_año1.getText());
-            int year2 = Integer.parseInt(boton_año2.getText());
+            Integer year1 = Integer.parseInt(boton_año1.getText());
+            Integer year2 = Integer.parseInt(boton_año2.getText());
             int month1 = numeroMes1;
             int month2 = numeroMes2;
-
+            
+            //si no se introducen 4 digitos
+            if (!boton_año1.getText().matches("\\d{4}") || !boton_año2.getText().matches("\\d{4}")) { 
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error de formato");
+                alert.setHeaderText("Formato de año inválido");
+                alert.setContentText("Por favor, introduzca un valor de año que contenga" +
+                        "\n4 dígitos (ejemplo: 2024).");
+                alert.showAndWait();
+            }
+            else{
             // Obtiene todos los gastos del usuario
             List<Charge> allCharges = Acount.getInstance().getUserCharges();
 
@@ -122,7 +132,8 @@ public class ComparadorController implements Initializable {
             series2.setName(month2 + "/" + year2);
             series2.getData().add(new XYChart.Data<>(month2 + "/" + year2, totalCost2));
             grafico_barras.getData().add(series2);
-
+            }
+            
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error de formato");

@@ -414,7 +414,7 @@ public class FXMLDocumentController implements Initializable {
         if (selectedCategory != null) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Eliminar Categoría");
-            alert.setHeaderText("¿Estás seguro que quieres eliminar la Categoría");
+            alert.setHeaderText("¿Estás seguro que quieres eliminar la Categoría?");
             alert.setContentText("Se borrarán todos los gastos de esa categoría");
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -455,7 +455,7 @@ public class FXMLDocumentController implements Initializable {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Eliminar Gasto");
             alert.setHeaderText(null);
-            alert.setContentText("¿Estás seguro que quieres eliminar el gasto");
+            alert.setContentText("¿Estás seguro que quieres eliminar el gasto?");
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                         boolean success;
@@ -479,7 +479,7 @@ public class FXMLDocumentController implements Initializable {
             });
         } else {
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Eliminar Categoría");
+            alert.setTitle("Eliminar Gasto");
             alert.setHeaderText(null);
             alert.setContentText("Por favor, selecciona un gasto.");
             alert.showAndWait();
