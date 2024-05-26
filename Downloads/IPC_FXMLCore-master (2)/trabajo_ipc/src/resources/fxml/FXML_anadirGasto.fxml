@@ -9,172 +9,177 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox fx:id="pantallaAñadirGasto" minHeight="650.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" stylesheets="@Source Packages/resources.css/anadir_gastofxml.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_anadirGastoController">
-   <children>
-      <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="350.0">
+
+<BorderPane fx:id="borderpane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_anadirGastoController">
+   <center>
+      <HBox fx:id="pantallaAñadirGasto" minHeight="650.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" stylesheets="@Source Packages/resources.css/anadir_gastofxml.css">
          <children>
-            <Text fx:id="titulo" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir gasto">
-               <VBox.margin>
-                  <Insets left="20.0" top="20.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Text>
-            <Text fx:id="nom" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="50.0" top="25.0" />
-               </VBox.margin>
-            </Text>
-            <TextField fx:id="nombre_gasto" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="150.0" promptText="Introduce un nombre">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </TextField>
-            <Label fx:id="error_nombre" text="Introduzca un nombre" textFill="#ef0404" visible="false">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </Label>
-            <Text fx:id="fec" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="50.0" top="10.0" />
-               </VBox.margin>
-            </Text>
-            <DatePicker fx:id="elegir_fecha" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="160.0" opacity="0.8" prefHeight="25.0" prefWidth="150.0" promptText="Introduce una fecha">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </DatePicker>
-            <Label fx:id="error_fecha" text="No se ha introducido ninguna fecha" textFill="#ef0404" visible="false">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </Label>
-            <Text fx:id="un" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="50.0" top="10.0" />
-               </VBox.margin>
-            </Text>
-            <TextField fx:id="unidades_gasto" maxHeight="25.0" maxWidth="70.0" minHeight="25.0" minWidth="70.0" onKeyTyped="#comprobar_unidades" prefHeight="25.0" prefWidth="70.0">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </TextField>
-            <Label fx:id="error_unidades" textFill="#ef0404" visible="false">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </Label>
-            <Text fx:id="pre" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="50.0" top="10.0" />
-               </VBox.margin>
-            </Text>
-            <HBox prefHeight="20.0" prefWidth="100.0">
+            <VBox fx:id="vBox1" prefHeight="200.0" prefWidth="350.0">
                <children>
-                  <TextField fx:id="precio_gasto" maxHeight="25.0" maxWidth="50.0" minHeight="25.0" minWidth="50.0" onKeyTyped="#comprobar_precio" prefHeight="25.0" prefWidth="50.0">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Label text="€">
-                     <padding>
-                        <Insets left="5.0" top="2.0" />
-                     </padding>
+                  <Text fx:id="titulo" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir gasto">
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font size="22.0" />
                      </font>
+                  </Text>
+                  <Text fx:id="nom" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" top="25.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField fx:id="nombre_gasto" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="150.0" promptText="Introduce un nombre">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label fx:id="error_nombre" text="Introduzca un nombre" textFill="#ef0404" visible="false">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text fx:id="fec" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <DatePicker fx:id="elegir_fecha" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="160.0" opacity="0.8" prefHeight="25.0" prefWidth="150.0" promptText="Introduce una fecha">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <Label fx:id="error_fecha" text="No se ha introducido ninguna fecha" textFill="#ef0404" visible="false">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text fx:id="un" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField fx:id="unidades_gasto" maxHeight="25.0" maxWidth="70.0" minHeight="25.0" minWidth="70.0" onKeyTyped="#comprobar_unidades" prefHeight="25.0" prefWidth="70.0">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label fx:id="error_unidades" textFill="#ef0404" visible="false">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text fx:id="pre" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <HBox prefHeight="20.0" prefWidth="100.0">
+                     <children>
+                        <TextField fx:id="precio_gasto" maxHeight="25.0" maxWidth="50.0" minHeight="25.0" minWidth="50.0" onKeyTyped="#comprobar_precio" prefHeight="25.0" prefWidth="50.0">
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label text="€">
+                           <padding>
+                              <Insets left="5.0" top="2.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label fx:id="error_precio" text="El formato de precio es incorrecto" textFill="#ef0404" visible="false">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text fx:id="ca" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <SplitMenuButton fx:id="categorias_boton" maxHeight="25.0" maxWidth="170.0" minHeight="25.0" minWidth="170.0" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" prefHeight="25.0" prefWidth="170.0" style="-fx-font-family: sans-serif; -fx-background-color: green;" text="Seleccionar Categoria">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </SplitMenuButton>
+                  <Label fx:id="error_categoria" text="Seleccione una categoría" textFill="#ef0404" visible="false">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text fx:id="des" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextArea fx:id="descripcion_gasto" maxHeight="100.0" maxWidth="200.0" minHeight="80.0" minWidth="200.0" prefHeight="80.0" prefWidth="200.0" promptText="Introduce una breve descripción">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <Label fx:id="error_descripcion" text="Introduzca una breve descripción" textFill="#ef0404" visible="false">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
                   </Label>
                </children>
-            </HBox>
-            <Label fx:id="error_precio" text="El formato de precio es incorrecto" textFill="#ef0404" visible="false">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </Label>
-            <Text fx:id="ca" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="50.0" top="10.0" />
-               </VBox.margin>
-            </Text>
-            <SplitMenuButton fx:id="categorias_boton" maxHeight="25.0" maxWidth="170.0" minHeight="25.0" minWidth="170.0" mnemonicParsing="false" onContextMenuRequested="#seleccionar_categoria1" onMouseClicked="#seleccionar_categoria" prefHeight="25.0" prefWidth="170.0" style="-fx-font-family: sans-serif; -fx-background-color: green;" text="Seleccionar Categoria">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </SplitMenuButton>
-            <Label fx:id="error_categoria" text="Seleccione una categoría" textFill="#ef0404" visible="false">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </Label>
-            <Text fx:id="des" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="50.0" top="10.0" />
-               </VBox.margin>
-            </Text>
-            <TextArea fx:id="descripcion_gasto" maxHeight="100.0" maxWidth="200.0" minHeight="80.0" minWidth="200.0" prefHeight="80.0" prefWidth="200.0" promptText="Introduce una breve descripción">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </TextArea>
-            <Label fx:id="error_descripcion" text="Introduzca una breve descripción" textFill="#ef0404" visible="false">
-               <VBox.margin>
-                  <Insets left="50.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-         <HBox.margin>
-            <Insets />
-         </HBox.margin>
-      </VBox>
-      <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="350.0">
-         <children>
-            <Text fx:id="ti" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiquet o factura">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="25.0" top="75.0" />
-               </VBox.margin>
-            </Text>
-            <VBox fx:id="vboxFactura" alignment="CENTER" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="tiquet_gasto" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#añadirImagen" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/4211763.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <VBox.margin>
-                  <Insets left="45.0" />
-               </VBox.margin>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
-            <Label fx:id="error_foto" text="El formato de la fotografía es incorrecto" textFill="#ef0404" visible="false">
-               <VBox.margin>
-                  <Insets left="25.0" />
-               </VBox.margin>
-            </Label>
-            <HBox minHeight="60.0" minWidth="200.0" prefHeight="60.0" prefWidth="200.0">
+            <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="350.0">
                <children>
-                  <Button fx:id="boton_aceptar" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#pulsarAceptar" prefHeight="30.0" prefWidth="80.0" text="Aceptar">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="boton_Cancelar" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#pulsarCancelar" prefHeight="30.0" prefWidth="80.0" text="Cancelar">
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </Button>
+                  <Text fx:id="ti" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiquet o factura">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="25.0" top="75.0" />
+                     </VBox.margin>
+                  </Text>
+                  <VBox fx:id="vboxFactura" alignment="CENTER" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="tiquet_gasto" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#añadirImagen" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/4211763.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="45.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <Label fx:id="error_foto" text="El formato de la fotografía es incorrecto" textFill="#ef0404" visible="false">
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
-               <VBox.margin>
-                  <Insets left="120.0" top="270.0" />
-               </VBox.margin>
-            </HBox>
+            </VBox>
          </children>
-      </VBox>
-   </children>
-</HBox>
+      </HBox>
+   </center>
+   <bottom>
+      <HBox minHeight="60.0" minWidth="200.0" prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="boton_aceptar" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onAction="#pulsarAceptar" prefHeight="30.0" prefWidth="80.0" text="Aceptar">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="boton_Cancelar" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#pulsarCancelar" prefHeight="30.0" prefWidth="80.0" text="Cancelar">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

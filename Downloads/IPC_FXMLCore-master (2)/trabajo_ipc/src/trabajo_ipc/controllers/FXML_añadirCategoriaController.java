@@ -25,6 +25,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -72,6 +73,8 @@ public class FXML_añadirCategoriaController implements Initializable {
     private List<Category> categorias;
     private ObservableList<Category> categoriasO;
     private Category miCategoria;
+    @FXML
+    private BorderPane borderpane;
 
     /**
      * Initializes the controller class.
@@ -80,7 +83,7 @@ public class FXML_añadirCategoriaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         String css = this.getClass().getResource("/resources/css/fxml_añadircategoria.css").toExternalForm();
-        hbox.getStylesheets().add(css);
+        borderpane.getStylesheets().add(css);
     }    
 
     @FXML

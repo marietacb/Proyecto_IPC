@@ -563,6 +563,7 @@ public class FXMLDocumentController implements Initializable {
         boton_resumenGastos.setDisable(false);
     }
 
+    
     @FXML
     private void imprimir(ActionEvent event) throws AcountDAOException {
         EscenarioPrincipal = (Stage) boton_gastos.getScene().getWindow();

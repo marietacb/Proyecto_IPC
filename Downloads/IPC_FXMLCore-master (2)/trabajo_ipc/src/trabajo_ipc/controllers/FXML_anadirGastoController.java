@@ -51,6 +51,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -155,6 +156,8 @@ public class FXML_anadirGastoController implements Initializable {
         
     private FXMLDocumentController fxmlDocumentController;
     private Image scanner;
+    @FXML
+    private BorderPane borderpane;
 
 
     // Método para recibir la instancia actual de FXMLDocumentController
@@ -169,7 +172,7 @@ public class FXML_anadirGastoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
          try {
              String css = this.getClass().getResource("/resources/css/anadir_gastofxml.css").toExternalForm();
-             pantallaAñadirGasto.getStylesheets().add(css);
+             borderpane.getStylesheets().add(css);
              
              //configurar datepicker
              elegir_fecha.setDayCellFactory((DatePicker picker) -> {
