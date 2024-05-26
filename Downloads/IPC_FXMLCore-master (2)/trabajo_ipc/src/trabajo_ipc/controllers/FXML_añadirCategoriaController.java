@@ -82,7 +82,7 @@ public class FXML_añadirCategoriaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        String css = this.getClass().getResource("/resources/css/fxml_anadircategoria.css").toExternalForm();
+        String css = this.getClass().getResource("/resources/css/fxml_añadircategoria.css").toExternalForm();
         borderpane.getStylesheets().add(css);
     } 
     public void setMainController(FXMLDocumentController mainController) {
