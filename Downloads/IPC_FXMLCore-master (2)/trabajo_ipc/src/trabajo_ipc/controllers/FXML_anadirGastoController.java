@@ -351,12 +351,15 @@ public class FXML_anadirGastoController implements Initializable {
         
         File seleccionado = ficheroSel.showOpenDialog( 
         ((Node)event.getSource()).getScene().getWindow());
-        if (ficheroSel != null) {
-            tiquet_gasto.setFitHeight(50); //adaptamos tamaño foto
-            tiquet_gasto.setFitWidth(50);  
+        if (!seleccionado.getName().equals("4211763.png")) {
+            tiquet_gasto.setFitHeight(200); //adaptamos tamaño foto
+            tiquet_gasto.setFitWidth(200);  
             Image imagen = new Image(seleccionado.toURI().toString());
             tiquet_gasto.setImage(imagen);
-        } 
+        }
+        else{
+            
+        }
     }    
 
     @FXML

@@ -15,6 +15,7 @@
     -fx-background-radius: 60; /* Hace que el fondo sea redondo */
     -fx-alignment: center;      /* Centra el contenido del botón */
     -fx-background-color: white;
+    -fx-border-color: black;
 }
 
 #bAjustes{

@@ -60,7 +60,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <TextField fx:id="nickField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="PepeBotella" />
+                  <TextField fx:id="nickField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" />
                   <Region prefHeight="180.0" prefWidth="150.0" VBox.vgrow="NEVER" />
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" VBox.vgrow="NEVER">
                      <children>
