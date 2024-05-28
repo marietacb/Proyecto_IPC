@@ -33,6 +33,7 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 
@@ -100,11 +101,17 @@ public class FXML_registroController implements Initializable {
     private PasswordField field_contraseña2;
     @FXML
     private Label contraseña_incorrecto2;
+    @FXML
+    private BorderPane registroPane;
 
     
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        String css = this.getClass().getResource("/resources/css/fxml_registro.css").toExternalForm();
+        registroPane.getStylesheets().add(css);
+        
         validName = new SimpleBooleanProperty(false);
         validSurname = new SimpleBooleanProperty(false);
         validNickname = new SimpleBooleanProperty(false);
@@ -273,13 +280,9 @@ public class FXML_registroController implements Initializable {
                     String emailMessage;
                     String tituloEmail;
                     
-                    if(register){
-                        emailMessage = "Su usuario " + nombreUsuario + " ha actualizado su información del perfil, si no ha sido usted, por favor, contáctenos al numero +34 111 222 333";
-                        tituloEmail = "Mi dinerillo: Actualización de usuario";
-                    } else {
-                        emailMessage = "El usuario " + nombreUsuario + " se ha registrado con éxito en 'Mi dinerillo', muchas gracias por confiar en nuestra aplicación.";
-                        tituloEmail = "Mi dinerillo: Registro de usuario";
-                    }
+                    //enviar mensaje de registro si el correo es real
+                    emailMessage = "El usuario " + nombreUsuario + " se ha registrado con éxito en 'Mi dinerillo', muchas gracias por confiar en nuestra aplicación.";
+                    tituloEmail = "Mi dinerillo: Registro de usuario";
                     
                     Acount.getInstance().registerUser(nombre, apellidos, correo, nombreUsuario, contraseña, avatar, fecha);
                     

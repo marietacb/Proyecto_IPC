@@ -35,7 +35,7 @@
       </HBox>
    </top>
    <center>
-      <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="108.0" fitWidth="245.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <HBox.margin>

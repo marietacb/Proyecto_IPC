@@ -66,17 +66,17 @@
       </ToolBar>
    </left>
    <center>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Mis gastos">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Mis gastos">
                <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <HBox fx:id="prueba" prefHeight="700.0" prefWidth="700.0">
+            <HBox fx:id="prueba" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="700.0">
                <children>
                   <TableView fx:id="tableView" maxHeight="450.0" prefHeight="200.0" prefWidth="525.0">
                     <columns>
@@ -89,12 +89,12 @@
                         <TableColumn fx:id="tiquet" prefWidth="72.80001831054688" text="Tiquet" />
                     </columns>
                      <HBox.margin>
-                        <Insets left="10.0" top="10.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                      <columnResizePolicy>
                      </columnResizePolicy>
                   </TableView>
-                  <VBox>
+                  <VBox alignment="TOP_CENTER">
                      <children>
                         <MenuButton fx:id="eliminar_boton" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="document.css" text="Eliminar">
                           <items>
@@ -127,7 +127,7 @@
                         </Button>
                      </children>
                      <HBox.margin>
-                        <Insets top="10.0" />
+                        <Insets />
                      </HBox.margin>
                   </VBox>
                </children>

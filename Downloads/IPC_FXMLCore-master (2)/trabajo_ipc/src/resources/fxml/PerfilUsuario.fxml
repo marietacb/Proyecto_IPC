@@ -6,150 +6,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderpane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.PerfilUsuarioController">
-   <center>
-      <VBox fx:id="vbox" prefHeight="450.0" prefWidth="700.0">
+
+<VBox fx:id="vbox" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="0.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.PerfilUsuarioController">
+   <children>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="80.0" prefWidth="200.0">
          <children>
-            <HBox>
-               <children>
-                  <VBox>
-                     <children>
-                        <Label fx:id="fotolabel" contentDisplay="CENTER" prefWidth="50.0" text="Foto:">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <HBox>
-                           <children>
-                              <ImageView fx:id="fotoImage" disable="true" fitHeight="140.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../images/foto_perfil.jpg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-               <padding>
-                  <Insets left="40.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox>
-               <children>
-                  <VBox>
-                     <children>
-                        <Label fx:id="nickname" text="Nickname:" />
-                        <TextField fx:id="nombreText" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="150.0" />
-                     </children>
-                  </VBox>
-                  <Label fx:id="errorNombre" textFill="RED">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" top="23.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets left="40.0" top="20.0" />
-               </padding>
-            </HBox>
-            <HBox>
-               <children>
-                  <VBox>
-                     <children>
-                        <Label fx:id="apell" text="Apellidos:">
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="apellidosText" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="160.0" />
-                     </children>
-                  </VBox>
-                  <Label fx:id="errorApellidos" textFill="RED">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" top="23.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets left="40.0" top="20.0" />
-               </padding>
-            </HBox>
-            <HBox>
-               <children>
-                  <VBox>
-                     <children>
-                        <Label fx:id="nom" text="Nombre:" />
-                        <TextField fx:id="textNick" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="150.0" />
-                     </children>
-                  </VBox>
-               </children>
-               <padding>
-                  <Insets left="40.0" top="20.0" />
-               </padding>
-            </HBox>
-            <HBox>
-               <children>
-                  <VBox>
-                     <children>
-                        <Label fx:id="ema" text="Email:" />
-                        <TextField fx:id="emailText" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-                  <Label fx:id="errorEmail" textFill="RED">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" top="23.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets left="40.0" top="20.0" />
-               </padding>
-            </HBox>
-         </children>
-      </VBox>
-   </center>
-   <bottom>
-      <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER_RIGHT">
-         <children>
-            <Button fx:id="cancelar" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pulsarCancelar" prefHeight="30.0" prefWidth="90.0" text="_Salir">
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </BorderPane.margin>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </HBox>
-   </bottom>
-   <top>
-      <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
-         <children>
-            <Label fx:id="titulo" text="Mi perfil">
+            <Label fx:id="titulo" prefHeight="30.0" text="Mi perfil">
                <font>
                   <Font size="24.0" />
                </font>
@@ -158,12 +24,138 @@
                </HBox.margin>
             </Label>
          </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
          <padding>
             <Insets bottom="10.0" left="30.0" right="20.0" />
          </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </HBox>
-   </top>
-</BorderPane>
+      <HBox>
+         <children>
+            <VBox>
+               <children>
+                  <Label fx:id="fotolabel" contentDisplay="CENTER" prefWidth="50.0" text="Foto:">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <ImageView fx:id="fotoImage" disable="true" fitHeight="140.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/foto_perfil.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox>
+         <children>
+            <VBox>
+               <children>
+                  <Label fx:id="nickname" text="Nickname:" />
+                  <TextField fx:id="nombreText" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="150.0" />
+               </children>
+            </VBox>
+            <Label fx:id="errorNombre" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="23.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="40.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox>
+         <children>
+            <VBox>
+               <children>
+                  <Label fx:id="apell" text="Apellidos:">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="apellidosText" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="160.0" />
+               </children>
+            </VBox>
+            <Label fx:id="errorApellidos" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="23.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="40.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox>
+         <children>
+            <VBox>
+               <children>
+                  <Label fx:id="nom" text="Nombre:" />
+                  <TextField fx:id="textNick" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="150.0" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="40.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox>
+         <children>
+            <VBox>
+               <children>
+                  <Label fx:id="ema" text="Email:" />
+                  <TextField fx:id="emailText" disable="true" maxWidth="180.0" minWidth="-Infinity" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <Label fx:id="errorEmail" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="23.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="40.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="60.0" prefWidth="200.0" spacing="15.0">
+         <children>
+            <Button fx:id="cancelar" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pulsarCancelar" prefHeight="30.0" prefWidth="90.0" text="_Salir">
+               <HBox.margin>
+                  <Insets bottom="20.0" right="40.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets top="40.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

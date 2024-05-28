@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../css/fxml_registro.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_registroController">
+<BorderPane fx:id="registroPane" stylesheets="@../css/fxml_registro.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabajo_ipc.controllers.FXML_registroController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
