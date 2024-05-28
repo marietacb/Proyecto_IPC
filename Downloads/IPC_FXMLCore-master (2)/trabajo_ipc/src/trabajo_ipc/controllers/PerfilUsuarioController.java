@@ -97,7 +97,7 @@ public class PerfilUsuarioController implements Initializable {
         catch(Exception e){}
         
         String css = this.getClass().getResource("/resources/css/perfilusuario.css").toExternalForm();
-        borderpane.getStylesheets().add(css);
+        vbox.getStylesheets().add(css);
     }
     
 

@@ -19,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import model.Acount;
 import model.AcountDAOException;
 import model.Charge;
@@ -34,8 +35,6 @@ public class ComparadorController implements Initializable {
     @FXML
     private Button añadir_boton;
     @FXML
-    private BorderPane fondocomparador;
-    @FXML
     private ComboBox<String> boxmes1;
     @FXML
     private ComboBox<String> boxmes2;
@@ -49,6 +48,8 @@ public class ComparadorController implements Initializable {
     private Label label1;
     @FXML
     private Label label2;
+    @FXML
+    private VBox fondoComparador;
 
     /**
      * Initializes the controller class.
@@ -57,7 +58,7 @@ public class ComparadorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         String css = this.getClass().getResource("/resources/css/comparador.css").toExternalForm();
-        fondocomparador.getStylesheets().add(css);
+        fondoComparador.getStylesheets().add(css);
         
         boxmes1.valueProperty().addListener(new ChangeListener<String>() {
             @Override
